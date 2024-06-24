@@ -5,7 +5,7 @@ import CarouselPro from './CarouselPro'
 const Products = () => {
   return (
     <Container>
-        <div className=' w-[808px] h-[74px] font-inter text-[28px] font-semibold text-white'>
+        <div className=' w-[808px] h-[74px] font-inter text-[28px] font-semibold text-white mt-[103px]'>
             <span>Выбирайте квартиру для жизни или инвестиций. Предложение доступны </span>
             <span className='bg-[#DC2215] w-[457px] h-[34px] px-7'>к покупке прямо сейчас</span>
         </div>
@@ -30,7 +30,7 @@ const Products = () => {
             <div className='flex justify-center mt-[30px]'>
               <div className='w-[273px] flex justify-between'>
                 <p className='font-semibold text-[20px]'>12млн.$</p>
-                <p className='font-normal text-[18px]'>16млн.$</p>
+                <p className='font-normal text-[18px] line-through'>16млн.$</p>
               </div>
             </div>
             <div className='flex justify-center mt-[15px]'>
