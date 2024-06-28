@@ -1,15 +1,11 @@
-import React, { useRef, useState } from 'react';
-
+import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import product from '../../../shared/assets/img/product.png'
-
-
+import product from '../../../shared/assets/img/product.png';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-
-
 import { Navigation, Pagination, Mousewheel, Keyboard } from 'swiper/modules';
+import './CarouselPro.css'; // Импортируйте файл CSS
 
 export default function CarouselPro() {
   return (
@@ -24,16 +20,16 @@ export default function CarouselPro() {
         className="mySwiper"
       >
         <SwiperSlide>
-            <img className='h-[207px]' src={product}/>
+          <img className='h-[207px]' src={product} alt="Product 1" />
         </SwiperSlide>
         <SwiperSlide>
-            <img className='h-[207px]' src={product}/>
+          <img className='h-[207px]' src={product} alt="Product 2" />
         </SwiperSlide>
         <SwiperSlide>
-            <img className='h-[207px]' src={product}/>
+          <img className='h-[207px]' src={product} alt="Product 3" />
         </SwiperSlide>
         <SwiperSlide>
-            <img className='h-[207px]' src={product}/>
+          <img className='h-[207px]' src={product} alt="Product 4" />
         </SwiperSlide>
       </Swiper>
     </>
