@@ -4,9 +4,9 @@ import Container from '../../shared/helpers/Container'
 import tel from '../../shared/assets/svg/tel.svg'
 import gmail from '../../shared/assets/svg/gmail.svg'
 import vertor from '../../shared/assets/svg/vertor.svg'
-import instagram from '../../shared/assets/svg/instagram.svg'
-import whatsapp from '../../shared/assets/svg/whatsapp.svg'
-import telegram from '../../shared/assets/svg/telegram.svg'
+import instagram from '../../shared/assets/svg/ivertor.svg'
+import whatsapp from '../../shared/assets/svg/wvertor.svg'
+import telegram from '../../shared/assets/svg/tvertor.svg'
 
 const Footer = () => {
   return (
