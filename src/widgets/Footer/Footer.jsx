@@ -8,6 +8,7 @@ import instagram from '../../shared/assets/svg/instagram.svg'
 import wvertor from '../../shared/assets/svg/whatsapp.svg'
 import telegram from '../../shared/assets/svg/telegram.svg'
 
+
 const Footer = () => {
   return (
     <div className='bg-[#111111] h-[300px] pt-20 mt-20'>
