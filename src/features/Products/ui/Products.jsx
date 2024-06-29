@@ -1,8 +1,8 @@
-
 import React from 'react'
 import Container from '../../../shared/helpers/Container'
 import CarouselPro from './CarouselPro'
 import DropdownMenu from './DropdownMenu'
+
 
 
 const Products = () => {
@@ -20,6 +20,7 @@ const Products = () => {
             </p>
           </div>
         </div>
+
       <div className="w-full flex gap-[20px]">
 
         <div className="w-[310px] h-[483px] rounded bg-white mt-[25px]">
