@@ -3,8 +3,8 @@ import img from "../../../shared/assets/img/banner_home.png";
 import Container from "../../../shared/helpers/Container";
 import check from "../../../shared/assets/svg/chekcbox.svg";
 import insta from "../../../shared/assets/svg/insta.svg";
-import whatsapp from "../../../shared/assets/svg/whatsapp.svg";
-import telegram from "../../../shared/assets/svg/telegram.svg";
+import whatsapp2 from "../../../shared/assets/svg/whatsap2.svg"
+import telegram3 from "../../../shared/assets/svg/telega5.svg";
 import telegram2 from "../../../shared/assets/svg/telega2.svg";
 
 function Banner() {
@@ -47,12 +47,12 @@ function Banner() {
                 </button>
                 <div className="flex items-center gap-4 px-10 py-3 text-white bg-red-600 rounded-full">
                   <div className="relative flex items-center justify-center cursor-pointer">
-                    <img src={telegram} alt="telegram" className="w-9 h-9" />
+                    <img src={telegram3} alt="telegram" className="w-9 h-9" />
                     <img src={telegram2} alt="telegram2" className="absolute" />
                   </div>
                   <hr className="w-px h-6 bg-gray-400 " />
                   <img
-                    src={whatsapp}
+                    src={whatsapp2}
                     alt="whatsapp"
                     className="cursor-pointer w-9 h-9"
                   />
