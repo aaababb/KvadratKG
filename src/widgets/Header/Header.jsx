@@ -10,20 +10,12 @@ const Header = () => {
           <div className="">
             <img src={logo} alt="img" />
           </div>
-          <div className="w-[34.10%] flex  items-center  justify-between text-white text-md ">
-            <p>О компании</p>
+          <div className="flex items-center justify-between text-white gap-7 text-md">
+            <p>Главная</p>
+            <p>Купить недвижимость</p>
             <p>Услуги</p>
-            <p>Квартиры</p>
-            <p>Дома</p>
+            <p>О компании</p>
             <p>FAQ</p>
-          </div>
-          <div className="flex items-center border-2   bg-white rounded-full py-0 px-4 w-[280px]">
-            <input
-              className="flex-grow px-2 py-1 rounded-full outline-none"
-              type="text"
-              placeholder="Поиск"
-            />
-            <img className="w-[18px] h-[18px]" src={search} alt="search" />
           </div>
         </div>
       </Container>
