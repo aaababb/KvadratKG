@@ -8,7 +8,7 @@ import ava from "../../shared/assets/svg/ava.svg";
 function Uslugi() {
   return (
     <Container>
-      <div className="flex flex-col items-center justify-center gap-[40px] mb-[157px]">
+      <div className="flex flex-col items-center justify-center gap-[40px] mb-[157px] mt-20">
         <h1 className="text-3xl font-medium text-white">НАШИ УСЛУГИ</h1>
         <div className="flex items-center justify-between w-full ">
           <div className={`${style}`}>
