@@ -5,7 +5,7 @@ import tel from '../../shared/assets/svg/tel.svg'
 import gmail from '../../shared/assets/svg/gmail.svg'
 import vertor from '../../shared/assets/svg/vertor.svg'
 import instagram from '../../shared/assets/svg/instagram.svg'
-import whatsapp from '../../shared/assets/svg/whatsapp.svg'
+import wvertor from '../../shared/assets/svg/whatsapp.svg'
 import telegram from '../../shared/assets/svg/telegram.svg'
 
 const Footer = () => {
@@ -20,7 +20,7 @@ const Footer = () => {
       <p className='pt-5'>Наши социальные сети</p>
       <div className='flex gap-3 pt-5'>
         <img src={instagram} alt="" />
-        <img src={whatsapp} alt="" />
+        <img src={wvertor} alt="" />
         <img src={telegram} alt="" />
       </div>
         </div>
