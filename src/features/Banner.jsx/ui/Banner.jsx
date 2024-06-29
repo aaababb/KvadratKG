@@ -42,7 +42,7 @@ function Banner() {
                 ))}
               </div>
               <div className="flex items-center justify-between">
-                <button className="px-8 py-3 text-white bg-red-600 rounded-full">
+                <button className="px-8 py-3 text-white bg-red-700 rounded-full hover:bg-red-600">
                   Получить консультацию от риэлтора
                 </button>
                 <div className="flex items-center gap-4 px-10 py-3 text-white bg-red-600 rounded-full">
