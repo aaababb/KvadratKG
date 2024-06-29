@@ -9,6 +9,7 @@ import wvertor from '../../shared/assets/svg/wvertor.svg'
 import telegram from '../../shared/assets/svg/tvertor.svg'
 
 
+
 const Footer = () => {
   return (
     <div className='bg-[#111111] h-[300px] pt-20 mt-20'>

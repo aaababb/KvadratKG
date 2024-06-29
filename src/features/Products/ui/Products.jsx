@@ -5,7 +5,6 @@ import CarouselPro from './CarouselPro'
 import DropdownMenu from './DropdownMenu'
 
 
-
 const Products = () => {
   return (
     <Container>
@@ -22,6 +21,7 @@ const Products = () => {
           </div>
         </div>
       <div className="w-full flex gap-[20px]">
+
         <div className="w-[310px] h-[483px] rounded bg-white mt-[25px]">
           <div className="w-full h-[207px] rounded-tl rounded-tr">
             <CarouselPro />
@@ -39,8 +39,7 @@ const Products = () => {
           <div className="flex justify-center mt-[30px]">
             <div className="w-[273px] flex justify-between">
               <p className="font-semibold text-[20px]">12млн.$</p>
-              <p className="font-normal text-[18px]">16млн.$</p>
-
+              <p className="font-normal text-[18px] line-through">16млн.$</p>
             </div>
           </div>
           <div className="flex justify-center mt-[15px]">
