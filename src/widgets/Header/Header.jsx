@@ -1,7 +1,8 @@
 import React from "react";
 import Container from "../../shared/helpers/Container";
 import logo from "../../shared/assets/svg/logo.svg";
-import search from "../../shared/assets/svg/search.svg";
+import { Link } from "react-router-dom";
+
 const Header = () => {
   return (
     <div className="bg-[#C8180C]">
@@ -14,7 +15,7 @@ const Header = () => {
             <p>Главная</p>
             <p>Купить недвижимость</p>
             <p>Услуги</p>
-            <p>О компании</p>
+            <Link to={'/AboutCompany'}>О компании</Link>
             <p>FAQ</p>
           </div>
         </div>
