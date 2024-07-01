@@ -29,7 +29,7 @@ const ProductFilters = () => {
   </div>
   <div className="flex justify-center mt-[15px]">
     <button className="w-[249px] h-[50px] text-center rounded-[39px] text-[18px] text-white font-normal bg-[#DC2215]">
-      Перейти на страницу
+    Подробнее
     </button>
   </div>
 </div>
