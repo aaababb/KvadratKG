@@ -2,7 +2,9 @@
 import Layout from "../../widgets/layout/Layout";
 import NotFound from "../../widgets/NotFound/NotFound";
 import HomePage from "../../Pages/HomePage/HomePage";
+import Filters from "../../features/Filters/ul/Filters";
 import CompanyPage from "../../Pages/AboutCompany/CompanyPage";
+
 
 export const router = createBrowserRouter([
     {
@@ -15,6 +17,9 @@ export const router = createBrowserRouter([
                 element: <HomePage/>
             },
             {
+                path:'/watch',
+                element:<Filters/>
+            },
                 path: '/AboutCompany',
                 element: <CompanyPage/>
             },
