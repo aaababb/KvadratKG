@@ -1,4 +1,4 @@
-    import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import Layout from "../../widgets/layout/Layout";
 import NotFound from "../../widgets/NotFound/NotFound";
 import HomePage from "../../Pages/HomePage/HomePage";
@@ -6,28 +6,28 @@ import Filters from "../../features/Filters/ul/Filters";
 import CompanyPage from "../../Pages/AboutCompany/CompanyPage";
 import InfoPage from "../../Pages/InfoPage/InfoPage";
 
-
 export const router = createBrowserRouter([
     {
         path: '/',
-        element: <Layout/>,
-        errorElement: <NotFound/>,
+        element: <Layout />,
+        errorElement: <NotFound />,
         children: [
             {
                 path: '/',
-                element: <HomePage/>
+                element: <HomePage />
             },
             {
-                path:'/watch',
-                element:<Filters/>
+                path: '/watch',
+                element: <Filters />
             },
+            {
                 path: '/AboutCompany',
-                element: <CompanyPage/>
+                element: <CompanyPage />
             },
             {
-                path:"/info",
-                element:<InfoPage/>
+                path: "/info",
+                element: <InfoPage />
             }
         ]
     }
-])
+]);

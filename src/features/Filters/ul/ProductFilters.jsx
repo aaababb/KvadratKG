@@ -1,6 +1,7 @@
 import React from 'react'
 import Container from '../../../shared/helpers/Container'
 import CarouselPro from '../../Products/ui/CarouselPro'
+import { Link } from 'react-router-dom'
 
 const ProductFilters = () => {
   return (
@@ -28,9 +29,12 @@ const ProductFilters = () => {
     </div>
   </div>
   <div className="flex justify-center mt-[15px]">
+    <Link to={'/info'}>
     <button className="w-[249px] h-[50px] text-center rounded-[39px] text-[18px] text-white font-normal bg-[#DC2215]">
-    Подробнее
+      Подробнее
     </button>
+    </Link>
+   
   </div>
 </div>
 </div>
