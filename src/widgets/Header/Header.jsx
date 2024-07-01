@@ -24,10 +24,10 @@ const Header = () => {
           </div>
           <div className="flex items-center justify-between text-white gap-7 text-md">
             <Link to="/">Главная</Link>
-            <p onClick={() => handleScroll("products")}>Купить недвижимость</p>
-            <p onClick={() => handleScroll("uslugi")}>Услуги</p>
+            <p className="cursor-pointer" onClick={() => handleScroll("products")}>Купить недвижимость</p>
+            <p className="cursor-pointer" onClick={() => handleScroll("uslugi")}>Услуги</p>
             <Link to='/AboutCompany'>О компании</Link>
-            <p onClick={() => handleScroll("faq")}>FAQ</p>
+            <p className="cursor-pointer" onClick={() => handleScroll("faq")}>FAQ</p>
           </div>
         </div>
       </Container>
