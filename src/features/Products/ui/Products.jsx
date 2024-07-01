@@ -2,6 +2,7 @@ import React from 'react'
 import Container from '../../../shared/helpers/Container'
 import CarouselPro from './CarouselPro'
 import DropdownMenu from './DropdownMenu'
+import { Link } from 'react-router-dom';
 
 
 
@@ -15,9 +16,12 @@ const Products = () => {
               <span className='bg-[#DC2215] w-[457px] h-[34px] px-7'>к покупке прямо сейчас</span>
           </div>
           <div className='flex justify-end'>
+            <Link to={'/watch'}>
             <p className='font-inter text-[18px] font-normal text-white border-b border-white w-[112px] h-[25px]'>
               Смотреть все
             </p>
+            </Link>
+          
           </div>
         </div>
 
