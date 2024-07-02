@@ -3,9 +3,10 @@ import img from "../../../shared/assets/img/banner_home.png";
 import Container from "../../../shared/helpers/Container";
 import check from "../../../shared/assets/svg/chekcbox.svg";
 import insta from "../../../shared/assets/svg/insta.svg";
-import whatsapp2 from "../../../shared/assets/svg/whatsap2.svg"
+import whatsapp2 from "../../../shared/assets/svg/whatsap2.svg";
 import telegram3 from "../../../shared/assets/svg/telega5.svg";
 import telegram2 from "../../../shared/assets/svg/telega2.svg";
+import { Link } from "react-router-dom";
 
 function Banner() {
   const texts = [
@@ -42,26 +43,38 @@ function Banner() {
                 ))}
               </div>
               <div className="flex items-center justify-between">
+              <Link to="https://web.telegram.org/a/">
                 <button className="px-8 py-3 text-white bg-red-700 rounded-full hover:bg-red-600">
                   Получить консультацию от риэлтора
                 </button>
+                </Link>
                 <div className="flex items-center gap-4 px-10 py-3 text-white bg-red-600 rounded-full">
-                  <div className="relative flex items-center justify-center cursor-pointer">
-                    <img src={telegram3} alt="telegram" className="w-9 h-9" />
-                    <img src={telegram2} alt="telegram2" className="absolute" />
-                  </div>
+                  <Link to="https://web.telegram.org/a/">
+                    <div className="relative flex items-center justify-center cursor-pointer">
+                      <img src={telegram3} alt="telegram" className="w-9 h-9" />
+                      <img
+                        src={telegram2}
+                        alt="telegram2"
+                        className="absolute"
+                      />
+                    </div>
+                  </Link>
                   <hr className="w-px h-6 bg-gray-400 " />
-                  <img
-                    src={whatsapp2}
-                    alt="whatsapp"
-                    className="cursor-pointer w-9 h-9"
-                  />
+                  <Link to="https://web.whatsapp.com/">
+                    <img
+                      src={whatsapp2}
+                      alt="whatsapp"
+                      className="cursor-pointer w-9 h-9"
+                    />
+                  </Link>
                   <hr className="w-px h-6 bg-gray-400" />
-                  <img
-                    src={insta}
-                    alt="instagram"
-                    className="cursor-pointer w-9 h-9"
-                  />
+                  <Link to="https://www.instagram.com/">
+                    <img
+                      src={insta}
+                      alt="instagram"
+                      className="cursor-pointer w-9 h-9"
+                    />
+                  </Link>
                 </div>
               </div>
             </div>

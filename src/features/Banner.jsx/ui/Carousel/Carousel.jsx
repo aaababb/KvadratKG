@@ -9,7 +9,7 @@ import { Autoplay, Pagination, Navigation } from "swiper/modules";
 
 export default function Carousel() {
   return (
-    <>
+    <div className="relative w-full h-full">
       <Swiper
         slidesPerView={1}
         spaceBetween={30}
@@ -18,6 +18,7 @@ export default function Carousel() {
           delay: 3000,
           disableOnInteraction: false,
         }}
+        speed={1000}
         modules={[Autoplay, Pagination, Navigation]}
         className="mySwiper"
       >
@@ -31,6 +32,6 @@ export default function Carousel() {
           <Banner />
         </SwiperSlide>
       </Swiper>
-    </>
+    </div>
   );
 }
