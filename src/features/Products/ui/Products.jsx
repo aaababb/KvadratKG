@@ -1,29 +1,32 @@
-import React from "react";
-import Container from "../../../shared/helpers/Container";
-import CarouselPro from "./CarouselPro";
-import DropdownMenu from "./DropdownMenu";
+import React from 'react'
+import Container from '../../../shared/helpers/Container'
+import CarouselPro from './CarouselPro'
+import DropdownMenu from './DropdownMenu'
+import { Link } from 'react-router-dom';
+
+
 
 const Products = () => {
   return (
     <Container>
-      <div className=" flex justify-between items-end mt-[103px]">
-        <DropdownMenu />
-        <div className=" w-[808px] h-[74px] font-inter text-[28px] font-semibold text-white ">
-          <span>
-            Выбирайте квартиру для жизни или инвестиций. Предложение доступны{" "}
-          </span>
-          <span className="bg-[#DC2215] w-[457px] h-[34px] px-7">
-            к покупке прямо сейчас
-          </span>
+        <div className=' flex justify-between items-end mt-[103px]'>
+          <DropdownMenu/>
+          <div className=' w-[808px] h-[74px] font-inter text-[28px] font-semibold text-white '>
+              <span>Выбирайте квартиру для жизни или инвестиций. Предложение доступны </span>
+              <span className='bg-[#DC2215] w-[457px] h-[34px] px-7'>к покупке прямо сейчас</span>
+          </div>
+          <div className='flex justify-end'>
+            <Link to={'/watch'}>
+            <p className='font-inter text-[18px] font-normal text-white border-b border-white w-[112px] h-[25px]'>
+              Смотреть все
+            </p>
+            </Link>
+          
+          </div>
         </div>
-        <div className="flex justify-end">
-          <p className="font-inter text-[18px] font-normal text-white border-b border-white w-[112px] h-[25px]">
-            Смотреть все
-          </p>
-        </div>
-      </div>
 
-      <div className="w-full flex gap-[20px] mt-[25px]">
+      <div className="w-full flex gap-[20px]">
+
         <div className="w-[310px] h-[483px] rounded bg-white mt-[25px]">
           <div className="w-full h-[207px] rounded-tl rounded-tr">
             <CarouselPro />

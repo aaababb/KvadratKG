@@ -1,29 +1,33 @@
-import React from "react";
+import React, { useContext } from "react";
 import Container from "../../shared/helpers/Container";
 import logo from "../../shared/assets/svg/logo.svg";
-import search from "../../shared/assets/svg/search.svg";
+import { Link, useNavigate } from "react-router-dom";
+import { ScrollContext } from "../layout/Layout";
+
 const Header = () => {
+  const scrollToSection = useContext(ScrollContext);
+  const navigate = useNavigate();
+
+  const handleScroll = (section) => {
+    navigate('/');
+    setTimeout(() => {
+      scrollToSection(section);
+    }, 100);
+  };
+
   return (
     <div className="bg-[#C8180C]">
       <Container>
-        <div className="py-[1.5vh]    flex items-center justify-between ">
-          <div className="">
+        <div className="py-[1.5vh] flex items-center justify-between">
+          <div>
             <img src={logo} alt="img" />
           </div>
-          <div className="w-[34.10%] flex  items-center  justify-between text-white text-md ">
-            <p>О компании</p>
-            <p>Услуги</p>
-            <p>Квартиры</p>
-            <p>Дома</p>
-            <p>FAQ</p>
-          </div>
-          <div className="flex items-center border-2   bg-white rounded-full py-0 px-4 w-[280px]">
-            <input
-              className="flex-grow px-2 py-1 rounded-full outline-none"
-              type="text"
-              placeholder="Поиск"
-            />
-            <img className="w-[18px] h-[18px]" src={search} alt="search" />
+          <div className="flex items-center justify-between text-white gap-7 text-md">
+            <Link to="/">Главная</Link>
+            <p className="cursor-pointer" onClick={() => handleScroll("products")}>Купить недвижимость</p>
+            <p className="cursor-pointer" onClick={() => handleScroll("uslugi")}>Услуги</p>
+            <Link to='/AboutCompany'>О компании</Link>
+            <p className="cursor-pointer" onClick={() => handleScroll("faq")}>FAQ</p>
           </div>
         </div>
       </Container>
