@@ -2,9 +2,9 @@ import React from 'react'
 
 const FilterName = () => {
   return (
-    <div className="text-white pl-5">
-    <p>Активный фильтр</p>
-  </div>
+    <>
+    {/* <p className="text-white pl-5">Активный фильтр</p> */}
+  </>
   )
 }
 
