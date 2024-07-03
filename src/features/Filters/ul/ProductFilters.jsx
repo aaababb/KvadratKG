@@ -2,11 +2,12 @@ import React from 'react'
 import Container from '../../../shared/helpers/Container'
 import CarouselPro from '../../Products/ui/CarouselPro'
 import { Link } from 'react-router-dom'
+import { Box } from '@mui/material'
 
 const ProductFilters = () => {
   return (
-    <Container>
-           <div className="w-full flex gap-[20px]">
+    <Box>
+           <div className="w-full flex gap-[20px] pl-5">
 
 <div className="w-[310px] h-[483px] rounded bg-white mt-[25px]">
   <div className="w-full h-[207px] rounded-tl rounded-tr">
@@ -38,7 +39,7 @@ const ProductFilters = () => {
   </div>
 </div>
 </div>
-    </Container>
+    </Box>
 )
 }
 
