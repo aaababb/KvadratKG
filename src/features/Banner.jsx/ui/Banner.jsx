@@ -43,6 +43,7 @@ function Banner() {
                 ))}
               </div>
               <div className="flex items-center justify-between">
+
               <Link to="https://web.telegram.org/a/">
                 <button className="px-8 py-3 text-white bg-red-700 rounded-full hover:bg-red-600">
                   Получить консультацию от риэлтора
@@ -84,4 +85,5 @@ function Banner() {
     </>
   );
 }
+
 export default Banner;
