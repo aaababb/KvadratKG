@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
 import { Outlet } from 'react-router-dom';
-import CssBaseline from '@mui/material/CssBaseline';
-import Box from '@mui/material/Box';
 import Header from '../Header/Header';
-import Footer from '../Footer/Footer';
+import Box from '@mui/material/Box';
 import AdminNavbar from '../AdminNavBar/AdminNavbar';
 import AdminSidebar from '../AdminSideBar/AdminSideBar';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
 
 const drawerWidth = 240;
 
 const AdminLayout = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -18,27 +20,30 @@ const AdminLayout = () => {
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-      <CssBaseline />
-      <Header />
+      <Header/>
       <AdminNavbar handleDrawerToggle={handleDrawerToggle} isOpen={mobileOpen} />
       <Box sx={{ display: 'flex', flexGrow: 1 }}>
-        <AdminSidebar open={mobileOpen} handleDrawerToggle={handleDrawerToggle} />
+        <AdminSidebar
+          open={mobileOpen}
+          handleDrawerToggle={handleDrawerToggle}
+          sx={{ /* Добавьте стили по необходимости */ }}
+        />
         <Box
           component="main"
           sx={{
             flexGrow: 1,
-            p: 3,
-            marginLeft: mobileOpen ? `${drawerWidth}px` : '0',
+            paddingTop: '46px',
+            paddingLeft: '55px',
+            marginLeft: isMobile ? '0' : (mobileOpen ? `${drawerWidth}px` : '0'),
             transition: 'margin 0.3s',
-            border: '2px solid red',
-            height: 'calc(100vh - 64px)', // Высота хедера
-            overflowY: 'auto', // Для прокрутки контента
+            overflowY: 'auto',
+            // border: '2px solid blue',
+            marginTop: '120px'
           }}
         >
-          <Outlet />
+          <Outlet context={{ mobileOpen }}/>
         </Box>
       </Box>
-      <Footer />
     </Box>
   );
 };
