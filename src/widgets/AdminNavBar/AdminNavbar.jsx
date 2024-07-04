@@ -5,28 +5,41 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import Avatar from '@mui/material/Avatar';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
 
 const AdminNavbar = ({ handleDrawerToggle, isOpen }) => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+
   return (
     <AppBar
-      position="relative"
-      color="default"
+      position="absolute"
       sx={{
-        width: isOpen ? `calc(100% - ${240}px)` : '100%',
-        marginLeft: isOpen ? `${240}px` : '0',
+        width: isMobile ? '100%' : (isOpen ? `calc(100% - ${240}px)` : '100%'),
+        maxWidth: isMobile ? '400px' : '100%',
+        // marginLeft: isMobile ? '0' :  (isOpen ? `${240}px` : '0'),
         transition: 'width 0.3s, margin 0.3s',
-        zIndex: 1201,
+        backgroundColor: '#9A0A00',
+        marginTop: '60px',
       }}
     >
       <Toolbar>
-        <IconButton edge="start" color="inherit" aria-label="menu" onClick={handleDrawerToggle}>
-          <MenuIcon />
-        </IconButton>
-        <Typography variant="h6" sx={{ flexGrow: 1 }}>
+        {!isMobile && (
+          <IconButton edge="start" color="inherit" aria-label="menu" onClick={handleDrawerToggle}>
+            <MenuIcon />
+          </IconButton>
+        )}
+        <Typography variant="h6" sx={{ flexGrow: 1, display: isMobile ? 'none' : 'block' }}>
           KVADRAT.KG
         </Typography>
-        <Box>
-          {/* Дополнительные элементы Navbar (если нужно) */}
+        <Box sx={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }} onClick={handleDrawerToggle}>
+          <Avatar alt="Admin" src="/path-to-admin-photo.jpg" sx={{ mr: 2 }} />
+            <Box sx={{ textAlign: 'left', color: 'white' }}>
+              <div>Admin Name</div>
+              <div style={{ fontSize: 'small' }}>Админ</div>
+            </Box>
         </Box>
       </Toolbar>
     </AppBar>

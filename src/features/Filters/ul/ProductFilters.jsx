@@ -8,6 +8,8 @@ const ProductFilters = () => {
     <Container>
            <div className="w-full flex gap-[20px]">
 
+
+
 <div className="w-[310px] h-[483px] rounded bg-white mt-[25px]">
   <div className="w-full h-[207px] rounded-tl rounded-tr">
     <CarouselPro />
@@ -39,6 +41,7 @@ const ProductFilters = () => {
 </div>
 </div>
     </Container>
+
 )
 }
 

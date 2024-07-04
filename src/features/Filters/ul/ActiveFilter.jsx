@@ -3,6 +3,7 @@ import MenuSort from "./MenuSort";
 import FilterName from "./FilterName";
 import ProductFilters from "./ProductFilters";
 
+
 const ActiveFilter = () => {
   return (
     <div>
@@ -15,11 +16,10 @@ const ActiveFilter = () => {
 
           <MenuSort />
         </div>
+
       </div>
-    <div>
 
       <FilterName />
-    </div>
     <div className="pl-5 mt-10">
       <ProductFilters/>
     </div>
