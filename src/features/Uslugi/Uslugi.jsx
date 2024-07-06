@@ -5,13 +5,6 @@ import hi from "../../shared/assets/svg/hi.svg";
 import monay from "../../shared/assets/svg/monay.svg";
 import ava from "../../shared/assets/svg/ava.svg";
 
-const services = [
-  { icon: check, text: "Продать недвижимость" },
-  { icon: hi, text: "Срочный выкуп недвижимости" },
-  { icon: monay, text: "Инвестиции в недвижимость" },
-  { icon: monay, text: "Подобрать недвижимость" },
-  { icon: ava, text: "Юридическое сопровождение" },
-];
 
 function Uslugi() {
   return (
@@ -102,3 +95,9 @@ function Uslugi() {
 }
 
 export default Uslugi;
+const style = "flex flex-col items-center justify-between";
+const img = "absolute p-1.5 mt-[-22px] bg-red-600 rounded-full ";
+const div2 =
+  "bg-white rounded-md py-[43px] px-[34px] flex flex-wrap  text-xl font-bold  items-center justify-center";
+const button =
+  "rounded-full px-[22px] text-lg py-[4px] bg-stone-800 hover:bg-stone-700 shadow text-white font-medium absolute  mt-[123px] ";
