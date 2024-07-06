@@ -16,11 +16,11 @@ const services = [
 function Uslugi() {
   return (
     <Container>
-      <div className="flex flex-col items-center justify-center border w-full  gap-[40px] mb-[157px] mt-20  ">
+      <div className="flex flex-col items-center justify-center  w-full  gap-[40px] mb-[157px] mt-20  ">
         <h1 className="text-3xl font-medium text-white">НАШИ УСЛУГИ</h1>
         <div className="flex items-center justify-between w-full gap-2 overflow-x-auto">  
           {services.map((item, index) => (
-            <div key={index} className="flex flex-col items-center justify-between border ">
+            <div key={index} className="flex flex-col items-center justify-between  ">
               <div className="md:h-[51px] md:w-[51px] h-[35px] w-[35px] flex items-center justify-center bg-red-600 rounded-full mb-[-20px] z-[100]">
                 <img
                   className="text-center w-[18px] h-[18px] md:w-[27px] md:h-[27px]"

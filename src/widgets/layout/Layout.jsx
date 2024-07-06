@@ -17,9 +17,9 @@ const Layout = () => {
 
   return (
     <ScrollContext.Provider value={scrollToSection}>
-      {/* <Header /> */}
+      <Header />
       <Outlet />
-      {/* <Footer /> */}
+      <Footer />
     </ScrollContext.Provider>
   );
 };

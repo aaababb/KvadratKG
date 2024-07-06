@@ -10,18 +10,18 @@ import Swipers from "../../features/Swipers/ui/Swipers";
 const HomePage = () => {
   return (
     <div>
-      {/* <Carousel /> */}
+      <Carousel />
       <Element name="uslugi">
         <Uslugi />
       </Element>
-      {/* <Element name="products">
+      <Element name="products">
         <Products />
       </Element>
       <Argument />
       <Element name="faq">
         <Accordion />
-      </Element> */}
-      {/* <Swipers /> */}
+      </Element>
+      <Swipers />
     </div>
   );
 };
