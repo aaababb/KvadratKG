@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -7,11 +8,12 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import HomeIcon from '@mui/icons-material/Home';
 import BusinessIcon from '@mui/icons-material/Business';
 import SettingsIcon from '@mui/icons-material/Settings';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import { Box, useTheme, useMediaQuery } from '@mui/material';
 
 const drawerWidth = 240;
 
 const AdminSidebar = ({ open, handleDrawerToggle }) => {
-
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
@@ -22,10 +24,9 @@ const AdminSidebar = ({ open, handleDrawerToggle }) => {
       onClose={handleDrawerToggle}
       sx={{
         '& .MuiDrawer-paper': {
-
           width: isMobile ? '200px' : drawerWidth,
           height: isMobile ? '450px' : 'calc(100vh - 64px)',
-          position: isMobile ? 'absolute' : 'absolute',
+          position: 'absolute',
           boxSizing: 'border-box',
           backgroundColor: '#222224',
           color: 'white',
