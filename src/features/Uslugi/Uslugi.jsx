@@ -16,19 +16,19 @@ const services = [
 function Uslugi() {
   return (
     <Container>
-      <div className="flex flex-col justify-center w-screen gap-10 mt-20 mb-40 border md:items-center">
+      <div className="flex flex-col items-center justify-center border w-full  gap-[40px] mb-[157px] mt-20  ">
         <h1 className="text-3xl font-medium text-white">НАШИ УСЛУГИ</h1>
-        <div className="flex items-center justify-between overflow-x-auto w-80">
+        <div className="flex items-center justify-between w-full gap-2 overflow-x-auto">  
           {services.map((item, index) => (
-            <div key={index} className="flex flex-col items-center justify-between border min-w-[250px] md:min-w-0">
-              <div className="h-[61px] w-[61px] flex items-center justify-center bg-red-600 rounded-full mb-[-20px] z-[100]">
+            <div key={index} className="flex flex-col items-center justify-between border ">
+              <div className="md:h-[51px] md:w-[51px] h-[35px] w-[35px] flex items-center justify-center bg-red-600 rounded-full mb-[-20px] z-[100]">
                 <img
-                  className="text-center w-[37px] h-[37px]"
+                  className="text-center w-[18px] h-[18px] md:w-[27px] md:h-[27px]"
                   src={item.icon}
                   alt="icon"
                 />
               </div>
-              <div className="bg-white rounded-md py-[20px] px-[34px] flex flex-wrap text-xl font-bold items-center justify-center">
+              <div className="bg-white rounded-md py-[40px] px-[34px] flex flex-wrap text-xl font-bold items-center justify-center ">
                 <p className="w-[176px] text-center">{item.text}</p>
               </div>
               <button className="rounded-full px-[22px] py-[4px] bg-stone-800 hover:bg-stone-700 text-white text-xs md:text-lg mt-[-12px]">
