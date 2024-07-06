@@ -19,9 +19,11 @@ const Header = () => {
     <div className="bg-[#C8180C]">
       <Container>
         <div className="py-[1.5vh] flex items-center justify-between">
+          <Link to={'/'}>
           <div>
             <img src={logo} alt="img" />
           </div>
+          </Link>
           <div className="flex items-center justify-between text-white gap-7 text-md">
             <Link to="/">Главная</Link>
             <p className="cursor-pointer" onClick={() => handleScroll("products")}>Купить недвижимость</p>

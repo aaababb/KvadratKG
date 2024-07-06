@@ -32,6 +32,8 @@ const AdminRealEstate = () => {
         <p>Цена</p>
         <p>Действие</p>
       </Box>
+      <div>
+
       <Box
         sx={{
           display: "flex",
@@ -39,10 +41,10 @@ const AdminRealEstate = () => {
           width: "94%",
           color: "white",
           marginTop: "50px",
-        
+          
           alignItems: "center",
         }}
-      >
+        >
         <img src={photoos} alt="Photos" />
         <p className="w-[190px]">3 - комнатная квартира на улице Киевская 30</p>
         <p className="w-[220px]">Площадь: м2.77.3 Планировка: ИФ-1(А)-036</p>
@@ -54,9 +56,36 @@ const AdminRealEstate = () => {
             alt="Pen"
             onClick={handleOpenPen}
             style={{ cursor: "pointer" }}
-          />
+            />
         </div>
       </Box>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          width: "94%",
+          color: "white",
+          marginTop: "50px",
+          
+          alignItems: "center",
+        }}
+        >
+        <img src={photoos} alt="Photos" />
+        <p className="w-[190px]">3 - комнатная квартира на улице Киевская 30</p>
+        <p className="w-[220px]">Площадь: м2.77.3 Планировка: ИФ-1(А)-036</p>
+        <p>12млн.$</p>
+        <div className="flex gap-3">
+          <img src={trash} alt="Trash" />
+          <img
+            src={pen}
+            alt="Pen"
+            onClick={handleOpenPen}
+            style={{ cursor: "pointer" }}
+            />
+        </div>
+      </Box>
+      
+            </div>
       <Modal open={openPen} onClose={handleClosePen}>
         <Box
           sx={{
