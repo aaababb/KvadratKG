@@ -10,6 +10,9 @@ import AdminMainDashboard from '../../features/AdminMainDashboard/AdminMainDashb
 import AdminRealEstate from '../../features/AdminRealEstate/AdminRealEstate';
 import AdminSettings from '../../features/AdminSettings/AdminSettings';
 import Profile from '../../features/Profile/Profile';
+import SignIn from '../../features/Sign-In/Sign-In';
+import Verification from '../../features/Sign-In/Verification';
+
 
 export const router = createBrowserRouter([
   {
@@ -34,6 +37,14 @@ export const router = createBrowserRouter([
         element: <InfoPage />,
       },
     ],
+  },
+  {
+    path:'/admin/sign-in',
+    element:<SignIn/>
+  },
+  {
+    path:'/admin/sign-in/verification',
+    element:<Verification/>
   },
   {
     path: '/admin',

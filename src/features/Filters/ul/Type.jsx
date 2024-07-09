@@ -5,7 +5,7 @@ import SaleMenu from "./SaleMenu";
 
 const Type = () => {
   return (
-    <div className="text-white bg-[#111111] w-[350px] h-[155vh] p-5 rounded	">
+    <div className="text-white bg-[#111111] w-[350px] h-[130vh] p-5 rounded	">
       <div>
         <h2>Найти свою недвижимость</h2>
       </div>
@@ -59,12 +59,8 @@ const Type = () => {
         </div>
       </div>
       <hr className="mt-10 mb-5" />
-      <div>
-        <div>
-          <RangeSlider />
-        </div>
-      </div>
-      <hr className="mt-10 mb-5" />
+  
+    
       <div>
         <p>Удобства</p>
         <div className="flex gap-10">

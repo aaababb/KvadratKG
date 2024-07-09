@@ -5,15 +5,16 @@ import hi from "../../shared/assets/svg/hi.svg";
 import monay from "../../shared/assets/svg/monay.svg";
 import ava from "../../shared/assets/svg/ava.svg";
 
+
 function Uslugi() {
   return (
     <Container>
-      <div className="flex flex-col items-center justify-center gap-[40px] mb-[157px] mt-20">
+      <div className="flex flex-col items-center justify-center  w-full  gap-[40px] mb-[157px] mt-20  ">
         <h1 className="text-3xl font-medium text-white">НАШИ УСЛУГИ</h1>
-        <div className="flex items-center justify-between w-full ">
-          <div className={`${style}`}>
-            <div className={`${img}`}>
-              <img
+         <div className="flex items-center justify-between w-full ">
+           <div className={`${style}`}>
+             <div className={`${img}`}>
+               <img
                 className="w-[30px] h-[30px]  bg-red-600 rounded-full"
                 src={check}
                 alt="icon"
@@ -84,10 +85,11 @@ function Uslugi() {
                 Юридическое сопровождение
               </p>
             </div>
+            
             <button className={`${button}`}>Получить услугу</button>
           </div>
-        </div>
       </div>
+     </div>
     </Container>
   );
 }
