@@ -5,8 +5,8 @@ const Side1 = ({ mobileOpen }) => {
   const [image, setImage] = useState(null);
 
   return (
-    <div className={`h-[725px] p-9 bg-[#222224] text-white ml-[55px] transition-all duration-300 ${mobileOpen ? 'w-[835px]' : 'w-[1035px]'}`}>
-      <div className={`h-[244px] border-b border-gray-500 transition-all duration-300 ${mobileOpen ? 'w-[737px] flex gap-[23px]' : 'w-[900px] flex gap-[153px]'}`}>
+    <div className={`h-[725px] p-9 bg-[#222224] text-white ml-[5%] transition-all duration-300 ${mobileOpen ? 'w-[90%]' : 'w-[90%]'}`}>
+      <div className={`h-[244px] border-b border-gray-500 transition-all duration-300 ${mobileOpen ? 'w-[99%] flex gap-[10%]' : 'w-[99%] flex gap-[30%]'}`}>
         <div className='w-[354px] h-[109px]'>
           <h2 className='text-[28px] font-semibold'>Заголовок</h2>
           <p className='text-[15px] font-semibold'>
@@ -19,7 +19,7 @@ const Side1 = ({ mobileOpen }) => {
       </div>
       <div className='mt-[63px]'>
         <h2 className='text-[28px] font-semibold mb-[25px]'>Дабавить обзор активности</h2>
-        <div className={`transition-all duration-300 ${mobileOpen ? 'flex gap-[24px]' : 'flex gap-[140px]'}`}>
+        <div className={`transition-all duration-300 ${mobileOpen ? 'flex gap-[8%]' : 'flex gap-[25%]'}`}>
           <div className='flex flex-col gap-[37px]'>
             <div className='flex flex-col gap-[11px]'>
               <input className='w-[363px] h-[66px] bg-[#131313] text-[#B3B3B3] rounded-[5px] p-3' placeholder='Дабавить заголовок ... ' />
