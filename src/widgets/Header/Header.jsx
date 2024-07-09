@@ -51,6 +51,7 @@ const Header = () => {
           />
           
           <div className="items-center justify-between hidden text-white md:flex gap-7 text-md">
+
             <Link to="/">Главная</Link>
             <p
               className="cursor-pointer"
