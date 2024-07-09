@@ -1,12 +1,12 @@
-
 import React, { useState, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { Navigation, Pagination, Mousewheel, Keyboard } from 'swiper/modules';
-import Side1 from './Side1';
+import Slide1 from './Slide1';
 import { useOutletContext } from 'react-router-dom';
+import Slide2 from './Slide2';
 
 const AdminMainDashboard = () => {
   const { mobileOpen } = useOutletContext();
@@ -25,7 +25,7 @@ const AdminMainDashboard = () => {
   return (
     <div>
       <div
-        className={`h-[746px] transition-all duration-300 ${mobileOpen ? 'w-[950px]' : 'w-[1150px]'}`}
+        className={`h-[746px] transition-all duration-300 ${mobileOpen ? 'w-[90%]' : 'w-[92%]'}`}
       >
         <Swiper
           cssMode={true}
@@ -37,10 +37,10 @@ const AdminMainDashboard = () => {
           className="mySwiper"
         >
           <SwiperSlide>
-            <Side1 windowWidth={windowWidth} mobileOpen={mobileOpen} />
+            <Slide1 windowWidth={windowWidth} mobileOpen={mobileOpen} />
           </SwiperSlide>
           <SwiperSlide>
-            <p>jsnjd</p>
+            <Slide2 windowWidth={windowWidth} mobileOpen={mobileOpen} />
           </SwiperSlide>
           <SwiperSlide>
             <p>nvjksd</p>

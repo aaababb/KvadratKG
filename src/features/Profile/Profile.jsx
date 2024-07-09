@@ -10,7 +10,7 @@ function Profile() {
     }
   }
   return (
-    <form className="w-[40%] m-auto bg-[#131313] mt-[100px] px-[56px] py-[50px] flex flex-col items-center gap-9 border rounded-md">
+    <form className="w-[40%] m-auto bg-[#131313] px-[56px] py-[50px] flex flex-col items-center gap-9 border rounded-md">
       
         <div>
           <img
