@@ -9,6 +9,7 @@ import AdminLayout from '../../widgets/layout/AdminLayout';
 import AdminMainDashboard from '../../features/AdminMainDashboard/AdminMainDashboard';
 import AdminRealEstate from '../../features/AdminRealEstate/AdminRealEstate';
 import AdminSettings from '../../features/AdminSettings/AdminSettings';
+import Profile from '../../features/Profile/Profile';
 import SignIn from '../../features/Sign-In/Sign-In';
 import Verification from '../../features/Sign-In/Verification';
 
@@ -61,6 +62,10 @@ export const router = createBrowserRouter([
         path: 'settings',
         element: <AdminSettings />,
       },
+      {
+        path:'/admin/profile',
+        element:<Profile/>
+      }
     ],
   },
 ]);
