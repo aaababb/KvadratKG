@@ -17,6 +17,7 @@ const Header = () => {
       setIsOpen(false);
     }
   };
+
   useEffect(() => {
     if (isOpen) {
       document.addEventListener("mousedown", handleClickOutside);
@@ -37,32 +38,24 @@ const Header = () => {
   };
 
   return (
-    <div className="bg-[#C8180C] w-screen ">
+    <div className="bg-[#C8180C] w-full fixed top-0 z-50">
       <Container>
         <div className="py-[1.5vh] flex items-center justify-between ">
-          <div>
-            <img src={logo} alt="img" />
-          </div>
+          <Link to={'/'}>
+            <img src={logo} alt="logo" />
+          </Link>
           <img
-            className="visible cursor-pointer md:hidden "
+            className="visible cursor-pointer md:hidden"
             src={burger}
             onClick={() => setIsOpen(!isOpen)}
-            alt="img"
+            alt="menu"
           />
-          
           <div className="items-center justify-between hidden text-white md:flex gap-7 text-md">
-
             <Link to="/">Главная</Link>
-            <p
-              className="cursor-pointer"
-              onClick={() => handleScroll("products")}
-            >
+            <p className="cursor-pointer" onClick={() => handleScroll("products")}>
               Купить недвижимость
             </p>
-            <p
-              className="cursor-pointer"
-              onClick={() => handleScroll("uslugi")}
-            >
+            <p className="cursor-pointer" onClick={() => handleScroll("uslugi")}>
               Услуги
             </p>
             <Link to="/AboutCompany">О компании</Link>
@@ -72,10 +65,10 @@ const Header = () => {
           </div>
         </div>
         {isOpen && (
-            <div  ref={modalRef}>
-              <Modal isOpen={isOpen} setIsOpen={setIsOpen} />
-            </div>
-          )}
+          <div ref={modalRef}>
+            <Modal isOpen={isOpen} setIsOpen={setIsOpen} />
+          </div>
+        )}
       </Container>
     </div>
   );

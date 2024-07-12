@@ -8,23 +8,19 @@ import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
-import Container from '../../shared/helpers/Container';
 
 const AdminNavbar = ({ handleDrawerToggle, isOpen }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   return (
-   
     <AppBar
-    
-      position="absolute"
+      position="fixed"
       sx={{
         width: isMobile ? '100%' : (isOpen ? `calc(100% - ${240}px)` : '100%'),
-        maxWidth: isMobile ? '400px' : '100%',
         transition: 'width 0.3s, margin 0.3s',
         backgroundColor: '#9A0A00',
-        marginTop: '60px',
+        top: '60px'
       }}
     >
       <Toolbar>
@@ -38,10 +34,10 @@ const AdminNavbar = ({ handleDrawerToggle, isOpen }) => {
         </Typography>
         <Box sx={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }} onClick={handleDrawerToggle}>
           <Avatar alt="Admin" src="/path-to-admin-photo.jpg" sx={{ mr: 2 }} />
-            <Box sx={{ paddingRight:11, color: 'white' }}>
-              <div>Admin Name</div>
-              <div style={{ fontSize: 'small' }}>Админ</div>
-            </Box>
+          <Box sx={{ paddingRight: 2, color: 'white' }}>
+            <div>Admin Name</div>
+            <div style={{ fontSize: 'small' }}>Админ</div>
+          </Box>
         </Box>
       </Toolbar>
     </AppBar>

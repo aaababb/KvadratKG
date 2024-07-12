@@ -38,7 +38,8 @@ const AdminLayout = () => {
             transition: 'margin 0.3s',
             overflowY: 'auto',
             // border: '2px solid blue',
-            marginTop: '120px'
+            marginTop: '120px',
+            height: '800px'
           }}
         >
           <Outlet context={{ mobileOpen }}/>
