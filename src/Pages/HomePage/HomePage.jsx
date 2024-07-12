@@ -10,10 +10,10 @@ import Swipers from "../../features/Swipers/ui/Swipers";
 const HomePage = () => {
   return (
     <div>
-      {/* <Carousel />
+      <Carousel />
       <Element name="uslugi">
         <Uslugi />
-      </Element> */}
+      </Element>
       <Element name="products">
         <Products />
       </Element>
