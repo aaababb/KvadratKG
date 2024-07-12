@@ -12,7 +12,6 @@ import AdminSettings from '../../features/AdminSettings/AdminSettings';
 import SignIn from '../../features/Sign-In/Sign-In';
 import Verification from '../../features/Sign-In/Verification';
 
-
 export const router = createBrowserRouter([
   {
     path: '/',
@@ -50,15 +49,15 @@ export const router = createBrowserRouter([
     element: <AdminLayout />,
     children: [
       {
-        path: 'main-dashboard',
+        path: '/admin/main-dashboard', // Измененный путь
         element: <AdminMainDashboard />,
       },
       {
-        path: 'real-estate',
+        path: '/admin/real-estate',
         element: <AdminRealEstate />,
       },
       {
-        path: 'settings',
+        path: '/admin/settings',
         element: <AdminSettings />,
       },
     ],

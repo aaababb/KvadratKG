@@ -24,14 +24,13 @@ const AdminSidebar = ({ open, handleDrawerToggle }) => {
       onClose={handleDrawerToggle}
       sx={{
         '& .MuiDrawer-paper': {
-          width: isMobile ? '200px' : drawerWidth,
-          height: isMobile ? '450px' : 'calc(100vh - 64px)',
-          position: 'absolute',
+          width: drawerWidth,
+          position: 'fixed',
           boxSizing: 'border-box',
           backgroundColor: '#222224',
           color: 'white',
-          marginTop: isMobile ? '115px' : '60px',
-          transition: 'margin 0.3s, height 0.3s, width 0.3s',
+          top: '60px', // Adjust this based on your header height
+          height: `calc(100vh - 64px)`,
         },
       }}
     >
@@ -50,7 +49,7 @@ const AdminSidebar = ({ open, handleDrawerToggle }) => {
         </ListItem>
       </List>
       <Box sx={{ flexGrow: 1 }} />
-      <List sx={{ position: 'absolute', bottom: isMobile ? 8 : '50px' }}>
+      <List sx={{ position: 'absolute', bottom: 8 }}>
         <ListItem button component={NavLink} to="/logout">
           <ListItemIcon sx={{ color: 'white' }}><ExitToAppIcon /></ListItemIcon>
           <ListItemText primary="Выход" />
