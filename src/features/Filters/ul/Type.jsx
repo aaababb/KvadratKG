@@ -1,11 +1,10 @@
 import React from "react";
 import Select from "./Select";
-import RangeSlider from "./RangeSlider";
 import SaleMenu from "./SaleMenu";
 
 const Type = () => {
   return (
-    <div className="text-white bg-[#111111] w-[350px] h-[130vh] p-5 rounded	">
+    <div className="text-white bg-[#111111] lg:w-[350px] md:w-[280px]  p-5 rounded	">
       <div>
         <h2>Найти свою недвижимость</h2>
       </div>
