@@ -1,8 +1,8 @@
-import * as React from 'react';
-import { useTheme } from '@mui/material/styles';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
+import * as React from "react";
+import { useTheme } from "@mui/material/styles";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -16,16 +16,16 @@ const MenuProps = {
 };
 
 const names = [
-  'Oliver Hansen',
-  'Van Henry',
-  'April Tucker',
-  'Ralph Hubbard',
-  'Omar Alexander',
-  'Carlos Abbott',
-  'Miriam Wagner',
-  'Bradley Wilkerson',
-  'Virginia Andrews',
-  'Kelly Snyder',
+  "Oliver Hansen",
+  "Van Henry",
+  "April Tucker",
+  "Ralph Hubbard",
+  "Omar Alexander",
+  "Carlos Abbott",
+  "Miriam Wagner",
+  "Bradley Wilkerson",
+  "Virginia Andrews",
+  "Kelly Snyder",
 ];
 
 function getStyles(name, personName, theme) {
@@ -39,40 +39,38 @@ function getStyles(name, personName, theme) {
 
 export default function SingleSelect() {
   const theme = useTheme();
-  const [personName, setPersonName] = React.useState('');
+  const [personName, setPersonName] = React.useState("");
 
   const handleChange = (event) => {
     setPersonName(event.target.value);
   };
 
   return (
-    <div>
+    <div className="">
       <FormControl>
-        <div>
-          <Select
-            labelId="demo-single-name-label"
-            id="demo-single-name"
-            value={personName}
-            onChange={handleChange}
-            MenuProps={MenuProps}
-            displayEmpty
-            style={{ background: "white", width: "310px" }}
-            inputProps={{ 'aria-label': 'Without label' }}
-          >
-            <MenuItem value="" disabled>
-              <p>Выберите местоположение</p>
+        <Select
+          labelId="demo-single-name-label"
+          id="demo-single-name"
+          value={personName}
+          onChange={handleChange}
+          MenuProps={MenuProps}
+          displayEmpty
+          style={{ background: "white", width: "100%" }}
+          inputProps={{ "aria-label": "Without label" }}
+        >
+          <MenuItem value="" disabled>
+            <p>Выберите местоположение</p>
+          </MenuItem>
+          {names.map((name) => (
+            <MenuItem
+              key={name}
+              value={name}
+              style={getStyles(name, personName, theme)}
+            >
+              {name}
             </MenuItem>
-            {names.map((name) => (
-              <MenuItem
-                key={name}
-                value={name}
-                style={getStyles(name, personName, theme)}
-              >
-                {name}
-              </MenuItem>
-            ))}
-          </Select>
-        </div>
+          ))}
+        </Select>
       </FormControl>
     </div>
   );
