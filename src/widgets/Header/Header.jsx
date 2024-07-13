@@ -38,7 +38,7 @@ const Header = () => {
   };
 
   return (
-    <div className="bg-[#C8180C] w-full fixed top-0 z-50">
+    <div className="bg-[#C8180C] w-full">
       <Container>
         <div className="py-[1.5vh] flex items-center justify-between ">
           <Link to={'/'}>

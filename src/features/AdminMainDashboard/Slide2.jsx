@@ -30,7 +30,7 @@ const Slide2 = ({ mobileOpen }) => {
   };
 
   return (
-    <div className={`h-auto px-5 py-1 bg-[#222224] text-white ml-[5%] transition-all duration-300 ${mobileOpen ? 'w-[90%]' : 'w-[90%]'}`}>
+    <div className={`h-auto px-5 py-1 bg-[#222224] text-white ml-[5%] w-[90%]`}>
       <Card className="mb-6">
         <CardContent className='bg-[#222224]'>
           <div className='flex justify-between mb-[32px] text-white'>
