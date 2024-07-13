@@ -20,7 +20,9 @@ const AdminLayout = () => {
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-      <Header/>
+      <div className='w-full fixed top-0 z-50'>
+        <Header/>
+      </div>
       <AdminNavbar handleDrawerToggle={handleDrawerToggle} isOpen={mobileOpen} />
       <Box sx={{ display: 'flex', flexGrow: 1 }}>
         <AdminSidebar

@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -16,6 +16,9 @@ const drawerWidth = 240;
 const AdminSidebar = ({ open, handleDrawerToggle }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const location = useLocation();
+
+  const isActiveRoute = (route) => location.pathname === route || location.pathname.startsWith(route);
 
   return (
     <Drawer
@@ -29,32 +32,53 @@ const AdminSidebar = ({ open, handleDrawerToggle }) => {
           boxSizing: 'border-box',
           backgroundColor: '#222224',
           color: 'white',
-          top: '60px', // Adjust this based on your header height
+          top: '60px',
           height: `calc(100vh - 64px)`,
         },
       }}
     >
       <List>
-        <ListItem button component={NavLink} to="/admin/main-dashboard" activeClassName="Mui-selected" exact>
-          <ListItemIcon sx={{ color: 'white' }}><HomeIcon /></ListItemIcon>
-          <ListItemText primary="Главная" />
-        </ListItem>
-        <ListItem button component={NavLink} to="/admin/real-estate" activeClassName="Mui-selected">
-          <ListItemIcon sx={{ color: 'white' }}><BusinessIcon /></ListItemIcon>
-          <ListItemText primary="Объекты Недвижимости" />
-        </ListItem>
-        <ListItem button component={NavLink} to="/admin/settings" activeClassName="Mui-selected">
-          <ListItemIcon sx={{ color: 'white' }}><SettingsIcon /></ListItemIcon>
-          <ListItemText primary="Настройки" />
-        </ListItem>
+        <NavLink to="/admin" style={({ isActive }) => ({
+          textDecoration: 'none',
+          color: isActive && location.pathname === '/admin' ? 'red' : 'white',
+        })}>
+          <ListItem>
+            <ListItemIcon sx={{ color: 'white' }}><HomeIcon /></ListItemIcon>
+            <ListItemText primary="Главная" />
+          </ListItem>
+        </NavLink>
+
+        <NavLink to="/admin/real-estate" style={({ isActive }) => ({
+          textDecoration: 'none',
+          color: isActive ? 'red' : 'inherit',
+        })}>
+          <ListItem>
+            <ListItemIcon sx={{ color: 'white' }}><BusinessIcon /></ListItemIcon>
+            <ListItemText primary="Объекты Недвижимости" />
+          </ListItem>
+        </NavLink>
+
+        <NavLink to="/admin/settings" style={({ isActive }) => ({
+          textDecoration: 'none',
+          color: isActive ? 'red' : 'inherit',
+        })}>
+          <ListItem>
+            <ListItemIcon sx={{ color: 'white' }}><SettingsIcon /></ListItemIcon>
+            <ListItemText primary="Настройки" />
+          </ListItem>
+        </NavLink>
       </List>
       <Box sx={{ flexGrow: 1 }} />
-      <List sx={{ position: 'absolute', bottom: 8 }}>
-        <ListItem button component={NavLink} to="/logout">
-          <ListItemIcon sx={{ color: 'white' }}><ExitToAppIcon /></ListItemIcon>
-          <ListItemText primary="Выход" />
-        </ListItem>
-      </List>
+
+      <NavLink to="/">
+        <List sx={{ position: 'absolute', bottom: 8 }}>
+          <ListItem>
+            <ListItemIcon sx={{ color: 'white' }}><ExitToAppIcon /></ListItemIcon>
+            <ListItemText primary="Выход" />
+          </ListItem>
+        </List>
+      </NavLink>
+
     </Drawer>
   );
 };

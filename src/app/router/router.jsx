@@ -37,27 +37,27 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    path:'/admin/sign-in',
-    element:<SignIn/>
+    path: '/admin/sign-in',
+    element: <SignIn />,
   },
   {
-    path:'/admin/sign-in/verification',
-    element:<Verification/>
+    path: '/admin/sign-in/verification',
+    element: <Verification />,
   },
   {
     path: '/admin',
     element: <AdminLayout />,
     children: [
       {
-        path: '/admin/main-dashboard', // Измененный путь
+        path: '', // Относительный путь
         element: <AdminMainDashboard />,
       },
       {
-        path: '/admin/real-estate',
+        path: 'real-estate', // Относительный путь
         element: <AdminRealEstate />,
       },
       {
-        path: '/admin/settings',
+        path: 'settings', // Относительный путь
         element: <AdminSettings />,
       },
     ],
