@@ -1,37 +1,29 @@
-import React from 'react';
-import { Card, CardContent, Typography, Divider, Select, MenuItem, FormControl } from '@mui/material';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getMetrics } from './store/action';
+import { Card, CardContent, Typography, Divider } from '@mui/material';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
-
-const data = [
-  { name: '21/06', uv: 4000, pv: 2400, amt: 2400 },
-  { name: '22/06', uv: 3000, pv: 1398, amt: 2210 },
-  { name: '23/06', uv: 2000, pv: 9800, amt: 2290 },
-  { name: '24/06', uv: 2780, pv: 3908, amt: 2000 },
-  { name: '25/06', uv: 1890, pv: 4800, amt: 2181 },
-];
-
-const pieData = [
-  { name: 'Повторные посетители', value: 7 },
-  { name: 'Новые посетители', value: 93 },
-];
-
-const trafficData = [
-  { name: 'Direct', value: 100 },
-];
 
 const COLORS = ['#FFFFFF', '#FF0000'];
 
-const Slide2 = ({ mobileOpen }) => {
+const Slide2 = () => {
+  const dispatch = useDispatch();
+  const { metrics, isLoading, error } = useSelector((state) => state.metric);
   const [dateRange, setDateRange] = React.useState('21.06.24 - 25.06.24');
 
   const handleChange = (event) => {
     setDateRange(event.target.value);
-    console.log("hii")
   };
+
+  useEffect(() => {
+    dispatch(getMetrics());
+  }, [dispatch]);
+
+  console.log(metrics)
 
   return (
     <div className={`h-auto px-5 py-1 bg-[#222224] text-white ml-[5%] w-[90%]`}>
-      <Card className="mb-6">
+      {/* <Card className="mb-6">
         <CardContent className='bg-[#222224]'>
           <div className='flex justify-between mb-[32px] text-white'>
             <div className='font-semibold text-[19px]'>
@@ -49,10 +41,10 @@ const Slide2 = ({ mobileOpen }) => {
             </div>
           </div>
           <ResponsiveContainer width="100%" height={200}>
-            <LineChart data={data} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
+            <LineChart data={metrics.visits ? [{ name: 'Visits', uv: metrics.visits, pv: metrics.page_views }] : []} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="name" />
-              <YAxis hide={true} />
+              <YAxis />
               <Tooltip />
               <Legend />
               <Line type="monotone" dataKey="pv" stroke="#8884d8" activeDot={{ r: 8 }} />
@@ -60,24 +52,24 @@ const Slide2 = ({ mobileOpen }) => {
             </LineChart>
           </ResponsiveContainer>
         </CardContent>
-      </Card>
+      </Card> */}
 
       <div className='w-full flex gap-[19px] text-[15px] font-semibold'>
         <div className='w-[172px] h-[87px] bg-[#1D1D1D] p-5'>
             <p>Посещение</p>
-            <p>266</p>
+            <p>{metrics.visits}</p>
         </div>
         <div className='w-[172px] h-[87px] bg-[#1D1D1D] p-3'>
             <p>Просмотры страниц</p>
-            <p>490</p>
+            <p>{metrics.page_views}</p>
         </div>
         <div className='w-[172px] h-[87px] bg-[#1D1D1D] p-5'>
             <p>Транзакции</p>
-            <p>22</p>
+            <p>{metrics.transactions}</p>
         </div>
         <div className='w-[172px] h-[87px] bg-[#1D1D1D] p-5'>
             <p>Доход</p>
-            <p>$2,456.88</p>
+            <p>{metrics.income}</p>
         </div>
       </div>
 
@@ -87,18 +79,17 @@ const Slide2 = ({ mobileOpen }) => {
             <Typography variant="h6" component="div" className="mb-4 text-[19px] font-semibold text-white">
               Тип посетителей
             </Typography>
-            <p className='text-[12px] font-semibold text-white'>Повторные посетители 7%</p>
+            <p className='text-[12px] font-semibold text-white'>Повторные посетители {metrics.returning_visitors_percentage}%</p>
             <ResponsiveContainer width="100%" height={200}>
               <PieChart>
-                <Pie data={pieData} cx="50%" cy="50%" outerRadius={80} fill="#8884d8" dataKey="value">
-                  {pieData.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                  ))}
+                <Pie data={[{ name: 'Повторные', value: metrics.returning_visitors_percentage }, { name: 'Новые', value: metrics.new_visitors_percentage }]} cx="50%" cy="50%" outerRadius={80} fill="#8884d8" dataKey="value">
+                  <Cell fill={COLORS[0]} />
+                  <Cell fill={COLORS[1]} />
                 </Pie>
                 <Tooltip />
               </PieChart>
             </ResponsiveContainer>
-            <p className='text-[12px] font-semibold text-white'>Новые посетители 93%</p>
+            <p className='text-[12px] font-semibold text-white'>Новые посетители {metrics.new_visitors_percentage}%</p>
           </CardContent>
         </Card>
 
@@ -112,10 +103,8 @@ const Slide2 = ({ mobileOpen }) => {
             </p>
             <ResponsiveContainer width="100%" height={200}>
               <PieChart>
-                <Pie data={trafficData} cx="50%" cy="50%" outerRadius={80} fill="#8884d8" dataKey="value">
-                  {trafficData.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                  ))}
+                <Pie data={[{ name: 'Direct', value: 100 }]} cx="50%" cy="50%" outerRadius={80} fill="#8884d8" dataKey="value">
+                  <Cell fill={COLORS[0]} />
                 </Pie>
                 <Tooltip />
               </PieChart>
