@@ -4,9 +4,9 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { Navigation, Pagination, Mousewheel, Keyboard } from 'swiper/modules';
-import Slide1 from './Slide1';
 import { useOutletContext } from 'react-router-dom';
-import Slide2 from './Slide2';
+import Slide2 from './slide2/Slide2';
+import Slide1 from './slide1/Slide1';
 
 const AdminMainDashboard = () => {
   const { mobileOpen } = useOutletContext();
