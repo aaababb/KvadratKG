@@ -63,14 +63,6 @@ const Slide2 = () => {
             <p>Просмотры страниц</p>
             <p>{metrics.page_views}</p>
         </div>
-        <div className='w-[172px] h-[87px] bg-[#1D1D1D] p-5'>
-            <p>Транзакции</p>
-            <p>{metrics.transactions}</p>
-        </div>
-        <div className='w-[172px] h-[87px] bg-[#1D1D1D] p-5'>
-            <p>Доход</p>
-            <p>{metrics.income}</p>
-        </div>
       </div>
 
       <div className="grid grid-cols-2 gap-8 mt-10 text-center">
@@ -93,27 +85,6 @@ const Slide2 = () => {
           </CardContent>
         </Card>
 
-        <Card>
-          <CardContent className='bg-[#1D1D1D]'>
-            <Typography variant="h6" component="div" className="mb-4 text-[19px] font-semibold text-white">
-              Источники трафика
-            </Typography>
-            <p className='text-[12px] font-semibold text-white'>
-              Направления 0%
-            </p>
-            <ResponsiveContainer width="100%" height={200}>
-              <PieChart>
-                <Pie data={[{ name: 'Direct', value: 100 }]} cx="50%" cy="50%" outerRadius={80} fill="#8884d8" dataKey="value">
-                  <Cell fill={COLORS[0]} />
-                </Pie>
-                <Tooltip />
-              </PieChart>
-            </ResponsiveContainer>
-            <p className='text-[12px] font-semibold text-white'>
-              Direct 100%
-            </p>
-          </CardContent>
-        </Card>
       </div>
 
       <Divider className="bg-gray-700 mt-8" />
