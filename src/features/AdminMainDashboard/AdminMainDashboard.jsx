@@ -12,6 +12,17 @@ import PropTypes from "prop-types";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
+import { GlobalStyles } from "@mui/material";
+
+const globalStyles = (
+  <GlobalStyles
+    styles={{
+      "& .css-k7y545-MuiButtonBase-root-MuiTab-root.Mui-selected": {
+        backgroundColor: "#222224",
+      },
+    }}
+  />
+);
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -64,33 +75,12 @@ const AdminMainDashboard = () => {
 
   return (
     <div>
+      {globalStyles}
       <div
         className={` transition-all duration-300 ${
           mobileOpen ? "w-[90%]" : "w-[92%]"
         }`}
       >
-        {/* <Swiper
-          cssMode={true}
-          navigation={true}
-          pagination={true}
-          mousewheel={true}
-          keyboard={true}
-          modules={[Navigation, Pagination, Mousewheel, Keyboard]}
-          className="mySwiper"
-        >
-          <SwiperSlide>
-            <Slide1 windowWidth={windowWidth} mobileOpen={mobileOpen} />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Slide2 windowWidth={windowWidth} mobileOpen={mobileOpen} />
-          </SwiperSlide>
-          <SwiperSlide>
-            <p>nvjksd</p>
-          </SwiperSlide>
-          <SwiperSlide>
-            <p>vjsbd</p>
-          </SwiperSlide>
-        </Swiper> */}
         <Box sx={{ width: "100%", marginLeft: "7.5%" }}>
           <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
             <Tabs
@@ -106,7 +96,7 @@ const AdminMainDashboard = () => {
 
               <Tab
                 sx={{ color: "white" }}
-                label="Статистика"
+                label="Метрика Сайта"
                 {...a11yProps(1)}
               />
             </Tabs>

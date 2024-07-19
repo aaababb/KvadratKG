@@ -8,7 +8,7 @@ const initialState = {
 };
 
 const metricSlice = createSlice({
-  name: 'metrics',
+  name: "metrics",
   initialState,
   extraReducers: (builder) => {
     builder
@@ -18,13 +18,17 @@ const metricSlice = createSlice({
       })
       .addCase(getMetrics.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.metrics = action.payload; // Сохраняем только данные
+        state.metrics = action.payload;
       })
       .addCase(getMetrics.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.payload; // Используем payload, а не message
+        state.error = action.payload;
       });
   },
 });
+
+// export const selectMetrics = (state) => state.metrics;
+// export const selectLoading = (state) => state.metrics.loading;
+// export const selectError = (state) => state.metrics.error;
 
 export default metricSlice.reducer;
