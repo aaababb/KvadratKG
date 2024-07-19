@@ -10,7 +10,7 @@ import AdminMainDashboard from '../../features/AdminMainDashboard/AdminMainDashb
 import AdminRealEstate from '../../features/AdminRealEstate/AdminRealEstate';
 import AdminSettings from '../../features/AdminSettings/AdminSettings';
 import SignIn from '../../features/Sign-In/Sign-In';
-import Verification from '../../features/Sign-In/Verification';
+import PrivateRoute from '../../features/Sign-In/PrivateRoute';
 
 export const router = createBrowserRouter([
   {
@@ -41,12 +41,8 @@ export const router = createBrowserRouter([
     element: <SignIn />,
   },
   {
-    path: '/admin/sign-in/verification',
-    element: <Verification />,
-  },
-  {
     path: '/admin',
-    element: <AdminLayout />,
+    element: <PrivateRoute element={<AdminLayout />} />,
     children: [
       {
         path: '', // Относительный путь
