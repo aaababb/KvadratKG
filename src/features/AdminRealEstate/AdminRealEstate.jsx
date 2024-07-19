@@ -13,7 +13,7 @@ const AdminRealEstate = () => {
   const handleClosePen = () => setOpenPen(false);
 
   return (
-    <Box>
+    <Box className="border border-red-400">
       <Box
         sx={{
           display: "flex",
@@ -32,15 +32,28 @@ const AdminRealEstate = () => {
         <p>Цена</p>
         <p>Действие</p>
       </Box>
-      <div>
 
+      <Box
+      onClick={handleOpenPen}
+        sx={{
+          display: "flex",
+          justifyContent: "end",
+          width: "94%",
+          // border: '1px solid red'
+        }}
+    >
+        <button className="w-[215px] h-[57px] bg-[#C8180C] text-white rounded-[30px] text-center mt-[25px]">Добавить</button>
+      </Box>
+
+
+      <div>
       <Box
         sx={{
           display: "flex",
           justifyContent: "space-between",
           width: "94%",
           color: "white",
-          marginTop: "50px",
+          marginTop: "25px",
           
           alignItems: "center",
         }}
@@ -54,7 +67,7 @@ const AdminRealEstate = () => {
           <img
             src={pen}
             alt="Pen"
-            onClick={handleOpenPen}
+            
             style={{ cursor: "pointer" }}
             />
         </div>
