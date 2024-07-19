@@ -1,145 +1,154 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getMetrics } from "./store/action";
-import { Card, CardContent, Typography, Divider } from "@mui/material";
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-  PieChart,
-  Pie,
-  Cell,
-} from "recharts";
+import { Card } from "@mui/material";
+import { PieChart } from "@mui/x-charts/PieChart";
 import Metrics from "./Metrics";
+import SelectUI from "./Select";
 
-const COLORS = ["#FFFFFF", "#FF0000"];
+import { GlobalStyles } from "@mui/material";
+import FilterDate from "./FIlterDate";
+
+const globalStyles = (
+  <GlobalStyles
+    styles={{
+      "@keyframes rotate": {
+        "0%": {
+          transform: "rotate(0deg)",
+        },
+        "100%": {
+          transform: "rotate(360deg)",
+        },
+      },
+      "& .css-1mhcdve-MuiPieArc-root": {
+        stroke: "black !important",
+      },
+    }}
+  />
+);
+const graphics = [
+  {
+    value: 45,
+    name: "A",
+    title: "Автоматы",
+    color: "#dc2626",
+    tw: "text-red-600",
+  },
+  {
+    value: 35,
+    name: "B",
+    title: "Вертолеты",
+    color: "blue",
+    tw: "text-blue-600",
+  },
+  {
+    value: 20,
+    name: "C",
+    title: "Танки",
+    color: "green",
+    tw: "text-green-600",
+  },
+];
 
 const Slide2 = () => {
   const dispatch = useDispatch();
-  const { metrics, isLoading, error } = useSelector((state) => state.metric);
-  const [dateRange, setDateRange] = React.useState("21.06.24 - 25.06.24");
-
-  const handleChange = (event) => {
-    setDateRange(event.target.value);
-  };
+  const [currentWeekStart, setCurrentWeekStart] = React.useState(
+    getMonday(new Date())
+  );
+  const metrics = useSelector((state) => state.metric.metrics);
+  console.log(metrics);
 
   useEffect(() => {
     dispatch(getMetrics());
   }, [dispatch]);
 
-  console.log(metrics);
+  function getMonday(date) {
+    date = new Date(date);
+    const day = date.getDay();
+    const diff = date.getDate() - day + (day === 0 ? -6 : 1);
+    return new Date(date.setDate(diff));
+  }
+  function formatDate(date) {
+    const options = {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    };
+    return date.toLocaleDateString("ru-RU", options);
+  }
+  function updateWeek(offset) {
+    const newWeekStart = new Date(currentWeekStart);
+    newWeekStart.setDate(currentWeekStart.getDate() + offset);
+    setCurrentWeekStart(newWeekStart);
+  }
+  const monday = currentWeekStart;
+  const saturday = new Date(monday);
 
   return (
-    <div className={`h-auto bg-[#222224] text-white w-[90%]`}>
-      <Card className="!bg-[#222224]">
-        {/* <CardContent className="bg-[#222224] shadow-none">
-          <div className="flex justify-between mb-[32px] text-white">
-            <div className="font-semibold text-[19px]">Метрика сайта</div>
-            <div className="relative">
-              <select
-                value={dateRange}
-                onChange={handleChange}
-                className="text-white bg-[#303030] h-10 pl-2 pr-8 rounded-md outline-none"
-              >
-                <option value="21.06.24 - 25.06.24">21.06.24 - 25.06.24</option>
-                <option value="26.06.24 - 30.06.24">26.06.24 - 30.06.24</option>
-              </select>
-            </div>
-          </div>
-          <ResponsiveContainer width="100%" height={200}>
-            <LineChart
-              data={
-                metrics.visits
-                  ? [
-                      {
-                        name: "Visits",
-                        uv: metrics.visits,
-                        pv: metrics.page_views,
-                      },
-                    ]
-                  : []
-              }
-              margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
-            >
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="name" />
-              <YAxis />
-              <Tooltip />
-              <Legend />
-              <Line
-                type="monotone"
-                dataKey="pv"
-                stroke="#8884d8"
-                activeDot={{ r: 8 }}
-              />
-              <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
-            </LineChart>
-          </ResponsiveContainer>
-        </CardContent> */}
+    <div className={`h-[520px]  bg-[#222224] text-white w-[90%]`}>
+      {globalStyles}
+      <Card className="!bg-[#222224] !shadow-none">
+        <div className="flex px-10 py-1">
+          <SelectUI />
+          <FilterDate
+            width={27}
+            onClickNext={() => updateWeek(7)}
+            onClickPrev={() => updateWeek(-7)}
+            dateTitle={`${formatDate(monday)} - ${formatDate(saturday)}`}
+          />
+        </div>
         <Metrics />
       </Card>
 
-      <div className="w-full flex gap-[19px] text-[15px] font-semibold">
-        <div className="w-[172px] h-[87px] bg-[#1D1D1D] p-5">
-          <p>Посещение</p>
-          <p>{metrics.visits}</p>
+      <div className="flex justify-between px-10 py-5">
+        <div className="flex gap-2">
+          <div className="bg-[#1d1d1d] text-center px-8 py-4">
+            <p>Посещения</p>
+            <span>266</span>
+          </div>
+          <div className="bg-[#1d1d1d] text-center px-8 py-4">
+            <p>Просмотр страницы</p>
+            <span>490</span>
+          </div>
         </div>
-        <div className="w-[172px] h-[87px] bg-[#1D1D1D] p-3">
-          <p>Просмотры страниц</p>
-          <p>{metrics.page_views}</p>
+        <div className="flex gap-5 bg-[#1d1d1d] p-4">
+          <div className="flex flex-col gap-5">
+            <h1>Тип посетителей</h1>
+            <ul className="flex flex-col">
+              {graphics.map((obj, i) => (
+                <li key={i} className={`${obj.tw} flex justify-between w-36`}>
+                  <p>{obj.title}:</p> <span>{obj.value}%</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <PieChart
+            width={120}
+            height={120}
+            series={[
+              {
+                data: graphics,
+                innerRadius: 20,
+                outerRadius: 70,
+                paddingAngle: 5,
+                cornerRadius: 5,
+                startAngle: 0,
+                endAngle: 360,
+                cx: 67,
+                cy: 67,
+              },
+            ]}
+            {...size}
+          />
         </div>
       </div>
-
-      <div className="grid grid-cols-2 gap-8 mt-10 text-center">
-        <Card className="bg-[#1D1D1D]">
-          <CardContent className="bg-[#1D1D1D]">
-            <Typography
-              variant="h6"
-              component="div"
-              className="mb-4 text-[19px] font-semibold text-white"
-            >
-              Тип посетителей
-            </Typography>
-            <p className="text-[12px] font-semibold text-white">
-              Повторные посетители {metrics.returning_visitors_percentage}%
-            </p>
-            <ResponsiveContainer width="100%" height={200}>
-              <PieChart>
-                <Pie
-                  data={[
-                    {
-                      name: "Повторные",
-                      value: metrics.returning_visitors_percentage,
-                    },
-                    { name: "Новые", value: metrics.new_visitors_percentage },
-                  ]}
-                  cx="50%"
-                  cy="50%"
-                  outerRadius={80}
-                  fill="#8884d8"
-                  dataKey="value"
-                >
-                  <Cell fill={COLORS[0]} />
-                  <Cell fill={COLORS[1]} />
-                </Pie>
-                <Tooltip />
-              </PieChart>
-            </ResponsiveContainer>
-            <p className="text-[12px] font-semibold text-white">
-              Новые посетители {metrics.new_visitors_percentage}%
-            </p>
-          </CardContent>
-        </Card>
-      </div>
-
-      <Divider className="bg-gray-700 mt-8" />
     </div>
   );
 };
 
 export default Slide2;
+
+const size = {
+  width: 143,
+  height: 143,
+};

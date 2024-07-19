@@ -9,6 +9,7 @@ const Slide1 = () => {
   const [image, setImage] = useState(null);
   const [title, setTitle] = useState("");
   const isLoading = useSelector(selectIsLoading);
+  const inputFileRef = React.useRef(null);
 
   const handleSubmit = async () => {
     if (title.trim() === "") {
@@ -39,7 +40,7 @@ const Slide1 = () => {
 
   return (
     <div
-      className={`border-gray-500 text-white  w-[90%] flex justify-between p-9 bg-[#222224] transition-all duration-300`}
+      className={`border-gray-500 text-white h-[520px] w-[90%] flex justify-between p-9 bg-[#222224] transition-all duration-300 gap-5`}
     >
       <div className={`flex justify-between`}>
         <div className="flex flex-col gap-[15px]">
@@ -65,6 +66,7 @@ const Slide1 = () => {
                   type="file"
                   className="hidden"
                   onChange={handleImageChange}
+                  ref={inputFileRef}
                 />
               </button>
             </div>
@@ -94,9 +96,14 @@ const Slide1 = () => {
             src={URL.createObjectURL(image)}
             alt="Uploaded"
             className="object-contain h-full"
+            onClick={() => inputFileRef.current.click()}
           />
         ) : (
-          <img src={upload} alt="Upload" />
+          <img
+            src={upload}
+            alt="Upload"
+            onClick={() => inputFileRef.current.click()}
+          />
         )}
       </div>
     </div>
