@@ -83,7 +83,7 @@ const TestimonialSlider = () => {
                 <div className="flex flex-col gap-3 ">
                   <div className="flex gap-2 sm:gap-3 ">
                     <img
-                      className=" lg:w-[73px] lg:h-[73px] rounded-full sm:w-[48px] sm:w-[48px]  md:w-[62px]  md:h-[62px]h-[35px] w-[35px] "
+                      className=" lg:w-[73px] lg:h-[73px] rounded-full  sm:w-[48px]  md:w-[62px]  md:h-[62px]h-[35px] w-[35px] "
                       src={testimonial.img}
                       alt=""
                     />
@@ -96,7 +96,7 @@ const TestimonialSlider = () => {
                       </p>
                     </div>
                   </div>
-                  <p className="text-base text-xs  sm:text-sm overflow-y-auto lg:h-[100px] md:h-[90px] sm:h-[70px]  h-[50px]">
+                  <p className="text-base  sm:text-sm overflow-y-auto lg:h-[100px] md:h-[90px] sm:h-[70px]  h-[50px]">
                     {testimonial.text}
                   </p>
                 </div>
