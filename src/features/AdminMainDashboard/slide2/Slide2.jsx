@@ -4,7 +4,7 @@ import { getMetrics } from "./store/action";
 import { Card } from "@mui/material";
 import { PieChart } from "@mui/x-charts/PieChart";
 import Metrics from "./Metrics";
-import SelectUI from "./Select";
+import axios from "axios";
 
 import { GlobalStyles } from "@mui/material";
 import FilterDate from "./FIlterDate";
@@ -59,7 +59,7 @@ const Slide2 = () => {
   console.log(metrics);
 
   useEffect(() => {
-    dispatch(getMetrics());
+    dispatch(getMetrics({ monday, sunday }));
   }, [dispatch]);
 
   function getMonday(date) {
@@ -82,19 +82,19 @@ const Slide2 = () => {
     setCurrentWeekStart(newWeekStart);
   }
   const monday = currentWeekStart;
-  const saturday = new Date(monday);
+  const sunday = new Date(monday);
+  sunday.setDate(monday.getDate() + 6);
 
   return (
     <div className={`h-[520px]  bg-[#222224] text-white w-[90%]`}>
       {globalStyles}
       <Card className="!bg-[#222224] !shadow-none">
         <div className="flex px-10 py-1">
-          <SelectUI />
           <FilterDate
             width={27}
             onClickNext={() => updateWeek(7)}
             onClickPrev={() => updateWeek(-7)}
-            dateTitle={`${formatDate(monday)} - ${formatDate(saturday)}`}
+            dateTitle={`${formatDate(monday)} - ${formatDate(sunday)}`}
           />
         </div>
         <Metrics />

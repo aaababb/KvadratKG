@@ -1,8 +1,5 @@
 import { axiosWithFile } from "../../../app/api";
 
-const api = {
-  postHeading: (data) => axiosWithFile.post("/headings/", data),
+export const headingPostReq = (data) => {
+  return axiosWithFile.post("/heading/", data);
 };
-
-export default api;
-;

@@ -10,18 +10,18 @@ const CustomPrevButton = ({ onClick }) => (
       <path
         d="M25.2662 20.6714L18.4375 27.5001L25.2662 34.3289"
         stroke="#DFDFEC"
-        stroke-width="1.6875"
-        stroke-miterlimit="10"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.6875"
+        strokeMiterlimit="10"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M37.5627 27.5H18.6289"
         stroke="#DFDFEC"
-        stroke-width="1.6875"
-        stroke-miterlimit="10"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.6875"
+        strokeMiterlimit="10"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   </button>

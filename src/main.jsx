@@ -1,18 +1,15 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './app/style/index.css';
-import { Provider } from 'react-redux';
-import { RouterProvider } from 'react-router-dom';
-import { router } from './app/router/router.jsx';
-import { store } from './app/store.js';
-import { AuthProvider } from './features/Sign-In/AuthContext.jsx';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./app/style/index.css";
+import { Provider } from "react-redux";
+import { RouterProvider } from "react-router-dom";
+import { router } from "./app/router/router.jsx";
+import { store } from "./app/store.js";
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Provider store={store}>
-      <AuthProvider>
-        <RouterProvider router={router} />
-      </AuthProvider>
+      <RouterProvider router={router} />
     </Provider>
   </React.StrictMode>
 );

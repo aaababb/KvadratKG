@@ -14,10 +14,9 @@ const Products = () => {
       <div className=" flex flex-col md:flex-row items-start gap-7 justify-between md:items-end mt-[-90px]">
         <DropDownMen />
         <div className=" max-w-[808px] min-h-[74px] font-inter text-sm  md:text-[20px] font-semibold text-white">
-        <span className="top-[30px] relative \bg-gray-200  w-[670px]">
-    ВЫБИРАЙТЕ КВАРТИРУ ДЛЯ ЖИЗНИ ИЛИ ИНВЕСТИЦИЙ. 
-    ПРЕДЛОЖЕНИЕ ДОСТУПНО
-</span>
+          <span className="top-[30px] relative \bg-gray-200  w-[670px]">
+            ВЫБИРАЙТЕ КВАРТИРУ ДЛЯ ЖИЗНИ ИЛИ ИНВЕСТИЦИЙ. ПРЕДЛОЖЕНИЕ ДОСТУПНО
+          </span>
 
           <span className="bg-[#DC2215] px-5 rounded-sm top-[34px] relative ">
             К ПОКУПКЕ ПРЯМО СЕЙЧАС
@@ -33,7 +32,7 @@ const Products = () => {
       </div>
       <div className="flex items-center justify-between w-full gap-4 overflow-x-scroll ">
         {[...Array(8)].map((_, index) => (
-          <div className="w-[310px] flex  gap-[20px]  ">
+          <div key={index} className="w-[310px] flex  gap-[20px]  ">
             <div className="md:w-[310px] flex flex-col items-center justify-between   md:h-[483px] gap-1 w-[151px]  rounded bg-white mt-[25px]">
               <div className="w-full h-[101px] rounded-tl rounded-tr">
                 <CarouselPro />

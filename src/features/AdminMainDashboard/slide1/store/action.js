@@ -1,11 +1,12 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import api from "../api";
+import { headingPostReq } from "../api";
 
 export const postHeadings = createAsyncThunk(
   "user/postHeadings",
   async (formData, { rejectWithValue }) => {
     try {
-      const response = await api.postHeading(formData);
+      const response = await headingPostReq(formData);
+      console.log(response);
       return response.data;
     } catch (error) {
       return rejectWithValue(
