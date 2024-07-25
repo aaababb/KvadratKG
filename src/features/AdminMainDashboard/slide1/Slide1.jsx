@@ -2,13 +2,15 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import upload from "../../../shared/assets/svg/upload.svg";
 import { postHeadings } from "./store/action";
-import { selectIsLoading, selectError } from "./store/selectors";
+import { selectIsLoading } from "./store/selectors";
 
 const Slide1 = () => {
   const dispatch = useDispatch();
   const [image, setImage] = useState(null);
   const [title, setTitle] = useState("");
   const isLoading = useSelector(selectIsLoading);
+  const { token } = useSelector((state) => state.admin);
+  console.log(token);
   const inputFileRef = React.useRef(null);
 
   const handleSubmit = async () => {

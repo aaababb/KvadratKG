@@ -3,11 +3,11 @@ import { getMetricsReq } from "../api";
 
 export const getMetrics = createAsyncThunk(
   "metric/getMetric",
-  async (_, { rejectWithValue }) => {
+  async (params, { rejectWithValue }) => {
     try {
-      const res = await getMetricsReq();
-      const text = await response.text();
-      console.log(text);
+      console.log("res");
+      const res = await getMetricsReq(params);
+      console.log(res);
       return res.data;
     } catch (error) {
       return rejectWithValue(

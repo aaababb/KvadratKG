@@ -16,18 +16,18 @@ const CustomNextButton = ({ onClick }) => (
       <path
         d="M30.7338 20.6714L37.5625 27.5001L30.7338 34.3289"
         stroke="#DFDFEC"
-        stroke-width="1.6875"
-        stroke-miterlimit="10"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.6875"
+        strokeMiterlimit="10"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M18.4373 27.5H37.3711"
         stroke="#DFDFEC"
-        stroke-width="1.6875"
-        stroke-miterlimit="10"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.6875"
+        strokeMiterlimit="10"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   </button>

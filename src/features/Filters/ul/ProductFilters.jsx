@@ -11,7 +11,7 @@ const ProductFilters = () => {
   return (
     <Box className="flex flex-wrap items-center justify-around gap-1 lg:justify-between ">
       {[...Array(8)].map((_, index) => (
-        <div key={index} className=" flex gap-1 gap-[20px]">
+        <div key={index} className=" flex gap-[20px]">
           <div className="md:w-[300px] flex flex-col items-center justify-between md:h-[483px] sm:w-[200px] gap-1 w-[141px] rounded bg-white mt-[25px]">
             <div className="w-full h-[101px] rounded-tl rounded-tr">
               <CarouselPro />

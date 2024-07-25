@@ -1,59 +1,58 @@
-import { createBrowserRouter } from 'react-router-dom';
-import Layout from '../../widgets/layout/Layout';
-import NotFound from '../../widgets/NotFound/NotFound';
-import HomePage from '../../Pages/HomePage/HomePage';
-import Filters from '../../features/Filters/ul/Filters';
-import CompanyPage from '../../Pages/AboutCompany/CompanyPage';
-import InfoPage from '../../Pages/InfoPage/InfoPage';
-import AdminLayout from '../../widgets/layout/AdminLayout';
-import AdminMainDashboard from '../../features/AdminMainDashboard/AdminMainDashboard';
-import AdminRealEstate from '../../features/AdminRealEstate/AdminRealEstate';
-import AdminSettings from '../../features/AdminSettings/AdminSettings';
-import SignIn from '../../features/Sign-In/Sign-In';
-import PrivateRoute from '../../features/Sign-In/PrivateRoute';
+import { createBrowserRouter } from "react-router-dom";
+import Layout from "../../widgets/layout/Layout";
+import NotFound from "../../widgets/NotFound/NotFound";
+import HomePage from "../../Pages/HomePage/HomePage";
+import Filters from "../../features/Filters/ul/Filters";
+import CompanyPage from "../../Pages/AboutCompany/CompanyPage";
+import InfoPage from "../../Pages/InfoPage/InfoPage";
+import AdminLayout from "../../widgets/layout/AdminLayout";
+import AdminMainDashboard from "../../features/AdminMainDashboard/AdminMainDashboard";
+import AdminRealEstate from "../../features/AdminRealEstate/AdminRealEstate";
+import AdminSettings from "../../features/AdminSettings/AdminSettings";
+import SignIn from "../../features/Sign-In/Sign-In";
 
 export const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <Layout />,
     errorElement: <NotFound />,
     children: [
       {
-        path: '/',
+        path: "/",
         element: <HomePage />,
       },
       {
-        path: '/watch',
+        path: "/watch",
         element: <Filters />,
       },
       {
-        path: '/AboutCompany',
+        path: "/AboutCompany",
         element: <CompanyPage />,
       },
       {
-        path: '/info',
+        path: "/info",
         element: <InfoPage />,
       },
     ],
   },
   {
-    path: '/admin/sign-in',
+    path: "/admin/sign-in",
     element: <SignIn />,
   },
   {
-    path: '/admin',
-    element: <PrivateRoute element={<AdminLayout />} />,
+    path: "/admin",
+    element: <AdminLayout />,
     children: [
       {
-        path: '', // Относительный путь
+        path: "", // Относительный путь
         element: <AdminMainDashboard />,
       },
       {
-        path: 'real-estate', // Относительный путь
+        path: "real-estate", // Относительный путь
         element: <AdminRealEstate />,
       },
       {
-        path: 'settings', // Относительный путь
+        path: "settings", // Относительный путь
         element: <AdminSettings />,
       },
     ],
