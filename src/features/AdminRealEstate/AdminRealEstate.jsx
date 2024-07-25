@@ -61,7 +61,7 @@ const AdminRealEstate = () => {
   }, []);
 
   return (
-    <Box className="border border-red-400">
+    <Box className="">
       <Box
         sx={{
           display: "flex",

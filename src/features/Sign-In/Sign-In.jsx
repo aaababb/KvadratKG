@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { Formik, Form, Field, ErrorMessage } from "formik";
@@ -69,7 +69,7 @@ function SignIn() {
             )}
             <div className="flex items-center gap-2">
               <input className="cursor-pointer" type="checkbox" />
-              <span className="flex gap-1 text-white">
+              <span className="flex gap-1 text-white lg:text-[16px] sm:text-[10px]" >
                 <p className="text-gray-500">Я согласен с </p>{" "}
                 <p>Условиями предоставления услуг</p>
               </span>
