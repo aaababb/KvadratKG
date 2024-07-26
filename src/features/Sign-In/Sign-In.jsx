@@ -79,7 +79,7 @@ function SignIn() {
               disabled={isSubmitting}
               className="w-full text-white bg-red-600 rounded-full hover:bg-red-700 align-center py-[15px] mt-[19px]"
             >
-              ОТПРАВИТЬ
+              Войти
             </button>
           </Form>
         </div>

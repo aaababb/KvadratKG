@@ -100,11 +100,11 @@ const AdminRealEstate = () => {
         <Box
           sx={{
             position: "absolute",
-            top: "50%",
+            top: "45%",
             left: "50%",
             transform: "translate(-50%, -50%)",
-            width: 900,
-            height: 600,
+            width: 680,
+            height: 640,
             bgcolor: "black",
             boxShadow: 66,
             outline: "none",
@@ -112,12 +112,12 @@ const AdminRealEstate = () => {
             p: 4,
           }}
         >
-          <img
+          {/* <img
             src={back}
             alt="Back"
             onClick={handleClosePen}
             style={{ cursor: "pointer" }}
-          />
+          /> */}
           <PenModal />
         </Box>
       </Modal>

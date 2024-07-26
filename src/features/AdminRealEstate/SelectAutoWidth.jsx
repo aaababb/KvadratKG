@@ -12,14 +12,14 @@ export default function SelectAutoWidth() {
   };
 
   return (
-    <div className='bg-[#292929] text-white  h-[60px]'>
-      <FormControl sx={{ minWidth: 80, marginLeft: 6 }}>
+    <div className='bg-[#292929] text-white  h-[30px]'>
+      <FormControl sx={{ minWidth: 50, marginLeft: 2 }}>
         <Select
           id="demo-simple-select-autowidth"
           value={age}
           onChange={handleChange}
           autoWidth
-          style={{outline:'none',height:'40px',marginTop:10}}
+          style={{outline:'none',height:'17px',marginTop:8}}
           
           sx={{
             color: 'white',
