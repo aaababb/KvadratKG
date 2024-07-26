@@ -21,17 +21,20 @@ const globalStyles = (
   />
 );
 
-const Metrics = () => {
+const Metrics = ({ items }) => {
+  const dateArray = items.map((x) => x.date);
+  const itemArray = items.map((x) => x.visits_count);
+  console.log(items);
+
   return (
     <>
       {globalStyles}
       <LineChart
-        xAxis={[{ data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] }]}
+        xAxis={[{ scaleType: "point", data: dateArray }]}
         series={[
           {
             curve: "linear",
-            data: [2, 5.5, 2, 8.5, 1.5, 5, 3.5, 6, 9, 6.5],
-            data: [12, 15.5, 12, 18.5, 11.5, 15, 13.5, 16, 19, 16.5],
+            data: itemArray,
             area: true,
             showMark: true,
           },

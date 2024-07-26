@@ -1,4 +1,5 @@
 import { apiRoot } from "../../../app/api";
+import { getUserLS } from "../../Sign-In/store/utils";
 
 function formatDate(date) {
   if (!(date instanceof Date)) {
@@ -19,12 +20,18 @@ export const getMetricsReq = async (params) => {
       throw new Error("Invalid date parameters");
     }
 
-    console.log(params);
+    const { username, password } = getUserLS();
+    const token = btoa(`${username}:${password}`);
 
     const response = await apiRoot.get(
       `/metrics/visits-statistics/?end_date=${formatDate(
         sunday
-      )}&start_date=${formatDate(monday)}`
+      )}&start_date=${formatDate(monday)}`,
+      {
+        headers: {
+          Authorization: `Basic ${token}`,
+        },
+      }
     );
     return response.data;
   } catch (error) {

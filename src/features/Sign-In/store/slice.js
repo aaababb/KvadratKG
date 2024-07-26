@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { adminLogin } from "./action";
-import { deleteTokenLS, getTokenLS, setTokenLS } from "./utils";
+import { deleteUserLS, getUserLS, setUserLS } from "./utils";
 
 const initialState = {
-  token: getTokenLS(),
+  user: getUserLS(),
   status: "loading",
 };
 
@@ -12,8 +12,8 @@ const adminSlice = createSlice({
   initialState,
   reducers: {
     adminLogout: (state) => {
-      state.token = null;
-      deleteTokenLS();
+      state.user = null;
+      deleteUserLS();
     },
   },
   extraReducers: (builder) => {
@@ -22,8 +22,8 @@ const adminSlice = createSlice({
         state.status = "loading";
       })
       .addCase(adminLogin.fulfilled, (state, { payload }) => {
-        state.token = payload;
-        setTokenLS(payload);
+        state.user = payload;
+        setUserLS(payload);
         state.status = "success";
       })
       .addCase(adminLogin.rejected, (state) => {

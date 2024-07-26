@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const BASE_URL = "http://192.168.68.108:8080/";
+const BASE_URL = "http://192.168.68.128:8080/";
+
 
 const formDataHeaders = {
   "Content-Type": "multipart/form-data",
