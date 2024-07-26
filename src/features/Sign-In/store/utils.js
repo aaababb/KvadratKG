@@ -1,12 +1,12 @@
-export const getTokenLS = () => {
-  const token = localStorage.getItem("quadrat_token");
-  return token ? JSON.parse(token) : null;
+export const getUserLS = () => {
+  const user = localStorage.getItem("quadrat_admin");
+  return user ? JSON.parse(user) : null;
 };
 
-export const setTokenLS = (token) => {
-  localStorage.setItem("quadrat_token", JSON.stringify(token));
+export const setUserLS = (user) => {
+  localStorage.setItem("quadrat_admin", JSON.stringify(user));
 };
 
-export const deleteTokenLS = () => {
-  localStorage.removeItem("quadrat_token");
+export const deleteUserLS = () => {
+  localStorage.removeItem("quadrat_admin");
 };

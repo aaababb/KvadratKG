@@ -10,8 +10,13 @@ export const adminLogin = createAsyncThunk(
   async ({ data, navigate }, { rejectedWithValue }) => {
     try {
       const res = await adminLoginReq(data);
-      navigate("/admin");
-      return res.data;
+      if (res.status === 200) {
+        navigate("/admin");
+        alert("Вы успешно вошли в систему");
+        return data;
+      } else {
+        return res.data;
+      }
     } catch (err) {
       return rejectedWithValue(err);
     }

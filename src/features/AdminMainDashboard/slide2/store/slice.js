@@ -2,7 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 import { getMetrics } from "./action";
 
 const initialState = {
-  metrics: {},
+  analytics: {},
+  statistics: [],
   isLoading: false,
   error: null,
 };
@@ -16,9 +17,10 @@ const metricSlice = createSlice({
         state.isLoading = true;
         state.error = null;
       })
-      .addCase(getMetrics.fulfilled, (state, action) => {
+      .addCase(getMetrics.fulfilled, (state, { payload }) => {
         state.isLoading = false;
-        state.metrics = action.payload;
+        state.analytics = payload.analytics;
+        state.statistics = payload.statistics;
       })
       .addCase(getMetrics.rejected, (state, action) => {
         state.isLoading = false;

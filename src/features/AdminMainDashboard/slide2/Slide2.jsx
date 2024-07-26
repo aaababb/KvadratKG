@@ -4,7 +4,6 @@ import { getMetrics } from "./store/action";
 import { Card } from "@mui/material";
 import { PieChart } from "@mui/x-charts/PieChart";
 import Metrics from "./Metrics";
-import axios from "axios";
 
 import { GlobalStyles } from "@mui/material";
 import FilterDate from "./FIlterDate";
@@ -26,41 +25,21 @@ const globalStyles = (
     }}
   />
 );
-const graphics = [
-  {
-    value: 45,
-    name: "A",
-    title: "Просмотры",
-    color: "#dc2626",
-    tw: "text-red-600",
-  },
-  {
-    value: 35,
-    name: "B",
-    title: "Посещение",
-    color: "blue",
-    tw: "text-blue-600",
-  },
-  {
-    value: 20,
-    name: "C",
-    title: "Итд",
-    color: "green",
-    tw: "text-green-600",
-  },
-];
 
 const Slide2 = () => {
   const dispatch = useDispatch();
   const [currentWeekStart, setCurrentWeekStart] = React.useState(
     getMonday(new Date())
   );
-  const metrics = useSelector((state) => state.metric.metrics);
-  console.log(metrics);
+  const { analytics, statistics } = useSelector((state) => state.metric);
+
+  const monday = currentWeekStart;
+  const sunday = new Date(monday);
+  sunday.setDate(monday.getDate() + 6);
 
   useEffect(() => {
     dispatch(getMetrics({ monday, sunday }));
-  }, [dispatch]);
+  }, [dispatch, currentWeekStart]);
 
   function getMonday(date) {
     date = new Date(date);
@@ -81,72 +60,86 @@ const Slide2 = () => {
     newWeekStart.setDate(currentWeekStart.getDate() + offset);
     setCurrentWeekStart(newWeekStart);
   }
-  const monday = currentWeekStart;
-  const sunday = new Date(monday);
-  sunday.setDate(monday.getDate() + 6);
 
+  const graphics = [
+    {
+      value: analytics.new_visitors_percentage,
+      name: "A",
+      title: "Новые посетители",
+      color: "#dc2626",
+      tw: "text-red-600",
+    },
+    {
+      value: analytics.returning_visitors_percentage,
+      name: "B",
+      title: "Повторные посетители",
+      color: "blue",
+      tw: "text-blue-600",
+    },
+  ];
   return (
-<div className={`h-auto lg:h-[520px] bg-[#222224] text-white w-[90%]`}>
-  {globalStyles}
-  <Card className="!bg-[#222224] !shadow-none">
-    <div className="flex flex-col lg:flex-row px-4 lg:px-10 py-1">
-      <FilterDate
-        width={27}
-        onClickNext={() => updateWeek(7)}
-        onClickPrev={() => updateWeek(-7)}
-        dateTitle={`${formatDate(monday)} - ${formatDate(sunday)}`}
-      />
-    </div>
-    <Metrics />
-  </Card>
+    <div className={`h-auto lg:h-[520px] bg-[#222224] text-white w-[90%]`}>
+      {globalStyles}
+      <Card className="!bg-[#222224] !shadow-none">
+        <div className="flex flex-col lg:flex-row px-4 lg:px-10 py-1">
+          <FilterDate
+            width={27}
+            onClickNext={() => updateWeek(7)}
+            onClickPrev={() => updateWeek(-7)}
+            dateTitle={`${formatDate(monday)} - ${formatDate(sunday)}`}
+          />
+        </div>
+        <Metrics items={statistics} />
+      </Card>
 
-  <div className="flex flex-col lg:flex-row justify-between px-4 lg:px-10 py-5 gap-5">
-    <div className="flex flex-col lg:flex-row gap-2">
-      <div className="bg-[#1d1d1d] text-center px-8 py-4">
-        <p>Посещения</p>
-        <span>266</span>
-      </div>
-      <div className="bg-[#1d1d1d] text-center px-8 py-4">
-        <p>Просмотр страницы</p>
-        <span>490</span>
+      <div className="flex flex-col lg:flex-row justify-between px-4 lg:px-10 py-5 gap-5">
+        <div className="flex flex-col lg:flex-row gap-2">
+          <div className="bg-[#1d1d1d] text-center px-8 py-4">
+            <p>Посещения</p>
+            <span>{analytics.total_visits}</span>
+          </div>
+          <div className="bg-[#1d1d1d] text-center px-8 py-4">
+            <p>Просмотр страницы</p>
+            <span>{analytics.total_page_views}</span>
+          </div>
+        </div>
+        <div className="flex flex-col lg:flex-row gap-5 bg-[#1d1d1d] p-4 w-full lg:w-auto">
+          <div className="flex flex-col gap-5">
+            <h1>Тип посетителей</h1>
+            <ul className="flex flex-col">
+              {graphics.map((obj, i) => (
+                <li
+                  key={i}
+                  className={`${obj.tw} flex justify-between w-full lg:w-36`}
+                >
+                  <p>{obj.title}:</p> <span>{obj.value}%</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="flex justify-center lg:justify-start w-full lg:w-auto">
+            <PieChart
+              width={120}
+              height={120}
+              series={[
+                {
+                  data: graphics,
+                  innerRadius: 20,
+                  outerRadius: 70,
+                  paddingAngle: 5,
+                  cornerRadius: 5,
+                  startAngle: 0,
+                  endAngle: 360,
+                  cx: 67,
+                  cy: 67,
+                },
+              ]}
+              {...size}
+            />
+          </div>
+        </div>
       </div>
     </div>
-    <div className="flex flex-col lg:flex-row gap-5 bg-[#1d1d1d] p-4 w-full lg:w-auto">
-      <div className="flex flex-col gap-5">
-        <h1>Тип посетителей</h1>
-        <ul className="flex flex-col">
-          {graphics.map((obj, i) => (
-            <li key={i} className={`${obj.tw} flex justify-between w-full lg:w-36`}>
-              <p>{obj.title}:</p> <span>{obj.value}%</span>
-            </li>
-          ))}
-        </ul>
-      </div>
-      <div className="flex justify-center lg:justify-start w-full lg:w-auto">
-        <PieChart
-          width={120}
-          height={120}
-          series={[
-            {
-              data: graphics,
-              innerRadius: 20,
-              outerRadius: 70,
-              paddingAngle: 5,
-              cornerRadius: 5,
-              startAngle: 0,
-              endAngle: 360,
-              cx: 67,
-              cy: 67,
-            },
-          ]}
-          {...size}
-        />
-      </div>
-    </div>
-  </div>
-</div>
-
-
   );
 };
 
