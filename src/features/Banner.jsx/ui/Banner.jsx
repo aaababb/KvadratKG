@@ -1,7 +1,3 @@
-import React,{useEffect} from "react";
-import { useSelector,useDispatch } from "react-redux";
-import { getHeadings } from "../store/action";
-import img from "../../../shared/assets/img/banner_home.png";
 import Container from "../../../shared/helpers/Container";
 import check from "../../../shared/assets/svg/chekcbox.svg";
 import insta from "../../../shared/assets/svg/insta.svg";
@@ -9,41 +5,21 @@ import whatsapp2 from "../../../shared/assets/svg/whatsap2.svg";
 import telegram3 from "../../../shared/assets/svg/telega5.svg";
 import telegram2 from "../../../shared/assets/svg/telega2.svg";
 import { Link } from "react-router-dom";
-import axios from "axios";
 
-const API = "http://192.168.68.108:8000/headings/"
+function Banner({ heading }) {
+  const { title, image } = heading;
 
-function Banner() {
-  // const dispatch = useDispatch();
-  // const { headings, isLoading, error } = useSelector((state) => state.heading);
   const texts = [
     "Юридические чистые объекты",
     "Вся ответственность на нас по договору",
     "Поиск, подбор, продажа - все под ключ",
   ];
 
-  async function getHeadings() {
-    try{
-      const res = await axios.get(API, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      console.log(res)
-    }catch(error){
-      console.log(error)
-    }
-  }
-  useEffect(() => {
-    getHeadings()
-  },[])
-
-
   return (
     <div
       className="flex items-center justify-center w-full h-screen bg-cover bg-center"
       style={{
-        backgroundImage: ` linear-gradient(#0001, #000), url(${img})`,
+        backgroundImage: `linear-gradient(#0001, #000), url(${image})`,
         backgroundPosition: 'center center',
         backgroundSize: 'cover'
       }}
@@ -54,7 +30,7 @@ function Banner() {
           <div className="flex flex-col gap-9">
             <div>
               <h1 className="w-full md:w-3/4 text-4xl md:text-6xl font-semibold text-white mt-[350px]">
-                Агентство недвижимости в Бишкеке полного цикла
+                {title}
               </h1>
             </div>
             <div className="flex flex-wrap items-center justify-between gap-4">
