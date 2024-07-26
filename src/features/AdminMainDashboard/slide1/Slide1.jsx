@@ -42,26 +42,13 @@ const Slide1 = () => {
   const formats = ["IMG", "JPG", "PNG"];
 
   return (
-<div className='flex flex-col-reverse text-white h-auto w-[90%] lg:h-[520px] lg:flex-row justify-between p-9 bg-[#222224] gap-5'>
-  <div className='flex flex-col lg:flex-row justify-between'>
-    <div className="flex flex-col gap-[15px] w-full lg:w-auto">
-      <div className="flex flex-col gap-[11px]">
-        <h2 className="text-[28px] font-semibold">
-          Добавить обзор активности
-        </h2>
-        <input
-          className="w-full lg:w-[444px] h-[66px] bg-[#131313] text-[#B3B3B3] rounded-[5px] p-3"
-          placeholder="Дабавить заголовок ... "
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
-      </div>
-      <div className="w-full lg:w-[444px] h-[176px] bg-[#131313] p-5 flex flex-col gap-[17px]">
-        <div className="h-[46px] bg-[#C8180C] rounded-[28px] flex justify-center items-center">
-          <button className="text-[18px] font-semibold w-full">
-            <label htmlFor="image-upload" className="cursor-pointer">
-              Загрузите изображение
-            </label>
+    <div className="flex flex-col-reverse text-white h-auto w-[90%] lg:h-[520px] lg:flex-row justify-between p-9 bg-[#222224] gap-5">
+      <div className="flex flex-col lg:flex-row justify-between">
+        <div className="flex flex-col gap-[15px] w-full lg:w-auto">
+          <div className="flex flex-col gap-[11px]">
+            <h2 className="text-[28px] font-semibold">
+              Дабавить обзор активности
+            </h2>
             <input
               className="w-full lg:w-[444px] h-[66px] bg-[#131313] text-[#B3B3B3] rounded-[5px] p-3"
               placeholder="Дабавить заголовок ... "
@@ -128,3 +115,4 @@ const Slide1 = () => {
 };
 
 export default Slide1;
+ 
