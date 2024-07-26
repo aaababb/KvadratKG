@@ -46,7 +46,7 @@ const Slide1 = () => {
     <div className="flex flex-col gap-[15px] w-full lg:w-auto">
       <div className="flex flex-col gap-[11px]">
         <h2 className="text-[28px] font-semibold">
-          Дабавить обзор активности
+          Добавить обзор активности
         </h2>
         <input
           className="w-full lg:w-[444px] h-[66px] bg-[#131313] text-[#B3B3B3] rounded-[5px] p-3"

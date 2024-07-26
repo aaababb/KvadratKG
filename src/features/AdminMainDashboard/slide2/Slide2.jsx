@@ -4,7 +4,7 @@ import { getMetrics } from "./store/action";
 import { Card } from "@mui/material";
 import { PieChart } from "@mui/x-charts/PieChart";
 import Metrics from "./Metrics";
-import axios from "axios";
+// import axios from "axios";
 
 import { GlobalStyles } from "@mui/material";
 import FilterDate from "./FIlterDate";
