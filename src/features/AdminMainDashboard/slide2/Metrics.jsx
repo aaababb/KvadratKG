@@ -24,7 +24,6 @@ const globalStyles = (
 const Metrics = ({ items }) => {
   const dateArray = items.map((x) => x.date);
   const itemArray = items.map((x) => x.visits_count);
-  console.log(items);
 
   return (
     <>

@@ -29,7 +29,7 @@ export default function Carousel() {
           delay: 3000,
           disableOnInteraction: false,
         }}
-        speed={1000}
+        speed={3000}
         modules={[Autoplay, Pagination, Navigation]}
         className="mySwiper"
       >

@@ -71,6 +71,11 @@ const Products = () => {
           </div>
         ))}
       </div>
+      <div className="flex justify-center p-5">
+        <button className="bg-[red] text-white py-3 px-7 text-xl rounded-full">
+          Смотреть все
+        </button>
+      </div>
     </Container>
   );
 };
