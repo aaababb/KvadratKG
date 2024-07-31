@@ -1,12 +1,15 @@
 import React, { useState } from "react";
-import photoos from "../../shared/assets/svg/photoos.svg";
-import trash from "../../shared/assets/svg/trash.svg";
-import pen from "../../shared/assets/svg/pen.svg";
 import { Box, Modal } from "@mui/material";
-import PenModal from "./PenModal";
-import back from "../../shared/assets/svg/back.svg";
 import { useDispatch, useSelector } from "react-redux";
+
 import { getHouses } from "./store/action";
+import PenModal from "./components/PenModal";
+
+import AddIcon from "@mui/icons-material/Add";
+import back from "../../shared/assets/svg/back.svg";
+import pen from "../../shared/assets/svg/pen.svg";
+import trash from "../../shared/assets/svg/trash.svg";
+import upload from "../../shared/assets/svg/upload.svg";
 
 const AdminRealEstate = () => {
   const [openPen, setOpenPen] = useState(false);
@@ -28,12 +31,23 @@ const AdminRealEstate = () => {
                 justifyContent: "space-between",
                 width: "94%",
                 color: "white",
-                marginTop: "25px",
                 alignItems: "center",
+                backgroundColor: "#262626",
+                padding: "10px 20px",
               }}
               key={obj.id}
             >
-              <img src={obj.images ? obj.images[0] : photoos} alt="Photos" />
+              <div className="w-[150px] h-[90px] overflow-hidden">
+                <img
+                  className={
+                    obj.images[0]?.image
+                      ? "w-full h-full object-cover"
+                      : "w-50px h-full object-cover m-auto"
+                  }
+                  src={obj.images[0]?.image ? obj.images[0]?.image : upload}
+                  alt="Photos"
+                />
+              </div>
               <p className="w-[190px]">
                 {obj.title || "3 - комнатная квартира на улице Киевская 30"}
               </p>
@@ -61,7 +75,27 @@ const AdminRealEstate = () => {
   }, []);
 
   return (
-    <Box className="">
+    <Box>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          width: "94%",
+          margin: "10px 0",
+          padding: "0 10px",
+        }}
+      >
+        <h1 className="text-white text-2xl">Публикация недвижимости</h1>
+
+        <button
+          onClick={handleOpenPen}
+          className="w-[215px] h-[57px] bg-[#C8180C] text-white rounded-[30px] flex items-center justify-center gap-3"
+        >
+          <AddIcon />
+          Добавить
+        </button>
+      </Box>
+
       <Box
         sx={{
           display: "flex",
@@ -74,28 +108,21 @@ const AdminRealEstate = () => {
       >
         <p>Фотографии</p>
         <p>Заголовок</p>
-        <p>
-          Описание : <br /> Площадь / Планировка
-        </p>
+        <p>Площадь кв/м2</p>
         <p>Цена</p>
         <p>Действие</p>
       </Box>
 
       <Box
-        onClick={handleOpenPen}
         sx={{
           display: "flex",
-          justifyContent: "end",
-          width: "94%",
-          // border: '1px solid red'
+          flexDirection: "column",
+          gap: "10px",
+          marginTop: "10px",
         }}
       >
-        <button className="w-[215px] h-[57px] bg-[#C8180C] text-white rounded-[30px] text-center mt-[25px]">
-          Добавить
-        </button>
+        {ItemRender()}
       </Box>
-
-      <Box>{ItemRender()}</Box>
       <Modal open={openPen} onClose={handleClosePen}>
         <Box
           sx={{
@@ -106,19 +133,20 @@ const AdminRealEstate = () => {
             width: 680,
             height: 640,
             bgcolor: "black",
+            border: "1px solid #262626",
             boxShadow: 66,
             outline: "none",
             borderRadius: "12px",
             p: 4,
           }}
         >
-          {/* <img
+          <img
             src={back}
             alt="Back"
             onClick={handleClosePen}
             style={{ cursor: "pointer" }}
-          /> */}
-          <PenModal />
+          />
+          <PenModal handleClosePen={handleClosePen} />
         </Box>
       </Modal>
     </Box>
