@@ -3,21 +3,41 @@ import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 
 import SelectAutoWidth from "./SelectAutoWidth";
+import AddIcon from "@mui/icons-material/Add";
 
 import Rooms from "../../../shared/assets/svg/Rooms.svg";
 import baths from "../../../shared/assets/svg/Baths.svg";
 import bedroom from "../../../shared/assets/svg/Bedroom.svg";
 import kitchen from "../../../shared/assets/svg/kitchen.svg";
 import Garage from "../../../shared/assets/svg/Garage.svg";
-import plus from "../../../shared/assets/svg/upload.svg";
 import { postHouse } from "../store/action";
 import CustomCheckbox from "./CheckboxUI";
-import { checkboxArray } from "../store/data";
-
+import upload from "../../../shared/assets/svg/upload.svg";
 const PenModal = ({ handleClosePen }) => {
   const dispatch = useDispatch();
   const { register, handleSubmit } = useForm();
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [images, setImages] = useState([]);
+
+  const handleImageChange = (event) => {
+    const files = Array.from(event.target.files);
+    const newImages = [];
+
+    files.forEach((file) => {
+      if (file) {
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          newImages.push({
+            image: [reader.result],
+          });
+          if (newImages.length === files.length) {
+            setImages((prevImages) => [...prevImages, ...newImages]);
+          }
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+  };
+
   const [checkboxState, setCheckboxState] = useState({
     pool: false,
     gym: false,
@@ -36,15 +56,8 @@ const PenModal = ({ handleClosePen }) => {
     }));
   };
 
-  const handleImageChange = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setSelectedImage(reader.result);
-      };
-      reader.readAsDataURL(file);
-    }
+  const setArray = (item) => {
+    return [{ count: item }];
   };
 
   const onSubmit = (data) => {
@@ -52,13 +65,14 @@ const PenModal = ({ handleClosePen }) => {
       postHouse({
         ...data,
         ...checkboxState,
-        images: [{ image: selectedImage }],
-        rooms: [{ count: data.rooms }],
-        bathrooms: [{ count: data.bathrooms }],
-        bedrooms: [{ count: data.bedrooms }],
-        kitchens: [{ count: data.kitchens }],
-        garages: [{ count: data.garages }],
+        images: images,
+        rooms: setArray(data.rooms),
+        bathrooms: setArray(data.bathrooms),
+        bedrooms: setArray(data.bedrooms),
+        kitchens: setArray(data.kitchens),
+        garages: setArray(data.garages),
         category: "Дома",
+        city: "Бишкек",
       })
     );
     // handleClosePen();
@@ -71,49 +85,54 @@ const PenModal = ({ handleClosePen }) => {
           Создать новую карточку для недвижимости
         </p>
       </div>
-      <div className="w-[220px] h-[40px] bg-[#131313] text-[#B3B3B3] rounded-md p-1 mb-4 flex items-center mt-4">
-        <label className="ml-2 cursor-pointer w-full flex items-center">
-          <img
-            src={selectedImage || plus}
-            alt="img"
-            className="w-[20px] h-[20px] mr-2"
-          />
+      <div className=" bg-[#131313] text-[#B3B3B3] rounded-md p-1 mb-4 flex items-center mt-4 gap-5">
+        <label className="cursor-pointer w-[150px] h-[50px] px-3 rounded-md flex items-center text-center bg-[#262626]">
+          <img src={upload} alt="upload" />
           <p className="text-xs">Добавить фото</p>
-          <input type="file" className="hidden" onChange={handleImageChange} />
+          <input
+            type="file"
+            className="hidden"
+            onChange={handleImageChange}
+            multiple
+          />
         </label>
+
+        <div
+          className={`flex gap-4 bg-[#262626] p-[10px] rounded-lg mw-[500px] overflow-auto scroll-container-x ${
+            images.length === 0 && "hidden"
+          }`}
+        >
+          {images.map((img, index) => (
+            <img
+              key={index}
+              src={img.image[0]}
+              alt={`img-${index}`}
+              className="w-[45px] h-[45px] "
+            />
+          ))}
+        </div>
       </div>
 
-      <div className="flex gap-2">
+      <div className="flex justify-between">
         <div className="relative">
-          <input
+          <textarea
             type="text"
-            className="w-[220px] h-[60px] bg-[#131313] text-[#B3B3B3] rounded-md p-2 mb-4 placeholder-[#B3B3B3]"
+            className="w-[290px] h-[80px] resize-none bg-[#131313] text-[#B3B3B3] rounded-md p-2 pl-5 placeholder-[#B3B3B3] border-2 border-gray-600"
             placeholder="Добавить заголовок..."
             {...register("title")}
           />
-          <input
-            type="text"
-            className="w-[220px] h-[60px] bg-[#131313] text-[#B3B3B3] rounded-md p-2 mb-4 placeholder-[#B3B3B3]"
-            placeholder="Добавить заголовок..."
-            {...register("city")}
-          />
-          {/* {!title && (
-            <span className="absolute top-2 left-2 text-[#B3B3B3] pointer-events-none transition-all duration-200 ease-in-out">
-              Добавить заголовок...
-            </span>
-          )} */}
         </div>
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-3">
           <input
             type="text"
-            className="w-[280px] h-[30px] bg-[#131313] text-[#B3B3B3] rounded-md p-2"
+            className="w-[290px] h-[30px] bg-[#131313] text-[#B3B3B3] rounded-md p-2 pl-5 border-2 border-gray-600"
             placeholder="Площадь (м2)"
             {...register("square_footage")}
           />
           <div className="relative">
             <input
               type="text"
-              className="w-[280px] h-[30px] bg-[#131313] text-[#B3B3B3] rounded-md p-2 pl-8"
+              className="w-[290px] h-[30px] bg-[#131313] text-[#B3B3B3] rounded-md p-2 pl-5  border-2 border-gray-600"
               placeholder="Цена"
               {...register("price")}
             />
@@ -161,16 +180,16 @@ const PenModal = ({ handleClosePen }) => {
       </div>
 
       <div className="mt-4">
-        <input
+        <textarea
           type="text"
-          className="w-full h-[30px] bg-[#131313] text-[#B3B3B3] rounded-md p-2 mb-4"
+          className="w-full resize-none bg-[#131313] text-[#B3B3B3] rounded-md p-2 mb-4 border-2 border-gray-600"
           placeholder="Описание"
           {...register("description")}
         />
       </div>
       <div className="pt-4">
         <h2>Удобства</h2>
-        <div className="grid grid-cols-4 gap-1 my-2">
+        <div className="grid grid-cols-4 gap-[6px] my-2">
           <CustomCheckbox
             name="pool"
             title={"Бассейн"}
@@ -222,18 +241,19 @@ const PenModal = ({ handleClosePen }) => {
         </div>
       </div>
 
-      <div className="flex mt-3 gap-2">
+      <div className="flex m-3 gap-2">
         <button
           type="submit"
           className="bg-[#C8180C] text-white w-[110px] h-[40px] rounded-full"
         >
+          <AddIcon />
           Добавить
         </button>
 
         <button
           onClick={handleClosePen}
           type="button"
-          className="bg-[#131313] text-white w-[110px] h-[40px] rounded-full"
+          className="bg-[#262626] text-white w-[110px] h-[40px] rounded-full"
         >
           Отмена
         </button>

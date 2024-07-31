@@ -8,6 +8,9 @@ export const getHousesReq = () => {
 export const postHouseReq = (data) => {
   const { username, password } = getUserLS();
   const token = btoa(`${username}:${password}`);
-
-  return axiosWithFile.post("/houses/", data);
+  return axiosWithFile.post("/houses/", data, {
+    headers: {
+      Authorization: `Basic ${token}`,
+    },
+  });
 };

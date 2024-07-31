@@ -1,13 +1,13 @@
-import React from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import product from '../../../shared/assets/img/product.png';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import { Navigation, Pagination, Mousewheel, Keyboard } from 'swiper/modules';
-import './CarouselPro.css'; 
+import React from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import product from "../../../shared/assets/img/product.png";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import { Navigation, Pagination, Mousewheel, Keyboard } from "swiper/modules";
+import "./CarouselPro.css";
 
-export default function CarouselPro() {
+export default function CarouselPro({ images }) {
   return (
     <>
       <Swiper
@@ -19,17 +19,34 @@ export default function CarouselPro() {
         modules={[Navigation, Pagination, Mousewheel, Keyboard]}
         className="mySwiper"
       >
+        {images.map(({ image }, i) => (
+          <SwiperSlide key={i}>
+            <div className="w-full h-[200px] overflow-hidden">
+              <img
+                className="w-full h-full object-cover"
+                src={image ? image : product}
+                alt="Photos"
+              />
+            </div>
+          </SwiperSlide>
+        ))}
         <SwiperSlide>
-          <img className='w-full ' src={product} alt="Product 1" />
+          <div className="w-full h-[200px] overflow-hidden">
+            <img
+              className="w-full h-full object-cover"
+              src={product}
+              alt="Photos"
+            />
+          </div>
         </SwiperSlide>
         <SwiperSlide>
-          <img className='w-full ' src={product} alt="Product 2" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img className='w-full ' src={product} alt="Product 3" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img className='w-full ' src={product} alt="Product 4" />
+          <div className="w-full h-[200px] overflow-hidden">
+            <img
+              className="w-full h-full object-cover"
+              src={product}
+              alt="Photos"
+            />
+          </div>
         </SwiperSlide>
       </Swiper>
     </>

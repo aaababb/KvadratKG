@@ -18,6 +18,7 @@ const AdminRealEstate = () => {
   const handleOpenPen = () => setOpenPen(true);
   const handleClosePen = () => setOpenPen(false);
   const { items } = useSelector((state) => state.houses);
+  console.log(items);
 
   const ItemRender = () => {
     if (Array.isArray(items)) {
