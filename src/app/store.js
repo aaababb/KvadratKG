@@ -4,6 +4,7 @@ import metricSlice from "../features/AdminMainDashboard/slide2/store/slice";
 import headingSlice from "../features/Banner.jsx/store/slice";
 import houseSlice from "../features/AdminRealEstate/store/slice";
 import adminSlice from "../features/Sign-In/store/slice";
+import filterSlice from "../features/Filters/store/slice";
 
 export const store = configureStore({
   reducer: {
@@ -12,5 +13,6 @@ export const store = configureStore({
     heading: headingSlice,
     [houseSlice.name]: houseSlice.reducer,
     [adminSlice.name]: adminSlice.reducer,
+    [filterSlice.name]: filterSlice.reducer,
   },
 });

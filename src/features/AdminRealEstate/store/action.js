@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { getHousesReq, postHouseReq } from "../api";
+import { getHousesReq, postHouseReq, getHouseByIdReq } from "../api";
 
 export const getHouses = createAsyncThunk(
   "get/getHouses",
@@ -9,6 +9,18 @@ export const getHouses = createAsyncThunk(
       return data;
     } catch (err) {
       return rejectedWithValue("Error: ", err);
+    }
+  }
+);
+
+export const getHouseById = createAsyncThunk(
+  "get/getHouseById",
+  async (id, { rejectWithValue }) => {
+    try {
+      const { data } = await getHouseByIdReq(id);
+      return data;
+    } catch (err) {
+      return rejectWithValue("Error: ", err);
     }
   }
 );

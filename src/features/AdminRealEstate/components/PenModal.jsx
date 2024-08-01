@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 
@@ -16,29 +16,20 @@ import upload from "../../../shared/assets/svg/upload.svg";
 const PenModal = ({ handleClosePen }) => {
   const dispatch = useDispatch();
   const { register, handleSubmit } = useForm();
-  const [images, setImages] = useState([]);
+  const [image, setImage] = React.useState(null);
+  const [imageUrl, setImageUrl] = React.useState(null);
 
   const handleImageChange = (event) => {
-    const files = Array.from(event.target.files);
-    const newImages = [];
+    const file = Array.from(event.target.files[0]);
 
-    files.forEach((file) => {
-      if (file) {
-        const reader = new FileReader();
-        reader.onloadend = () => {
-          newImages.push({
-            image: [reader.result],
-          });
-          if (newImages.length === files.length) {
-            setImages((prevImages) => [...prevImages, ...newImages]);
-          }
-        };
-        reader.readAsDataURL(file);
-      }
-    });
+    if (file) {
+      setImage(file);
+      url = URL.createObjectURL(file);
+      setImageUrl(url);
+    }
   };
 
-  const [checkboxState, setCheckboxState] = useState({
+  const [checkboxState, setCheckboxState] = React.useState({
     pool: false,
     gym: false,
     garage: false,
@@ -47,6 +38,8 @@ const PenModal = ({ handleClosePen }) => {
     fireplace: false,
     elevator: false,
     clubhouse: false,
+    laundry: false,
+    area: false,
   });
 
   const onCheckboxChange = (name) => {
@@ -56,21 +49,12 @@ const PenModal = ({ handleClosePen }) => {
     }));
   };
 
-  const setArray = (item) => {
-    return [{ count: item }];
-  };
-
   const onSubmit = (data) => {
     dispatch(
       postHouse({
         ...data,
         ...checkboxState,
-        images: images,
-        rooms: setArray(data.rooms),
-        bathrooms: setArray(data.bathrooms),
-        bedrooms: setArray(data.bedrooms),
-        kitchens: setArray(data.kitchens),
-        garages: setArray(data.garages),
+        image: image,
         category: "Дома",
         city: "Бишкек",
       })
@@ -98,18 +82,17 @@ const PenModal = ({ handleClosePen }) => {
         </label>
 
         <div
-          className={`flex gap-4 bg-[#262626] p-[10px] rounded-lg mw-[500px] overflow-auto scroll-container-x ${
-            images.length === 0 && "hidden"
-          }`}
+          className={`flex gap-4 bg-[#262626] p-[10px] rounded-lg mw-[500px] overflow-auto scroll-container-x`}
         >
-          {images.map((img, index) => (
+          {image ? (
+            <img src={imageUrl} alt="img-1" className="w-[45px] h-[45px]" />
+          ) : (
             <img
-              key={index}
-              src={img.image[0]}
-              alt={`img-${index}`}
+              src={image ? image.name : upload}
+              alt="img-1"
               className="w-[45px] h-[45px] "
             />
-          ))}
+          )}
         </div>
       </div>
 
@@ -152,9 +135,9 @@ const PenModal = ({ handleClosePen }) => {
         <div className="w-[20%]">
           <div className="flex bg-[#C8180C] p-1 items-center justify-center">
             <p className="pt-1 text-xs">Ванна</p>
-            <img className="ml-2" width={16} src={baths} alt="bathrooms" />
+            <img className="ml-2" width={16} src={baths} alt="bathroom" />
           </div>
-          <SelectAutoWidth count={5} register={register} name="bathrooms" />
+          <SelectAutoWidth count={5} register={register} name="bathroom" />
         </div>
         <div className="w-[20%]">
           <div className="flex bg-[#C8180C] p-1 items-center justify-center">
@@ -166,16 +149,25 @@ const PenModal = ({ handleClosePen }) => {
         <div className="w-[20%]">
           <div className="flex bg-[#C8180C] p-1 items-center justify-center">
             <p className="pt-1 text-xs">Кухня</p>
-            <img className="ml-2" width={16} src={kitchen} alt="kitchens" />
+            <img className="ml-2" width={16} src={kitchen} alt="kitchen" />
           </div>
-          <SelectAutoWidth count={5} register={register} name="kitchens" />
+          <SelectAutoWidth count={5} register={register} name="kitchen" />
         </div>
         <div className="w-[20%]">
           <div className="flex bg-[#C8180C] p-1 items-center justify-center">
             <p className="pt-1 text-xs">Гараж</p>
-            <img className="ml-2" width={16} src={Garage} alt="garages" />
+            <img
+              className="ml-2"
+              width={16}
+              src={Garage}
+              alt="garage_how_many"
+            />
           </div>
-          <SelectAutoWidth count={5} register={register} name="garages" />
+          <SelectAutoWidth
+            count={5}
+            register={register}
+            name="garage_how_many"
+          />
         </div>
       </div>
 
@@ -237,6 +229,18 @@ const PenModal = ({ handleClosePen }) => {
             title={"Клубный зал"}
             checked={checkboxState.clubhouse}
             onChange={() => onCheckboxChange("clubhouse")}
+          />
+          <CustomCheckbox
+            name="clubhouse"
+            title={"Прачечная"}
+            checked={checkboxState.laundry}
+            onChange={() => onCheckboxChange("laundry")}
+          />
+          <CustomCheckbox
+            name="clubhouse"
+            title={"Площадка"}
+            checked={checkboxState.area}
+            onChange={() => onCheckboxChange("area")}
           />
         </div>
       </div>

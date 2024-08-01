@@ -5,6 +5,10 @@ export const getHousesReq = () => {
   return apiRoot.get("/houses/");
 };
 
+export const getHouseByIdReq = (id) => {
+  return apiRoot.get(`/houses/${id}/`);
+};
+
 export const postHouseReq = (data) => {
   const { username, password } = getUserLS();
   const token = btoa(`${username}:${password}`);

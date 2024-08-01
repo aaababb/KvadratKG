@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import CarouselPro from "./CarouselPro";
 
-const ProductBLock = ({ images, price, title }) => {
+const ProductBLock = ({ images, price, title, id }) => {
   return (
     <div className="w-[310px] flex  gap-[20px]  ">
       <div className="md:w-[310px] flex flex-col items-center justify-between   md:h-[483px] gap-1 w-[151px]  rounded bg-white mt-[25px]">
@@ -27,7 +27,7 @@ const ProductBLock = ({ images, price, title }) => {
           </div>
         </div>
         <div className="flex justify-center m-[5px] md:mt-[15px]">
-          <Link to={"/watch"} onClick={() => window.scrollTo(0, 0)}>
+          <Link to={`/info/${id}`} onClick={() => window.scrollTo(0, 0)}>
             <button className=" text-center w-full  py-[6px]  px-[30px] md:px-[80px] md:py-[16px]  rounded-full text-xs md:text-[18px] text-white font-normal bg-[#DC2215]">
               Подробнее
             </button>
