@@ -8,7 +8,7 @@ function MenuSort() {
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const [selName, setSelName] = useState(null);
   const sortRef = useRef();
-  const options = ["Дома", "Квартиры", "Коммерческое недвижимость", "Участки"];
+  const options = ["По популярности", "По цене", "По площади", "По названию"];
 
   const handleName = (name, index) => {
     setSelName(name);
@@ -21,7 +21,6 @@ function MenuSort() {
       const path = event.composedPath ? event.composedPath() : event.path;
       if (path && !path.includes(sortRef.current)) {
         setOpen(false);
-        console.log("click outside");
       }
     };
 
@@ -59,17 +58,15 @@ function MenuSort() {
           {options.map((item, index) => (
             <p
               key={index}
-              onClick={() => handleName(item, index)}
-              onMouseEnter={() => setHoveredIndex(index)}
-              onMouseLeave={() => setHoveredIndex(null)}
-              className={`w-full py-3 px-5 cursor-pointer   ${
-                index === selectedIndex
-                  ? "bg-white text-black"
-                  : index === hoveredIndex
-                  ? "bg-white text-black"
-                  : "text-white"
+
+              onMouseEnter={() => hoverOption(index)}
+              onClick={() => handleName(item)}
+              className={`hover:text-white hover:bg-red-600 w-full py-3 px-4 whitespace-nowrap ${
+                index === options.length - 1 ? "rounded-b-[35px]" : ""
               } ${
-                index === options.length - 1 ? "rounded-b-3xl" : "rounded-t-lg"
+                item === "Коммерческое недвижимость"
+                  ? "text-[14px] font-normal"
+                  : "font-normal"
               }`}
             >
               {item}

@@ -10,6 +10,7 @@ import AdminMainDashboard from "../../features/AdminMainDashboard/AdminMainDashb
 import AdminRealEstate from "../../features/AdminRealEstate/AdminRealEstate";
 import AdminSettings from "../../features/AdminSettings/AdminSettings";
 import SignIn from "../../features/Sign-In/Sign-In";
+import ModalHouse from "../../features/AdminRealEstate/components/ModalHouse";
 
 export const router = createBrowserRouter([
   {
@@ -30,7 +31,7 @@ export const router = createBrowserRouter([
         element: <CompanyPage />,
       },
       {
-        path: "/info",
+        path: "/info/:id",
         element: <InfoPage />,
       },
     ],
@@ -54,6 +55,14 @@ export const router = createBrowserRouter([
       {
         path: "settings", // Относительный путь
         element: <AdminSettings />,
+      },
+      {
+        path: "modal/:houseId",
+        element: <ModalHouse />,
+      },
+      {
+        path: "modal",
+        element: <ModalHouse />,
       },
     ],
   },
