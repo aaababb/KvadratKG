@@ -30,24 +30,6 @@ export default function CarouselPro({ images }) {
             </div>
           </SwiperSlide>
         ))}
-        <SwiperSlide>
-          <div className="w-full h-[200px] overflow-hidden">
-            <img
-              className="w-full h-full object-cover"
-              src={product}
-              alt="Photos"
-            />
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="w-full h-[200px] overflow-hidden">
-            <img
-              className="w-full h-full object-cover"
-              src={product}
-              alt="Photos"
-            />
-          </div>
-        </SwiperSlide>
       </Swiper>
     </>
   );

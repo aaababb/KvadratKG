@@ -1,11 +1,17 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { getHousesReq, postHouseReq, getHouseByIdReq } from "../api";
+import {
+  getHousesReq,
+  postHouseReq,
+  getHouseByIdReq,
+  patchHouseReq,
+  deleteHouseReq,
+} from "../api";
 
 export const getHouses = createAsyncThunk(
   "get/getHouses",
-  async (_, { rejectedWithValue }) => {
+  async (params, { rejectedWithValue }) => {
     try {
-      const { data } = await getHousesReq();
+      const { data } = await getHousesReq(params);
       return data;
     } catch (err) {
       return rejectedWithValue("Error: ", err);
@@ -17,8 +23,8 @@ export const getHouseById = createAsyncThunk(
   "get/getHouseById",
   async (id, { rejectWithValue }) => {
     try {
-      const { data } = await getHouseByIdReq(id);
-      return data;
+      const res = await getHouseByIdReq(id);
+      return res.data;
     } catch (err) {
       return rejectWithValue("Error: ", err);
     }
@@ -27,11 +33,38 @@ export const getHouseById = createAsyncThunk(
 
 export const postHouse = createAsyncThunk(
   "post/postHouse",
-  async (data, { rejectWithValue }) => {
+  async ({ data, navigate }, { rejectWithValue }) => {
     try {
-      console.log("Data to be sent:", data);
       const res = await postHouseReq(data);
-      console.log("Response:", res);
+      navigate("/admin");
+      return res.data;
+    } catch (err) {
+      console.error("Error occurred:", err);
+      return rejectWithValue(err.response?.data || err.message);
+    }
+  }
+);
+
+export const patchHouse = createAsyncThunk(
+  "patch/patchHouse",
+  async ({ data, id, navigate }, { rejectWithValue }) => {
+    try {
+      console.log(data, id);
+      const res = await patchHouseReq(data, id);
+      navigate("/admin");
+      return res.data;
+    } catch (err) {
+      console.error("Error occurred:", err);
+      return rejectWithValue(err.response?.data || err.message);
+    }
+  }
+);
+
+export const deleteHouse = createAsyncThunk(
+  "delete/deleteHouse",
+  async (id, { rejectWithValue }) => {
+    try {
+      const res = await deleteHouseReq(id);
       return res.data;
     } catch (err) {
       console.error("Error occurred:", err);
