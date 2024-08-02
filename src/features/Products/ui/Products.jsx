@@ -9,11 +9,11 @@ const Products = () => {
     window.scrollTo(0, 0);
   };
 
-  return (
-    <Container>
-      <div className=" flex flex-col md:flex-row items-start gap-7 justify-between md:items-end mt-[-90px]">
-        <DropDownMen />
-        <div className=" max-w-[808px] min-h-[74px] font-inter text-sm  md:text-[20px] font-semibold text-white">
+   return (
+     <Container>
+       <div className=" flex flex-col md:flex-row items-start gap-7 justify-between md:items-end mt-[-90px]">
+         <DropDownMen />
+    <div className=" max-w-[808px] min-h-[74px] font-inter text-sm  md:text-[20px] font-semibold text-white">
           <span className="top-[30px] relative \bg-gray-200  w-[670px]">
             ВЫБИРАЙТЕ КВАРТИРУ ДЛЯ ЖИЗНИ ИЛИ ИНВЕСТИЦИЙ. ПРЕДЛОЖЕНИЕ ДОСТУПНО
           </span>

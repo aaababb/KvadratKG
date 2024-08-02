@@ -20,7 +20,7 @@ export default function Carousel() {
   if (error) return <p>Error: {error}</p>;
 
   return (
-    <div className="relative w-full h-full">
+    <div className="w-full h-full">
       <Swiper
         slidesPerView={1}
         spaceBetween={30}
@@ -35,6 +35,7 @@ export default function Carousel() {
       >
         {headings.results?.map((heading) => (
           <SwiperSlide key={heading.id}>
+            {console.log(heading)}
             <Banner heading={heading} />
           </SwiperSlide>
         ))}

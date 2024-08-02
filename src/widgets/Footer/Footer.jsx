@@ -12,8 +12,8 @@ const Footer = () => {
   return (
     <div className="bg-[#111111] h-full  md:pt-20 md:mt-20 mt-3 pt-6 ">
       <Container>
-        <div className="flex flex-col justify-between gap-5 mb-10 text-white md:flex-row">
-          <div className="block sm:hidden md:block">
+        <div className="flex flex-col justify-between gap-5 mb-0 text-white md:flex-row">
+          <div className="block sm:hidden md:block mb-5">
             <img src={footer} alt="" />
             <p className="pt-5">Наши социальные сети</p>
             <div className="flex gap-3 pt-5">
@@ -22,7 +22,7 @@ const Footer = () => {
               <img src={telegram} alt="" />
             </div>
           </div>
-          <div className="flex gap-[64px] ">
+          <div className="flex gap-[64px] mb-5 ">
             <div className="leading-10">
               <p>Квартиры</p>
               <p>Офис продаж</p>
@@ -36,7 +36,7 @@ const Footer = () => {
               <p>Жилые комплексы</p>
             </div>
           </div>
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between mb-8">
             <div className="hidden sm:block md:hidden">
               <img src={footer} alt="" />
               <p className="pt-5">Наши социальные сети</p>
