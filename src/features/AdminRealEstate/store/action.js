@@ -1,6 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import {
   getHousesReq,
+  getHousesReqFilter,
   postHouseReq,
   getHouseByIdReq,
   patchHouseReq,
@@ -11,8 +12,13 @@ export const getHouses = createAsyncThunk(
   "get/getHouses",
   async (params, { rejectedWithValue }) => {
     try {
-      const { data } = await getHousesReq(params);
-      return data;
+      if (params) {
+        const { data } = await getHousesReqFilter(params);
+        return data;
+      } else {
+        const { data } = await getHousesReq();
+        return data;
+      }
     } catch (err) {
       return rejectedWithValue("Error: ", err);
     }

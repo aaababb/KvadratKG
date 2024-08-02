@@ -35,7 +35,6 @@ export default function Carousel() {
       >
         {headings.results?.map((heading) => (
           <SwiperSlide key={heading.id}>
-            {console.log(heading)}
             <Banner heading={heading} />
           </SwiperSlide>
         ))}

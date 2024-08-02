@@ -1,9 +1,12 @@
 import { apiRoot, axiosWithFile } from "../../app/api";
 import { getUserLS } from "../Sign-In/store/utils";
 
-export const getHousesReq = (params) => {
+export const getHousesReq = () => {
+  return apiRoot.get("/houses/");
+};
+
+export const getHousesReqFilter = (params) => {
   const { price, typeHouse, comfort } = params;
-  console.log(price);
   function encodeIfInvalid(searchString) {
     const invalidCharacters = /[^a-zA-Z0-9-_.~]/;
     if (invalidCharacters.test(searchString)) {

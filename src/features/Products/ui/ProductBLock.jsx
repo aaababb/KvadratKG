@@ -25,7 +25,7 @@ const ProductBLock = ({ image, price, title, id }) => {
         </div>
         <div className="flex justify-center">
           <button
-            className="bg-red-700 text-white mt-2 px-7 rounded-xl hover:bg-red-600 active:bg-red-800 transition-colors"
+            className="bg-red-700 text-white mt-2 px-7 rounded-xl hover:bg-red-600 active:bg-red-800"
             onClick={() => clickInfo(id)}
           >
             Подробнее
