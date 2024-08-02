@@ -11,10 +11,14 @@ const ProductFilters = () => {
   const { price, typeHouse, comfort } = useSelector((state) => state.filter);
 
   React.useEffect(() => {
-    dispatch(getHouses({ price, typeHouse, comfort }));
+    dispatch(
+      getHouses({
+        price,
+        typeHouse,
+        comfort,
+      })
+    );
   }, [price, typeHouse, comfort]);
-
-  console.log(items);
 
   const product = () => {
     return (
