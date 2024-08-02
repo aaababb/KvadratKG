@@ -1,24 +1,20 @@
 import React, { useState } from "react";
-import { Box, Modal } from "@mui/material";
+import { Box } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import { getHouses } from "./store/action";
-import PenModal from "./components/PenModal";
 
 import AddIcon from "@mui/icons-material/Add";
-import back from "../../shared/assets/svg/back.svg";
 import pen from "../../shared/assets/svg/pen.svg";
 import trash from "../../shared/assets/svg/trash.svg";
 import upload from "../../shared/assets/svg/upload.svg";
 
 const AdminRealEstate = () => {
-  const [openPen, setOpenPen] = useState(false);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const handleOpenPen = () => setOpenPen(true);
-  const handleClosePen = () => setOpenPen(false);
   const { items } = useSelector((state) => state.houses);
-  console.log(items);
 
   const ItemRender = () => {
     if (Array.isArray(items)) {
@@ -39,12 +35,8 @@ const AdminRealEstate = () => {
             >
               <div className="w-[150px] h-[90px] overflow-hidden">
                 <img
-                  className={
-                    obj.images[0]?.image
-                      ? "w-full h-full object-cover"
-                      : "w-50px h-full object-cover m-auto"
-                  }
-                  src={obj.images[0]?.image ? obj.images[0]?.image : upload}
+                  className={"w-full h-full object-cover"}
+                  src={obj.image ? obj.image : upload}
                   alt="Photos"
                 />
               </div>
@@ -52,14 +44,23 @@ const AdminRealEstate = () => {
                 {obj.title || "3 - комнатная квартира на улице Киевская 30"}
               </p>
               <p className="w-[220px]">
-                {`Площадь: ${obj.square || "м2.77.3"} Планировка: ${
+                {`Площадь: ${obj.square_footage || "м2.77.3"} Планировка: ${
                   obj.plan || "ИФ-1(А)-036"
                 }`}
               </p>
               <p>{obj.price || "12млн.$"}</p>
-              <div className="flex gap-3">
-                <img src={trash} alt="Trash" />
-                <img src={pen} alt="Pen" style={{ cursor: "pointer" }} />
+              <div className="flex gap-5 ">
+                <img
+                  src={pen}
+                  onClick={() => navigate(`/admin/modal/${obj.id}`)}
+                  alt="Pen"
+                  className="cursor-pointer hover:scale-125 transition-transform duration-150 pen-icon"
+                />
+                <img
+                  src={trash}
+                  alt="Trash"
+                  className="cursor-pointer hover:scale-125 transition-transform duration-150 pen-icon"
+                />
               </div>
             </Box>
           ))}
@@ -88,7 +89,7 @@ const AdminRealEstate = () => {
         <h1 className="text-white text-2xl">Публикация недвижимости</h1>
 
         <button
-          onClick={handleOpenPen}
+          onClick={() => navigate("/admin/modal")}
           className="w-[215px] h-[57px] bg-[#C8180C] text-white rounded-[30px] flex items-center justify-center gap-3"
         >
           <AddIcon />
@@ -123,32 +124,6 @@ const AdminRealEstate = () => {
       >
         {ItemRender()}
       </Box>
-      <Modal open={openPen} onClose={handleClosePen}>
-        <Box
-          sx={{
-            position: "absolute",
-            top: "45%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            width: 680,
-            height: 640,
-            bgcolor: "black",
-            border: "1px solid #262626",
-            boxShadow: 66,
-            outline: "none",
-            borderRadius: "12px",
-            p: 4,
-          }}
-        >
-          <img
-            src={back}
-            alt="Back"
-            onClick={handleClosePen}
-            style={{ cursor: "pointer" }}
-          />
-          <PenModal handleClosePen={handleClosePen} />
-        </Box>
-      </Modal>
     </Box>
   );
 };

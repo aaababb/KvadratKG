@@ -7,7 +7,7 @@ function MenuSort() {
   const [setOption] = React.useState();
   const [selName, setSelName] = React.useState();
   const sortRef = useRef();
-  const options = ["Дома", "Квартиры", "Коммерческое недвижимость", "Участки"];
+  const options = ["По популярности", "По цене", "По площади", "По названию"];
 
   const hoverOption = (index) => {
     setOption(index);
@@ -22,7 +22,6 @@ function MenuSort() {
       const path = event.path || (event.composedPath && event.composedPath());
       if (path && !path.includes(sortRef.current)) {
         setOpen(false);
-        console.log("click outside");
       }
     };
 
@@ -64,7 +63,11 @@ function MenuSort() {
               onClick={() => handleName(item)}
               className={`hover:text-white hover:bg-red-600 w-full py-3 px-4 whitespace-nowrap ${
                 index === options.length - 1 ? "rounded-b-[35px]" : ""
-              } ${item === "Коммерческое недвижимость" ? "text-[14px] font-normal" : "font-normal"}`}
+              } ${
+                item === "Коммерческое недвижимость"
+                  ? "text-[14px] font-normal"
+                  : "font-normal"
+              }`}
             >
               {item}
             </p>

@@ -1,52 +1,69 @@
-import { useState } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
 
 import SelectAutoWidth from "./SelectAutoWidth";
 import AddIcon from "@mui/icons-material/Add";
+
+import { getHouseById, postHouse, patchHouse } from "../store/action";
+import { itemClear } from "../store/slice";
 
 import Rooms from "../../../shared/assets/svg/Rooms.svg";
 import baths from "../../../shared/assets/svg/Baths.svg";
 import bedroom from "../../../shared/assets/svg/Bedroom.svg";
 import kitchen from "../../../shared/assets/svg/kitchen.svg";
 import Garage from "../../../shared/assets/svg/Garage.svg";
-import { postHouse } from "../store/action";
 import CustomCheckbox from "./CheckboxUI";
 import upload from "../../../shared/assets/svg/upload.svg";
-const PenModal = ({ handleClosePen }) => {
+
+const PenModal = () => {
   const dispatch = useDispatch();
-  const { register, handleSubmit } = useForm();
-  const [images, setImages] = useState([]);
-
-  const handleImageChange = (event) => {
-    const files = Array.from(event.target.files);
-    const newImages = [];
-
-    files.forEach((file) => {
-      if (file) {
-        const reader = new FileReader();
-        reader.onloadend = () => {
-          newImages.push({
-            image: [reader.result],
-          });
-          if (newImages.length === files.length) {
-            setImages((prevImages) => [...prevImages, ...newImages]);
-          }
-        };
-        reader.readAsDataURL(file);
-      }
-    });
+  const navigate = useNavigate();
+  const { houseId } = useParams();
+  const isEditing = !!houseId;
+  const cancel = () => {
+    navigate("/admin/real-estate");
+    dispatch(itemClear());
   };
 
-  const [checkboxState, setCheckboxState] = useState({
-    pool: false,
-    gym: false,
-    garage: false,
-    parking: false,
-    garden: false,
-    fireplace: false,
-    elevator: false,
-    clubhouse: false,
+  React.useEffect(() => {
+    dispatch(itemClear());
+    if (isEditing) {
+      dispatch(getHouseById(houseId));
+    }
+  }, [houseId, dispatch]);
+
+  const house = useSelector((state) => state.houses.item);
+  const { register, handleSubmit, reset } = useForm({
+    defaultValues: isEditing ? house : {},
+  });
+  const [selectedImage, setSelectedImage] = React.useState(null);
+  const [image, setImage] = React.useState(null);
+
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setSelectedImage(reader.result);
+      };
+      reader.readAsDataURL(file);
+      setImage(file);
+    }
+  };
+
+  const [checkboxState, setCheckboxState] = React.useState({
+    pool: house.pool || false,
+    gym: house.gym || false,
+    garage: house.garage || false,
+    parking: house.parking || false,
+    garden: house.garden || false,
+    fireplace: house.fireplace || false,
+    elevator: house.elevator || false,
+    clubhouse: house.clubhouse || false,
+    laundry: house.laundry || false,
+    area: house.area || false,
   });
 
   const onCheckboxChange = (name) => {
@@ -56,27 +73,37 @@ const PenModal = ({ handleClosePen }) => {
     }));
   };
 
-  const setArray = (item) => {
-    return [{ count: item }];
+  const onSubmit = (data) => {
+    const formData = {
+      ...data,
+      ...checkboxState,
+      image: image,
+      category: "Дома",
+      city: "Бишкек",
+    };
+    if (isEditing) {
+      dispatch(
+        patchHouse({
+          data: formData,
+          id: houseId,
+          navigate,
+        })
+      );
+    } else {
+      dispatch(
+        postHouse({
+          data: formData,
+          navigate,
+        })
+      );
+    }
   };
 
-  const onSubmit = (data) => {
-    dispatch(
-      postHouse({
-        ...data,
-        ...checkboxState,
-        images: images,
-        rooms: setArray(data.rooms),
-        bathrooms: setArray(data.bathrooms),
-        bedrooms: setArray(data.bedrooms),
-        kitchens: setArray(data.kitchens),
-        garages: setArray(data.garages),
-        category: "Дома",
-        city: "Бишкек",
-      })
-    );
-    // handleClosePen();
-  };
+  React.useEffect(() => {
+    if (house) {
+      reset(house);
+    }
+  }, [house, reset]);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="text-white ml-4">
@@ -86,31 +113,15 @@ const PenModal = ({ handleClosePen }) => {
         </p>
       </div>
       <div className=" bg-[#131313] text-[#B3B3B3] rounded-md p-1 mb-4 flex items-center mt-4 gap-5">
-        <label className="cursor-pointer w-[150px] h-[50px] px-3 rounded-md flex items-center text-center bg-[#262626]">
-          <img src={upload} alt="upload" />
-          <p className="text-xs">Добавить фото</p>
-          <input
-            type="file"
-            className="hidden"
-            onChange={handleImageChange}
-            multiple
+        <label className="ml-2 cursor-pointer w-full flex items-center">
+          <img
+            src={selectedImage || upload}
+            alt="img"
+            className="w-[20px] h-[20px] mr-2"
           />
+          <p className="text-xs">Добавить фото</p>
+          <input type="file" className="hidden" onChange={handleImageChange} />
         </label>
-
-        <div
-          className={`flex gap-4 bg-[#262626] p-[10px] rounded-lg mw-[500px] overflow-auto scroll-container-x ${
-            images.length === 0 && "hidden"
-          }`}
-        >
-          {images.map((img, index) => (
-            <img
-              key={index}
-              src={img.image[0]}
-              alt={`img-${index}`}
-              className="w-[45px] h-[45px] "
-            />
-          ))}
-        </div>
       </div>
 
       <div className="flex justify-between">
@@ -124,14 +135,14 @@ const PenModal = ({ handleClosePen }) => {
         </div>
         <div className="flex flex-col gap-3">
           <input
-            type="text"
+            type="number"
             className="w-[290px] h-[30px] bg-[#131313] text-[#B3B3B3] rounded-md p-2 pl-5 border-2 border-gray-600"
             placeholder="Площадь (м2)"
             {...register("square_footage")}
           />
           <div className="relative">
             <input
-              type="text"
+              type="number"
               className="w-[290px] h-[30px] bg-[#131313] text-[#B3B3B3] rounded-md p-2 pl-5  border-2 border-gray-600"
               placeholder="Цена"
               {...register("price")}
@@ -147,35 +158,65 @@ const PenModal = ({ handleClosePen }) => {
             <p className="pt-1 text-xs">Комнаты</p>
             <img className="ml-2" width={16} src={Rooms} alt="Rooms" />
           </div>
-          <SelectAutoWidth count={5} register={register} name="rooms" />
+          <SelectAutoWidth
+            count={5}
+            register={register}
+            name="rooms"
+            defaultValue={house.rooms}
+          />
         </div>
         <div className="w-[20%]">
           <div className="flex bg-[#C8180C] p-1 items-center justify-center">
             <p className="pt-1 text-xs">Ванна</p>
-            <img className="ml-2" width={16} src={baths} alt="bathrooms" />
+            <img className="ml-2" width={16} src={baths} alt="bathroom" />
           </div>
-          <SelectAutoWidth count={5} register={register} name="bathrooms" />
+          <SelectAutoWidth
+            count={5}
+            register={register}
+            name="bathroom"
+            defaultValue={house.bathroom}
+          />
         </div>
         <div className="w-[20%]">
           <div className="flex bg-[#C8180C] p-1 items-center justify-center">
             <p className="pt-1 text-xs">Спальня</p>
             <img className="ml-2" width={16} src={bedroom} alt="Bedroom" />
           </div>
-          <SelectAutoWidth count={5} register={register} name="bedrooms" />
+          <SelectAutoWidth
+            count={5}
+            register={register}
+            name="bedrooms"
+            defaultValue={house.bedrooms}
+          />
         </div>
         <div className="w-[20%]">
           <div className="flex bg-[#C8180C] p-1 items-center justify-center">
             <p className="pt-1 text-xs">Кухня</p>
-            <img className="ml-2" width={16} src={kitchen} alt="kitchens" />
+            <img className="ml-2" width={16} src={kitchen} alt="kitchen" />
           </div>
-          <SelectAutoWidth count={5} register={register} name="kitchens" />
+          <SelectAutoWidth
+            count={5}
+            register={register}
+            name="kitchen"
+            defaultValue={house.kitchen}
+          />
         </div>
         <div className="w-[20%]">
           <div className="flex bg-[#C8180C] p-1 items-center justify-center">
             <p className="pt-1 text-xs">Гараж</p>
-            <img className="ml-2" width={16} src={Garage} alt="garages" />
+            <img
+              className="ml-2"
+              width={16}
+              src={Garage}
+              alt="garage_how_many"
+            />
           </div>
-          <SelectAutoWidth count={5} register={register} name="garages" />
+          <SelectAutoWidth
+            count={5}
+            register={register}
+            name="garage_how_many"
+            defaultValue={house.garage_how_many}
+          />
         </div>
       </div>
 
@@ -238,6 +279,18 @@ const PenModal = ({ handleClosePen }) => {
             checked={checkboxState.clubhouse}
             onChange={() => onCheckboxChange("clubhouse")}
           />
+          <CustomCheckbox
+            name="clubhouse"
+            title={"Прачечная"}
+            checked={checkboxState.laundry}
+            onChange={() => onCheckboxChange("laundry")}
+          />
+          <CustomCheckbox
+            name="clubhouse"
+            title={"Площадка"}
+            checked={checkboxState.area}
+            onChange={() => onCheckboxChange("area")}
+          />
         </div>
       </div>
 
@@ -251,7 +304,7 @@ const PenModal = ({ handleClosePen }) => {
         </button>
 
         <button
-          onClick={handleClosePen}
+          onClick={cancel}
           type="button"
           className="bg-[#262626] text-white w-[110px] h-[40px] rounded-full"
         >

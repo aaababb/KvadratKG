@@ -2,13 +2,15 @@ import React from "react";
 import MenuSort from "./MenuSort";
 import FilterName from "./FilterName";
 import ProductFilters from "./ProductFilters";
+import { useSelector } from "react-redux";
 
 const ActiveFilter = ({ open }) => {
+  const { count } = useSelector((state) => state.houses);
   return (
     <>
       <div className="flex items-center justify-between mb-5 text-white ">
-        <h3 className="text-xs md:text-sm w-[150px] ">
-          Показаны 1-12 из 240 результатов
+        <h3 className="text-xs md:text-sm">
+          Показаны {count} из {count} результатов
         </h3>
         <div
           onClick={() => open(true)}

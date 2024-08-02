@@ -33,8 +33,8 @@ const Products = () => {
           </span>
         </div>
       </div>
-      <div className="flex items-center justify-between w-full gap-4 overflow-x-scroll scroll-container-x pb-1">
-        {items.map((obj, index) => (
+      <div className="grid grid-cols-4">
+        {items.slice(0, 8).map((obj, index) => (
           <ProductBLock key={index} {...obj} />
         ))}
       </div>

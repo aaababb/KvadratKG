@@ -4,7 +4,12 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
-export default function SelectAutoWidth({ count, register, name }) {
+export default function SelectAutoWidth({
+  count,
+  register,
+  name,
+  defaultValue,
+}) {
   const renderMenuItems = () => {
     const items = [];
     for (let i = 0; i <= count; i++) {
@@ -25,7 +30,7 @@ export default function SelectAutoWidth({ count, register, name }) {
         <Select
           id="demo-simple-select-autowidth"
           {...(register && name ? register(name) : {})}
-          defaultValue={0}
+          defaultValue={defaultValue || 0}
           autoWidth
           style={{ outline: "none", height: "17px", marginTop: 8 }}
           sx={{
