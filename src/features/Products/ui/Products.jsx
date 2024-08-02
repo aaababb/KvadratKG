@@ -19,6 +19,7 @@ const Products = () => {
     window.scrollTo(0, 0);
   };
 
+
   return (
     <Container>
       <div className=" flex flex-col md:flex-row items-start gap-7 justify-between md:items-end mt-[-90px]">
