@@ -1,8 +1,8 @@
 import React from "react";
-import Select from "./Select";
 import SaleMenu from "./SaleMenu";
 import { useSelector, useDispatch } from "react-redux";
 import {
+  setPrice,
   setTypeHouse,
   setPool,
   setGym,
@@ -15,12 +15,26 @@ import {
   setLaundry,
   setArea,
 } from "../store/slice";
+import SelectUI from "./SelectUI";
+import { priceVariable } from "../store/data";
 
 const Type = () => {
   const dispatch = useDispatch();
   const { typeHouse, comfort } = useSelector((state) => state.filter);
 
-  const houseType = ["Дома", "Квартиры", "Комерческое недвижиомть", "Участки"];
+  const houseType = [
+    "Все",
+    "Дома",
+    "Квартиры",
+    "Участки",
+    "Комерческое недвижиомть",
+  ];
+  const handleChange = (value) => {
+    const option = priceVariable.find((x) => x.id === value);
+    if (option) {
+      dispatch(setPrice(option));
+    }
+  };
 
   return (
     <div className="text-white bg-[#111111] lg:w-[350px] md:w-[20px] p-5 rounded">
@@ -30,7 +44,11 @@ const Type = () => {
       <hr className="my-5" />
       <div className="mt-5">
         <p className="mb-3">Местоположение</p>
-        <Select />
+        <SelectUI
+          items={["Москва", "Санкт-Петербург"]}
+          active={"Москва"}
+          width={300}
+        />
       </div>
       <hr className="mt-10 mb-5" />
       <div>
@@ -67,7 +85,12 @@ const Type = () => {
       <div>
         <div>Цена</div>
         <div>
-          <SaleMenu />
+          <SelectUI
+            items={priceVariable}
+            isPrice={true}
+            onChange={handleChange}
+            active={priceVariable[0].id}
+          />
         </div>
       </div>
       <hr className="mt-10 mb-5" />

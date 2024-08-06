@@ -19,9 +19,9 @@ export default function CarouselPro({ images }) {
         modules={[Navigation, Pagination, Mousewheel, Keyboard]}
         className="mySwiper"
       >
-        {images?.map(({ image }, i) => (
+        {images?.map((image, i) => (
           <SwiperSlide key={i}>
-            <div className="w-full h-[200px] overflow-hidden">
+            <div className="w-full h-[230px] overflow-hidden">
               <img
                 className="w-full h-full object-cover"
                 src={image ? image : product}

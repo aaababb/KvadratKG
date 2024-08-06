@@ -3,7 +3,7 @@ import ClearIcon from "@mui/icons-material/Clear";
 import { useSelector, useDispatch } from "react-redux";
 import {
   setPriceClear,
-  setTypeHouse,
+  clearTypeHouse,
   setPool,
   setGym,
   setGarage,
@@ -62,8 +62,8 @@ const FilterName = () => {
       <p className="mb-3">Активный фильтр</p>
       <div className="flex items-center justify-between gap-2 ">
         <div className="flex flex-wrap gap-4 lg:w-[550px] xl:w-full md:w-[290px]">
-          {getFilters(setPriceClear, price.id, price.label)}
-          {getFilters(setTypeHouse, typeHouse)}
+          {getFilters(setPriceClear, price.max && price.min, price.label)}
+          {getFilters(clearTypeHouse, typeHouse === "Все" ? null : typeHouse)}
           {getFilters(setPool, comfort.pool, "Бассейн")}
           {getFilters(setGym, comfort.gym, "Cпортзал")}
           {getFilters(setGarage, comfort.garage, "Гараж")}

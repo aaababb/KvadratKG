@@ -15,6 +15,7 @@ const AdminRealEstate = () => {
   const navigate = useNavigate();
 
   const { items } = useSelector((state) => state.houses);
+  console.log(items);
 
   const ItemRender = () => {
     if (Array.isArray(items)) {
@@ -35,7 +36,7 @@ const AdminRealEstate = () => {
             >
               <div className="w-[150px] h-[90px] overflow-hidden">
                 <img
-                  className={"w-full h-full object-cover"}
+                  className="w-full h-full object-cover"
                   src={obj.image ? obj.image : upload}
                   alt="Photos"
                 />
@@ -72,7 +73,7 @@ const AdminRealEstate = () => {
   };
 
   React.useEffect(() => {
-    dispatch(getHouses());
+    dispatch(getHouses({ params: null, page: 0 }));
   }, []);
 
   return (

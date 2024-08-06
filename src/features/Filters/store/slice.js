@@ -2,8 +2,11 @@ import { createSlice } from "@reduxjs/toolkit";
 import { priceVariable } from "./data";
 
 const initialState = {
+  page: 0,
+  filterType: "По популярности",
   price: priceVariable[0],
-  typeHouse: "Дома" || "Квартиры" || "Комерческое недвижиомть" || "Участки",
+  typeHouse:
+    "Все" || "Дома" || "Квартиры" || "Комерческое недвижиомть" || "Участки",
   comfort: {
     pool: false,
     gym: false,
@@ -22,18 +25,30 @@ const filterSlice = createSlice({
   name: "filter",
   initialState,
   reducers: {
+    // page
+    setPage: (state, { payload }) => {
+      state.page = payload;
+    },
+    // filterType
+    setFilterType: (state, { payload }) => {
+      state.filterType = payload;
+    },
+
     // price
     setPrice: (state, { payload }) => {
       state.price = payload;
     },
     setPriceClear: (state) => {
-      state.price.min = 0;
-      state.price.max = 0;
+      state.price.min = "";
+      state.price.max = "";
     },
 
     // typeHouses
     setTypeHouse: (state, { payload }) => {
       state.typeHouse = payload;
+    },
+    clearTypeHouse: (state) => {
+      state.typeHouse = "Все";
     },
 
     // comfort
@@ -76,6 +91,9 @@ const filterSlice = createSlice({
 });
 
 export const {
+  clearTypeHouse,
+  setPage,
+  setFilterType,
   setPrice,
   setTypeHouse,
   setPool,
