@@ -10,17 +10,19 @@ import {
 
 export const getHouses = createAsyncThunk(
   "get/getHouses",
-  async (params, { rejectedWithValue }) => {
+  async ({ params, page }, { rejectWithValue }) => {
     try {
+      let data;
       if (params) {
-        const { data } = await getHousesReqFilter(params);
-        return data;
+        const response = await getHousesReqFilter(params, page);
+        data = response.data;
       } else {
-        const { data } = await getHousesReq();
-        return data;
+        const response = await getHousesReq(page);
+        data = response.data;
       }
+      return data;
     } catch (err) {
-      return rejectedWithValue("Error: ", err);
+      return rejectWithValue(err.message || "An error occurred"); // Изменен возврат ошибки
     }
   }
 );
@@ -41,8 +43,9 @@ export const postHouse = createAsyncThunk(
   "post/postHouse",
   async ({ data, navigate }, { rejectWithValue }) => {
     try {
+      console.log(data);
       const res = await postHouseReq(data);
-      navigate("/admin");
+      navigate("/admin/real-estate");
       return res.data;
     } catch (err) {
       console.error("Error occurred:", err);
@@ -55,9 +58,9 @@ export const patchHouse = createAsyncThunk(
   "patch/patchHouse",
   async ({ data, id, navigate }, { rejectWithValue }) => {
     try {
-      console.log(data, id);
       const res = await patchHouseReq(data, id);
-      navigate("/admin");
+      alert("Объявление обновлено");
+      navigate("/admin/real-estate");
       return res.data;
     } catch (err) {
       console.error("Error occurred:", err);

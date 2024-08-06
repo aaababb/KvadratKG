@@ -1,4 +1,5 @@
 export const priceVariable = [
+  { id: 0, label: "Без ограничения", min: "", max: "" },
   { id: 1, label: "до 1млн", min: 0, max: 1_000_000 },
   { id: 2, label: "от 1млн до 2млн", min: 1_000_000, max: 2_000_000 },
   { id: 3, label: "от 2млн до 3млн", min: 2_000_000, max: 3_000_000 },

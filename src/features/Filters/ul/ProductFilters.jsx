@@ -1,55 +1,54 @@
 import React from "react";
-import ProductBlock from "../../Products/ui/ProductBLock";
 import { Box } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
+
+import ProductBlock from "../../Products/ui/ProductBLock";
+import ProductBlockSkeleton from "../../../shared/helpers/ProductBlockSkeleton";
 import { getHouses } from "../../AdminRealEstate/store/action";
+import { Status } from "../../AdminRealEstate/store/slice";
 import NoData from "../../../shared/assets/img/NoData.png";
+import NotFounProduct from "../../../shared/helpers/NotFounProduct";
 
 const ProductFilters = () => {
   const dispatch = useDispatch();
-  const { items } = useSelector((state) => state.houses);
-  const { price, typeHouse, comfort } = useSelector((state) => state.filter);
+  const { items, status, count } = useSelector((state) => state.houses);
+  const { price, typeHouse, comfort, page } = useSelector(
+    (state) => state.filter
+  );
 
   React.useEffect(() => {
     dispatch(
       getHouses({
-        price,
-        typeHouse,
-        comfort,
+        params: {
+          price,
+          typeHouse,
+          comfort,
+        },
+        page,
       })
     );
-  }, [price, typeHouse, comfort]);
+  }, [price, typeHouse, comfort, page]);
 
-  const product = () => {
-    return (
-      <Box className="grid grid-cols-4 gap-2 gap-y-4">
-        {items.map((item, index) => (
-          <ProductBlock key={index} {...item} />
-        ))}
-      </Box>
-    );
-  };
+  const productsList = items.map((item, index) => (
+    <ProductBlock key={index} {...item} />
+  ));
+  const skeletonsList = [...new Array(8)].map((_, i) => (
+    <ProductBlockSkeleton key={i} />
+  ));
 
-  const notFound = (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        width: "100%",
-        height: "400px",
-      }}
-    >
-      <img src={NoData} alt="no data" className="w-[200px] h-[230px]" />
-      <p className="text-2xl text-white">
-        К сожалению нам не удалось ничего найти по вашему запросу
-      </p>
-      <p className="text-white">Попробуйте изменить параметры поиска</p>
+  return status === Status.ERROR ? (
+    <NotFounProduct title="Ошибка с сервером" />
+  ) : (
+    <Box className="grid grid-cols-4 gap-2 gap-y-4 lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 max-500:grid-cols-2">
+      {status === Status.LOADING ? (
+        skeletonsList
+      ) : count > 0 ? (
+        productsList
+      ) : (
+        <NotFounProduct title="Ничего не найдено" />
+      )}
     </Box>
   );
-
-  return items.length !== 0 ? product() : notFound;
 };
 
 export default ProductFilters;

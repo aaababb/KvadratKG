@@ -1,11 +1,10 @@
 import React from "react";
 import { Box, styled } from "@mui/material";
-import back from "../../../shared/assets/svg/back.svg";
+import { useTheme } from "@mui/material/styles";
 import PenModal from "./PenModal";
-import { useNavigate } from "react-router-dom";
 
 const ModalHouse = () => {
-  const navigate = useNavigate();
+  const theme = useTheme();
   return (
     <ModalStyle>
       <Box
@@ -15,21 +14,20 @@ const ModalHouse = () => {
           left: "50%",
           transform: "translate(-50%, -50%)",
           width: 680,
-          height: 640,
+          height: 680,
           bgcolor: "black",
-          border: "1px solid #262626",
+          border: "2px solid gray",
           boxShadow: 66,
           outline: "none",
           borderRadius: "12px",
           p: 4,
+          [theme.breakpoints.down("md")]: {
+            width: "100%",
+            height: "auto",
+            padding: "32px 4px",
+          },
         }}
       >
-        <img
-          src={back}
-          alt="Back"
-          onClick={() => navigate("/admin/real-estate")}
-          style={{ cursor: "pointer" }}
-        />
         <PenModal />
       </Box>
     </ModalStyle>

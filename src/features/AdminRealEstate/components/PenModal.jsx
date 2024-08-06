@@ -106,13 +106,14 @@ const PenModal = () => {
   }, [house, reset]);
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="text-white ml-4">
-      <div className="w-[680px] h-[50px] -mt-8 rounded-t-lg rounded-md bg-[#C8180C] relative ml-[-48px] pt-[20px]">
-        <p className="ml-10 w-[500px] h-[30px]">
-          Создать новую карточку для недвижимости
-        </p>
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="text-white relative pt-1"
+    >
+      <div className="w-[750px] h-[50px] rounded-lg bg-[#C8180C] max-500:w-full flex items-center px-5 absolute left-1/2 transform -translate-x-1/2">
+        <p>Создать новую карточку для недвижимости</p>
       </div>
-      <div className=" bg-[#131313] text-[#B3B3B3] rounded-md p-1 mb-4 flex items-center mt-4 gap-5">
+      <div className=" bg-[#131313] text-[#B3B3B3] rounded-md p-1 my-4 mt-20 flex items-center gap-5">
         <label className="ml-2 cursor-pointer w-full flex items-center">
           <img
             src={selectedImage || upload}
@@ -124,11 +125,11 @@ const PenModal = () => {
         </label>
       </div>
 
-      <div className="flex justify-between">
+      <div className="flex justify-between max-500:flex-col max-500:justify-normal">
         <div className="relative">
           <textarea
             type="text"
-            className="w-[290px] h-[80px] resize-none bg-[#131313] text-[#B3B3B3] rounded-md p-2 pl-5 placeholder-[#B3B3B3] border-2 border-gray-600"
+            className="max-500:w-full w-[290px] h-[80px] resize-none bg-[#131313] text-[#B3B3B3] rounded-md p-2 pl-5 placeholder-[#B3B3B3] border-2 border-gray-600"
             placeholder="Добавить заголовок..."
             {...register("title")}
           />
@@ -136,14 +137,14 @@ const PenModal = () => {
         <div className="flex flex-col gap-3">
           <input
             type="number"
-            className="w-[290px] h-[30px] bg-[#131313] text-[#B3B3B3] rounded-md p-2 pl-5 border-2 border-gray-600"
+            className="max-500:w-full w-[290px] h-[30px] bg-[#131313] text-[#B3B3B3] rounded-md p-2 pl-5 border-2 border-gray-600"
             placeholder="Площадь (м2)"
             {...register("square_footage")}
           />
           <div className="relative">
             <input
               type="number"
-              className="w-[290px] h-[30px] bg-[#131313] text-[#B3B3B3] rounded-md p-2 pl-5  border-2 border-gray-600"
+              className="max-500:w-full w-[290px] h-[30px] bg-[#131313] text-[#B3B3B3] rounded-md p-2 pl-5  border-2 border-gray-600"
               placeholder="Цена"
               {...register("price")}
             />

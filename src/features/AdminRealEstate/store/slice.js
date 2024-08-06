@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { getHouses, getHouseById } from "./action";
 
-const Status = {
+export const Status = {
   LOADING: "loading",
   ERROR: "error",
   SUCCESS: "success",

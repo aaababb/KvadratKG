@@ -6,17 +6,37 @@ import { getHouses } from "../../AdminRealEstate/store/action";
 import DropDownMen from "./DropDownMen";
 import ProductBLock from "./ProductBLock";
 import Container from "../../../shared/helpers/Container";
+import ProductBlockSkeleton from "../../../shared/helpers/ProductBlockSkeleton";
+import { Status } from "../../AdminRealEstate/store/slice";
 
 const Products = () => {
   const dispatch = useDispatch();
-  const { items } = useSelector((state) => state.houses);
+  const { items, status } = useSelector((state) => state.houses);
 
   React.useEffect(() => {
-    dispatch(getHouses());
+    dispatch(getHouses({ params: null, page: 0 }));
   }, []);
   const scrollToTop = () => {
     window.scrollTo(0, 0);
   };
+
+  const productsList = items.map((obj, index) => (
+    <div
+      className="w-[230px] mx-auto pt-[20px] md:pt-[25px] lg:w-[22%]"
+      key={index}
+    >
+      <ProductBLock {...obj} />
+    </div>
+  ));
+
+  const skeletonsList = [...new Array(8)].map((_, i) => (
+    <div
+      className="w-[230px] mx-auto pt-[20px] md:pt-[25px] lg:w-[22%]"
+      key={i}
+    >
+      <ProductBlockSkeleton />
+    </div>
+  ));
 
   return (
     <Container>
@@ -34,14 +54,7 @@ const Products = () => {
       </div>
       <div className="w-full ">
         <div className=" w-full lg:overflow-x-hidden flex lg:flex-wrap gap-5 items-start overflow-x-scroll">
-          {items.slice(0, 8).map((obj, index) => (
-            <div
-              className="w-[230px] pt-[20px] md:pt-[25px] lg:w-[22%]"
-              key={index}
-            >
-              <ProductBLock {...obj} />
-            </div>
-          ))}
+          {status === Status.LOADING ? skeletonsList : productsList}
         </div>
       </div>
       <div className="flex justify-center p-5">
