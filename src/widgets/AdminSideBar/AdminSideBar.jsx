@@ -32,18 +32,22 @@ const AdminSidebar = ({ open, handleDrawerToggle }) => {
           boxSizing: 'border-box',
           backgroundColor: '#222224',
           color: 'white',
-          top: '60px',
+          top: isMobile ? '50px' : '60px',
           height: `calc(100vh - 64px)`,
+          padding: isMobile ? '10px' : '20px', // Adjust padding for mobile
         },
       }}
     >
-      <List>
+      <List sx={{ padding: 0 }}>
         <NavLink to="/admin" style={({ isActive }) => ({
           textDecoration: 'none',
           color: isActive && location.pathname === '/admin' ? 'red' : 'white',
+          marginBottom: isMobile ? '10px' : '20px', // Adjust margin for mobile
         })}>
           <ListItem>
-            <ListItemIcon sx={{ color: 'white' }}><HomeIcon /></ListItemIcon>
+            <ListItemIcon sx={{ color: 'white', minWidth: isMobile ? '40px' : '56px' }}>
+              <HomeIcon fontSize={isMobile ? 'large' : 'medium'} /> {/* Larger icon on mobile */}
+            </ListItemIcon>
             <ListItemText primary="Главная" />
           </ListItem>
         </NavLink>
@@ -51,9 +55,12 @@ const AdminSidebar = ({ open, handleDrawerToggle }) => {
         <NavLink to="/admin/real-estate" style={({ isActive }) => ({
           textDecoration: 'none',
           color: isActive ? 'red' : 'inherit',
+          marginBottom: isMobile ? '10px' : '20px',
         })}>
           <ListItem>
-            <ListItemIcon sx={{ color: 'white' }}><BusinessIcon /></ListItemIcon>
+            <ListItemIcon sx={{ color: 'white', minWidth: isMobile ? '40px' : '56px' }}>
+              <BusinessIcon fontSize={isMobile ? 'large' : 'medium'} />
+            </ListItemIcon>
             <ListItemText primary="Объекты Недвижимости" />
           </ListItem>
         </NavLink>
@@ -61,9 +68,12 @@ const AdminSidebar = ({ open, handleDrawerToggle }) => {
         <NavLink to="/admin/settings" style={({ isActive }) => ({
           textDecoration: 'none',
           color: isActive ? 'red' : 'inherit',
+          marginBottom: isMobile ? '10px' : '20px',
         })}>
           <ListItem>
-            <ListItemIcon sx={{ color: 'white' }}><SettingsIcon /></ListItemIcon>
+            <ListItemIcon sx={{ color: 'white', minWidth: isMobile ? '40px' : '56px' }}>
+              <SettingsIcon fontSize={isMobile ? 'large' : 'medium'} />
+            </ListItemIcon>
             <ListItemText primary="Настройки" />
           </ListItem>
         </NavLink>
@@ -71,14 +81,15 @@ const AdminSidebar = ({ open, handleDrawerToggle }) => {
       <Box sx={{ flexGrow: 1 }} />
 
       <NavLink to="/">
-        <List sx={{ position: 'absolute', bottom: 8 }}>
+        <List sx={{ position: 'absolute', bottom: 8, padding: 0 }}>
           <ListItem>
-            <ListItemIcon sx={{ color: 'white' }}><ExitToAppIcon /></ListItemIcon>
+            <ListItemIcon sx={{ color: 'white', minWidth: isMobile ? '40px' : '56px' }}>
+              <ExitToAppIcon fontSize={isMobile ? 'large' : 'medium'} />
+            </ListItemIcon>
             <ListItemText primary="Выход" />
           </ListItem>
         </List>
       </NavLink>
-
     </Drawer>
   );
 };

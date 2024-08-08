@@ -10,7 +10,7 @@ const PaginateMenu = ({ changePage, active, maxvalue }) => {
   return (
     <div className="flex gap-3 mt-5 text-white">
       <button
-        className="w-10 h-10 rounded flex justify-center items-center bg-slate-300 cursor-pointer disabled:bg-[#262626] disabled:text-slate-500"
+        className="text-[10px] md:text-[15px] w-10 h-10 rounded flex justify-center items-center bg-slate-300 cursor-pointer disabled:bg-[#262626] disabled:text-slate-500"
         onClick={() => changePage(active - 9)}
         disabled={active === 0}
       >
@@ -28,7 +28,7 @@ const PaginateMenu = ({ changePage, active, maxvalue }) => {
         </button>
       ))}
       <button
-        className="w-10 h-10 rounded flex justify-center items-center bg-slate-300 cursor-pointer disabled:bg-[#262626] disabled:text-slate-500"
+        className="text-[10px] md:text-[15px] w-10 h-10 rounded flex justify-center items-center bg-slate-300 cursor-pointer disabled:bg-[#262626] disabled:text-slate-500"
         onClick={() => changePage(active + 9)}
         disabled={active === generatePagesArr[generatePagesArr.length - 1].page}
       >

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
+// import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { Navigation, Pagination, Mousewheel, Keyboard } from "swiper/modules";
+// import { Navigation, Pagination, Mousewheel, Keyboard } from "swiper/modules";
 import { useOutletContext } from "react-router-dom";
 import Slide2 from "./slide2/Slide2";
 import Slide1 from "./slide1/Slide1";
@@ -77,30 +77,32 @@ const AdminMainDashboard = () => {
     <div>
       {globalStyles}
       <div
-        className={` transition-all duration-300 ${
+        className={`transition-all duration-300 mx-auto ${
           mobileOpen ? "w-[90%]" : "w-[92%]"
-        }`}
+        }
+        `}
       >
-        <Box sx={{ width: "100%", marginLeft: "7.5%" }}>
-          <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-            <Tabs
-              value={value}
-              onChange={handleChange}
-              aria-label="basic tabs example"
-            >
-              <Tab
-                sx={{ color: "white" }}
-                label="Добавить заголовок"
-                {...a11yProps(0)}
-              />
+        <Box sx={{ width: "100%"}}>
+            <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+              <Tabs
+                value={value}
+                onChange={handleChange}
+                aria-label="basic tabs example"
+              >
+                <Tab
+                  sx={{ color: "white",fontSize: { xs: '10px', sm: '12px', md: '15px' },}}
+                  label="Добавить заголовок"
+                  {...a11yProps(0)}
+                />
 
-              <Tab
-                sx={{ color: "white" }}
-                label="Метрика Сайта"
-                {...a11yProps(1)}
-              />
-            </Tabs>
-          </Box>
+                <Tab
+                  sx={{ color: "white",fontSize: { xs: '10px', sm: '12px', md: '15px' },}}
+                  label="Метрика Сайта"
+                  {...a11yProps(1)}
+                />
+              </Tabs>
+            </Box>
+          
           <CustomTabPanel value={value} index={0}>
             <Slide1 windowWidth={windowWidth} mobileOpen={mobileOpen} />
           </CustomTabPanel>
