@@ -29,16 +29,16 @@ const ActiveFilter = ({ open }) => {
         >
           <span className="text-white">Фильтр</span>
           <div className="absolute bottom-0 left-0 w-full border-b border-white"></div>
-          <div className="absolute top-0 right-0 w-2.5 h-2.5 bg-red-600 rounded-full"></div>
+          <div className="absolute top-2 right-0 w-2.5 h-2.5 bg-red-600 rounded-full"></div>
         </div>
-        <div className="flex gap-2 items-end max-500:flex-col max-500:items-start">
+        {/* <div className="flex gap-2 items-end max-500:flex-col max-500:items-start">
           <span>Сортировка:</span>
           <SelectUI
             items={["По популярности", "По цене"]}
             active={filterType}
             onChange={changeFilterType}
           />
-        </div>
+        </div> */}
       </div>
 
       <FilterName />

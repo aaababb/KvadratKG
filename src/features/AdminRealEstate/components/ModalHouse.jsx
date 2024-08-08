@@ -1,4 +1,3 @@
-import React from "react";
 import { Box, styled } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import PenModal from "./PenModal";
@@ -10,21 +9,26 @@ const ModalHouse = () => {
       <Box
         sx={{
           position: "absolute",
-          top: "45%",
+          top: "50%",
           left: "50%",
           transform: "translate(-50%, -50%)",
-          width: 680,
-          height: 680,
           bgcolor: "black",
           border: "2px solid gray",
           boxShadow: 66,
           outline: "none",
           borderRadius: "12px",
-          p: 4,
+          padding: {xs:'10px', md:'15px', lg:'20px'},
           [theme.breakpoints.down("md")]: {
-            width: "100%",
-            height: "auto",
-            padding: "32px 4px",
+            width: "40%",
+            height: "70%",
+          },
+          [theme.breakpoints.down("sm")]: {
+            width: "60%",
+            height: "60%",
+          },
+          [theme.breakpoints.down("lg")]: {
+            width: "80%",
+            height: "80%",
           },
         }}
       >
@@ -44,4 +48,7 @@ const ModalStyle = styled("div")({
   bottom: 0,
   backgroundColor: "rgba(0, 0, 0, 0.5)",
   zIndex: 1110,
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
 });
