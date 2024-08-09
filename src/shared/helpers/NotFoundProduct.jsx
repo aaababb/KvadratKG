@@ -1,4 +1,3 @@
-import React from "react";
 import NoData from "../assets/img/NoData.png";
 import { Box } from "@mui/material";
 

@@ -55,14 +55,14 @@ const AdminRealEstate = () => {
                   alt="Photos"
                 />
               </div>
-              <p className="w-[110px] h-[50px] md:w-[210px] md:h-[90px] text-[8px] md:text-[10px] flex items-center justify-center">
+              <p className="w-[110px] h-[50px] md:w-[210px] md:h-[90px] text-[8px] md:text-[18px] flex items-center justify-center">
                 {obj.title || "title is not definded"}
               </p>
-              <p className="w-[100px] h-[50px] text-[8px] md:text-[10px] md:w-[200px] md:h-[90px] flex items-center justify-start">
+              <p className="w-[100px] h-[50px] text-[8px] md:text-[18px] md:w-[200px] md:h-[90px] flex items-center justify-start">
                 {`Площадь: ${obj.square_footage || "м2.77.3"}
                 }`}
               </p>
-              <p className="w-[100px] h-[50px] text-[8px] md:text-[10px] md:w-[180px] md:h-[90px] flex items-center justify-center">{obj.price || "12млн.$"}</p>
+              <p className="w-[100px] h-[50px] text-[8px] md:text-[18px] md:w-[180px] md:h-[90px] flex items-center justify-center">{obj.price || "12млн.$"}</p>
               <div className="h-50px md:h-[90px] flex items-center justify-center gap-5">
                 <img
                   src={pen}
