@@ -42,6 +42,7 @@ const AdminNavbar = ({ handleDrawerToggle, isOpen }) => {
         transition: 'width 0.3s, margin 0.3s',
         backgroundColor: '#9A0A00',
         top: isMobile ? '0px' : '60px',
+        marginLeft: isOpen ? `${240}px` : '0px', 
       }}
     >
       <Toolbar>
