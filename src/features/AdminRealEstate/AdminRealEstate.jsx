@@ -82,7 +82,7 @@ const AdminRealEstate = () => {
         </>
       );
     } else {
-      return <div>Houses is not an array</div>;
+      return <div>Houses is not an array</div>
     }
   };
 
