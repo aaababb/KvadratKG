@@ -37,40 +37,41 @@ const AdminRealEstate = () => {
               sx={{
                 display: "flex",
                 justifyContent: "space-between",
-                width: "90%",
+                width: "94%",
                 color: "white",
                 alignItems: "center",
                 backgroundColor: "#262626",
-                padding: "10px 20px",
+                padding: 2,
+                fontSize: {xs:'10px', md: '20px'}
               }}
               key={obj.id}
             >
-              <div className="w-[150px] h-[90px] overflow-hidden">
+              <div className="w-[100px] h-[50px] md:w-[150px] md:h-[90px] flex items-center justify-start overflow-hidden">
                 <img
                   className="w-full h-full object-cover"
                   src={obj.image ? obj.image : upload}
                   alt="Photos"
                 />
               </div>
-              <p className="w-[190px]">
+              <p className="w-[110px] h-[50px] md:w-[210px] md:h-[90px] text-[8px] md:text-[10px] flex items-center justify-center">
                 {obj.title || "3 - комнатная квартира на улице Киевская 30"}
               </p>
-              <p className="w-[220px]">
+              <p className="w-[100px] h-[50px] text-[8px] md:text-[10px] md:w-[200px] md:h-[90px] flex items-center justify-start">
                 {`Площадь: ${obj.square_footage || "м2.77.3"}
                 }`}
               </p>
-              <p>{obj.price || "12млн.$"}</p>
-              <div className="flex gap-5 ">
+              <p className="w-[100px] h-[50px] text-[8px] md:text-[10px] md:w-[180px] md:h-[90px] flex items-center justify-center">{obj.price || "12млн.$"}</p>
+              <div className="h-50px md:h-[90px] flex items-center justify-center gap-5">
                 <img
                   src={pen}
                   onClick={() => navigate(`/admin/modal/${obj.id}`)}
                   alt="Pen"
-                  className="cursor-pointer hover:scale-125 transition-transform duration-150 pen-icon"
+                  className="cursor-pointer w-[15px] h-[15px] md:w-[30px] md:h-[30px] hover:scale-125 transition-transform duration-150 pen-icon"
                 />
                 <img
                   src={trash}
                   alt="Trash"
-                  className="cursor-pointer hover:scale-125 transition-transform duration-150 pen-icon"
+                  className="cursor-pointer w-[15px] h-[15px] md:w-[30px] md:h-[30px] hover:scale-125 transition-transform duration-150 pen-icon"
                 />
               </div>
             </Box>

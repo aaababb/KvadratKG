@@ -21,7 +21,7 @@ function DropDownMen() {
       const path = event.path || (event.composedPath && event.composedPath());
       if (path && !path.includes(sortRef.current)) {
         setOpen(false);
-        console.log("click outside");
+        // console.log("click outside");
       }
     };
 

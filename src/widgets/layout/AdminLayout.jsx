@@ -41,7 +41,7 @@ const AdminLayout = () => {
             marginLeft: isMobile ? "0" : mobileOpen ? `${drawerWidth}px` : "0",
             transition: "margin 0.3s",
             overflowY: "auto",
-            marginTop: isMobile ? '0px' : "120px",
+            marginTop: isMobile ? '0px' : "40px",
             // border: '1px solid red'
           }}
         >
