@@ -1,5 +1,4 @@
 import React from "react";
-import SaleMenu from "./SaleMenu";
 import { useSelector, useDispatch } from "react-redux";
 import {
   setPrice,
@@ -17,18 +16,13 @@ import {
 } from "../store/slice";
 import SelectUI from "./SelectUI";
 import { priceVariable } from "../store/data";
+import { addressArray } from "../store/data";
 
 const Type = () => {
   const dispatch = useDispatch();
   const { typeHouse, comfort } = useSelector((state) => state.filter);
 
-  const houseType = [
-    "Все",
-    "Дома",
-    "Квартиры",
-    "Участки",
-    "Комерческое недвижиомть",
-  ];
+  const houseType = ["Все", "Дома", "Квартиры", "Участки", "Комерческое недвижиомть"];
   const handleChange = (value) => {
     const option = priceVariable.find((x) => x.id === value);
     if (option) {
@@ -44,11 +38,7 @@ const Type = () => {
       <hr className="my-5" />
       <div className="mt-5">
         <p className="mb-3">Местоположение</p>
-        <SelectUI
-          items={["Москва", "Санкт-Петербург"]}
-          active={"Москва"}
-          width={300}
-        />
+        <SelectUI items={addressArray} active={"Бишкек"} width={300} />
       </div>
       <hr className="mt-10 mb-5" />
       <div>
@@ -70,11 +60,7 @@ const Type = () => {
         <div>
           {houseType.map((item, i) => (
             <div className="flex gap-3" key={i}>
-              <input
-                type="checkbox"
-                checked={typeHouse === item}
-                onChange={() => dispatch(setTypeHouse(item))}
-              />
+              <input type="checkbox" checked={typeHouse === item} onChange={() => dispatch(setTypeHouse(item))} />
               <p>{item}</p>
             </div>
           ))}
@@ -85,12 +71,7 @@ const Type = () => {
       <div>
         <div>Цена</div>
         <div>
-          <SelectUI
-            items={priceVariable}
-            isPrice={true}
-            onChange={handleChange}
-            active={priceVariable[0].id}
-          />
+          <SelectUI items={priceVariable} isPrice={true} onChange={handleChange} active={priceVariable[0].id} />
         </div>
       </div>
       <hr className="mt-10 mb-5" />
@@ -100,86 +81,46 @@ const Type = () => {
         <div className="flex gap-10">
           <div className="pt-5">
             <div className="flex gap-3 ">
-              <input
-                type="checkbox"
-                checked={comfort.garden}
-                onChange={() => dispatch(setGarden())}
-              />
+              <input type="checkbox" checked={comfort.garden} onChange={() => dispatch(setGarden())} />
               <p>Сад</p>
             </div>
             <div className="flex gap-3">
-              <input
-                type="checkbox"
-                checked={comfort.gym}
-                onChange={() => dispatch(setGym())}
-              />
+              <input type="checkbox" checked={comfort.gym} onChange={() => dispatch(setGym())} />
               <p>Спортзал</p>
             </div>
             <div className="flex gap-3">
-              <input
-                type="checkbox"
-                checked={comfort.elevator}
-                onChange={() => dispatch(setElevator())}
-              />
+              <input type="checkbox" checked={comfort.elevator} onChange={() => dispatch(setElevator())} />
               <p>Лифт</p>
             </div>
             <div className="flex gap-3">
-              <input
-                type="checkbox"
-                checked={comfort.garage}
-                onChange={() => dispatch(setGarage())}
-              />
+              <input type="checkbox" checked={comfort.garage} onChange={() => dispatch(setGarage())} />
               <p>Гаражи</p>
             </div>
             <div className="flex gap-3">
-              <input
-                type="checkbox"
-                checked={comfort.parking}
-                onChange={() => dispatch(setParking())}
-              />
+              <input type="checkbox" checked={comfort.parking} onChange={() => dispatch(setParking())} />
               <p>Стоянка</p>
             </div>
           </div>
 
           <div className="pt-5">
             <div className="flex gap-3">
-              <input
-                type="checkbox"
-                checked={comfort.fireplace}
-                onChange={() => dispatch(setFireplace())}
-              />
+              <input type="checkbox" checked={comfort.fireplace} onChange={() => dispatch(setFireplace())} />
               <p>Камин</p>
             </div>
             <div className="flex gap-3">
-              <input
-                type="checkbox"
-                checked={comfort.pool}
-                onChange={() => dispatch(setPool())}
-              />
+              <input type="checkbox" checked={comfort.pool} onChange={() => dispatch(setPool())} />
               <p>Бассейн</p>
             </div>
             <div className="flex gap-3">
-              <input
-                type="checkbox"
-                checked={comfort.area}
-                onChange={() => dispatch(setArea())}
-              />
+              <input type="checkbox" checked={comfort.area} onChange={() => dispatch(setArea())} />
               <p>Детская площадка</p>
             </div>
             <div className="flex gap-3">
-              <input
-                type="checkbox"
-                checked={comfort.clubhouse}
-                onChange={() => dispatch(setClubhouse())}
-              />
+              <input type="checkbox" checked={comfort.clubhouse} onChange={() => dispatch(setClubhouse())} />
               <p>Клубный дом</p>
             </div>
             <div className="flex gap-3">
-              <input
-                type="checkbox"
-                checked={comfort.laundry}
-                onChange={() => dispatch(setLaundry())}
-              />
+              <input type="checkbox" checked={comfort.laundry} onChange={() => dispatch(setLaundry())} />
               <p>Прачечная</p>
             </div>
           </div>

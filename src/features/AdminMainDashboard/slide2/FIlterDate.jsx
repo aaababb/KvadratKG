@@ -8,7 +8,7 @@ const FilterDate = ({ onClickPrev, onClickNext, dateTitle, width }) => {
       <PrevBtn onClick={() => onClickPrev(1)}>
         <img src={SelectIcon} alt="prev" />
       </PrevBtn>
-      <div>{dateTitle}</div>
+      <div className="mt-1 md:mt-0">{dateTitle}</div>
       <NextBtn onClick={() => onClickNext(1)}>
         <img src={SelectIcon} alt="next" />
       </NextBtn>

@@ -20,7 +20,7 @@ const AdminLayout = () => {
 
   return (
     <Box sx={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
-      <div className="w-full fixed top-0 z-50">
+      <div className="w-full top-0 z-50 hidden md:block">
         <Header />
       </div>
       <AdminNavbar
@@ -33,15 +33,16 @@ const AdminLayout = () => {
           handleDrawerToggle={handleDrawerToggle}
         />
         <Box
+        isMobile={isMobile}
           component="main"
           sx={{
             flexGrow: 1,
             paddingTop: "20px",
-            paddingLeft: "55px",
             marginLeft: isMobile ? "0" : mobileOpen ? `${drawerWidth}px` : "0",
             transition: "margin 0.3s",
             overflowY: "auto",
-            marginTop: "120px",
+            marginTop: isMobile ? '0px' : "120px",
+            // border: '1px solid red'
           }}
         >
           <Outlet context={{ mobileOpen }} />
