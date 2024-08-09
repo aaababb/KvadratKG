@@ -106,20 +106,13 @@ const PenModal = () => {
   }, [house, reset]);
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="text-white relative pt-1"
-    >
+    <form onSubmit={handleSubmit(onSubmit)} className="text-white relative pt-1">
       <div className="w-[750px] h-[50px] rounded-lg bg-[#C8180C] max-500:w-full flex items-center px-5 absolute left-1/2 transform -translate-x-1/2">
         <p>Создать новую карточку для недвижимости</p>
       </div>
       <div className=" bg-[#131313] text-[#B3B3B3] rounded-md p-1 my-4 mt-20 flex items-center gap-5">
         <label className="ml-2 cursor-pointer w-full flex items-center">
-          <img
-            src={selectedImage || upload}
-            alt="img"
-            className="w-[20px] h-[20px] mr-2"
-          />
+          <img src={selectedImage || house.image || upload} alt="img" className="w-[20px] h-[20px] mr-2" />
           <p className="text-xs">Добавить фото</p>
           <input type="file" className="hidden" onChange={handleImageChange} />
         </label>
@@ -159,58 +152,33 @@ const PenModal = () => {
             <p className="pt-1 text-xs">Комнаты</p>
             <img className="ml-2" width={16} src={Rooms} alt="Rooms" />
           </div>
-          <SelectAutoWidth
-            count={5}
-            register={register}
-            name="rooms"
-            defaultValue={house.rooms}
-          />
+          <SelectAutoWidth count={5} register={register} name="rooms" defaultValue={house.rooms} />
         </div>
         <div className="w-[20%]">
           <div className="flex bg-[#C8180C] p-1 items-center justify-center">
             <p className="pt-1 text-xs">Ванна</p>
             <img className="ml-2" width={16} src={baths} alt="bathroom" />
           </div>
-          <SelectAutoWidth
-            count={5}
-            register={register}
-            name="bathroom"
-            defaultValue={house.bathroom}
-          />
+          <SelectAutoWidth count={5} register={register} name="bathroom" defaultValue={house.bathroom} />
         </div>
         <div className="w-[20%]">
           <div className="flex bg-[#C8180C] p-1 items-center justify-center">
             <p className="pt-1 text-xs">Спальня</p>
             <img className="ml-2" width={16} src={bedroom} alt="Bedroom" />
           </div>
-          <SelectAutoWidth
-            count={5}
-            register={register}
-            name="bedrooms"
-            defaultValue={house.bedrooms}
-          />
+          <SelectAutoWidth count={5} register={register} name="bedrooms" defaultValue={house.bedrooms} />
         </div>
         <div className="w-[20%]">
           <div className="flex bg-[#C8180C] p-1 items-center justify-center">
             <p className="pt-1 text-xs">Кухня</p>
             <img className="ml-2" width={16} src={kitchen} alt="kitchen" />
           </div>
-          <SelectAutoWidth
-            count={5}
-            register={register}
-            name="kitchen"
-            defaultValue={house.kitchen}
-          />
+          <SelectAutoWidth count={5} register={register} name="kitchen" defaultValue={house.kitchen} />
         </div>
         <div className="w-[20%]">
           <div className="flex bg-[#C8180C] p-1 items-center justify-center">
             <p className="pt-1 text-xs">Гараж</p>
-            <img
-              className="ml-2"
-              width={16}
-              src={Garage}
-              alt="garage_how_many"
-            />
+            <img className="ml-2" width={16} src={Garage} alt="garage_how_many" />
           </div>
           <SelectAutoWidth
             count={5}
@@ -296,10 +264,7 @@ const PenModal = () => {
       </div>
 
       <div className="flex m-3 gap-2">
-        <button
-          type="submit"
-          className="bg-[#C8180C] text-white w-[110px] h-[40px] rounded-full"
-        >
+        <button type="submit" className="bg-[#C8180C] text-white w-[110px] h-[40px] rounded-full">
           <AddIcon />
           Добавить
         </button>

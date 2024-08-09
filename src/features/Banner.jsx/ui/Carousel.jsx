@@ -5,8 +5,8 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
-import { getHeadings } from "../../store/action";
-import Banner from "../Banner";
+import { getHeadings } from "../store/action";
+import Banner from "./Banner";
 
 export default function Carousel() {
   const dispatch = useDispatch();
@@ -19,12 +19,28 @@ export default function Carousel() {
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
 
+  const renderSlides = () => {
+    if (headings.length === 0) {
+      return (
+        <SwiperSlide>
+          <p>No slides available</p>
+        </SwiperSlide>
+      );
+    }
+
+    return headings.map((heading) => (
+      <SwiperSlide key={heading.id}>
+        <Banner heading={heading} />
+      </SwiperSlide>
+    ));
+  };
+
   return (
     <div className="w-full h-full">
       <Swiper
         slidesPerView={1}
         spaceBetween={30}
-        loop={true}
+        loop={headings.length > 1}
         autoplay={{
           delay: 3000,
           disableOnInteraction: false,
@@ -33,11 +49,7 @@ export default function Carousel() {
         modules={[Autoplay, Pagination, Navigation]}
         className="mySwiper"
       >
-        {headings.results?.map((heading) => (
-          <SwiperSlide key={heading.id}>
-            <Banner heading={heading} />
-          </SwiperSlide>
-        ))}
+        {renderSlides()}
       </Swiper>
     </div>
   );

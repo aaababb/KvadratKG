@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { getHouses, getHouseById } from "./action";
+import { replaceUrlPart } from "../../../utils";
 
 export const Status = {
   LOADING: "loading",
@@ -41,7 +42,7 @@ const houseSlice = createSlice({
         state.status = Status.LOADING;
       })
       .addCase(getHouseById.fulfilled, (state, { payload }) => {
-        state.item = payload;
+        state.item = { ...payload, image: replaceUrlPart(payload.image) };
         state.status = Status.SUCCESS;
       })
       .addCase(getHouseById.rejected, (state) => {

@@ -9,13 +9,14 @@ import AddIcon from "@mui/icons-material/Add";
 import pen from "../../shared/assets/svg/pen.svg";
 import trash from "../../shared/assets/svg/trash.svg";
 import upload from "../../shared/assets/svg/upload.svg";
+import NotFoundProduct from "../../shared/helpers/NotFoundProduct";
+import { replaceUrlPart } from "../../utils";
 
 const AdminRealEstate = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { items } = useSelector((state) => state.houses);
-  console.log(items);
+  const { items, count } = useSelector((state) => state.houses);
 
   const ItemRender = () => {
     if (Array.isArray(items)) {
@@ -35,19 +36,11 @@ const AdminRealEstate = () => {
               key={obj.id}
             >
               <div className="w-[150px] h-[90px] overflow-hidden">
-                <img
-                  className="w-full h-full object-cover"
-                  src={obj.image ? obj.image : upload}
-                  alt="Photos"
-                />
+                <img className="w-full h-full object-cover" src={obj.image ? replaceUrlPart(obj.image) : upload} alt="Photos" />
               </div>
-              <p className="w-[190px]">
-                {obj.title || "3 - комнатная квартира на улице Киевская 30"}
-              </p>
+              <p className="w-[190px]">{obj.title || "3 - комнатная квартира на улице Киевская 30"}</p>
               <p className="w-[220px]">
-                {`Площадь: ${obj.square_footage || "м2.77.3"} Планировка: ${
-                  obj.plan || "ИФ-1(А)-036"
-                }`}
+                {`Площадь: ${obj.square_footage || "м2.77.3"} Планировка: ${obj.plan || "ИФ-1(А)-036"}`}
               </p>
               <p>{obj.price || "12млн.$"}</p>
               <div className="flex gap-5 ">
@@ -123,7 +116,7 @@ const AdminRealEstate = () => {
           marginTop: "10px",
         }}
       >
-        {ItemRender()}
+        {count > 0 ? ItemRender() : <NotFoundProduct title="Пока нет недвижимости" />}
       </Box>
     </Box>
   );

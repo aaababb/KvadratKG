@@ -2,7 +2,7 @@ import React from "react";
 import NoData from "../assets/img/NoData.png";
 import { Box } from "@mui/material";
 
-const NotFounProduct = ({ title }) => {
+const NotFoundProduct = ({ title }) => {
   return (
     <Box
       sx={{
@@ -21,4 +21,4 @@ const NotFounProduct = ({ title }) => {
   );
 };
 
-export default NotFounProduct;
+export default NotFoundProduct;
