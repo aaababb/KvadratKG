@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { Box } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-
 import { getHouses } from "./store/action";
+import { Status } from "./store/slice";
 
 import AddIcon from "@mui/icons-material/Add";
 import pen from "../../shared/assets/svg/pen.svg";
@@ -11,23 +11,35 @@ import trash from "../../shared/assets/svg/trash.svg";
 import upload from "../../shared/assets/svg/upload.svg";
 import NotFoundProduct from "../../shared/helpers/NotFoundProduct";
 import { replaceUrlPart } from "../../utils";
+import AdminProSkeleton from "../../shared/helpers/AdminProSkeleton";
 
 const AdminRealEstate = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { items, count } = useSelector((state) => state.houses);
+  const { items, count,status } = useSelector((state) => state.houses);
+
+
+  const skeletonsList = [...new Array(4)].map((_, i) => (
+    <div
+      className=""
+      key={i}
+    >
+      <AdminProSkeleton />
+    </div>
+  ));
 
   const ItemRender = () => {
     if (Array.isArray(items)) {
       return (
         <>
+        
           {items.map((obj) => (
             <Box
               sx={{
                 display: "flex",
                 justifyContent: "space-between",
-                width: "94%",
+                width: "90%",
                 color: "white",
                 alignItems: "center",
                 backgroundColor: "#262626",
@@ -40,7 +52,9 @@ const AdminRealEstate = () => {
               </div>
               <p className="w-[190px]">{obj.title || "3 - комнатная квартира на улице Киевская 30"}</p>
               <p className="w-[220px]">
-                {`Площадь: ${obj.square_footage || "м2.77.3"} Планировка: ${obj.plan || "ИФ-1(А)-036"}`}
+
+                {`Площадь: ${obj.square_footage || "м2.77.3"}
+                }`}
               </p>
               <p>{obj.price || "12млн.$"}</p>
               <div className="flex gap-5 ">
@@ -58,6 +72,7 @@ const AdminRealEstate = () => {
               </div>
             </Box>
           ))}
+        
         </>
       );
     } else {
@@ -65,12 +80,17 @@ const AdminRealEstate = () => {
     }
   };
 
+  
+
   React.useEffect(() => {
     dispatch(getHouses({ params: null, page: 0 }));
   }, []);
 
   return (
-    <Box>
+    <>
+    <Box sx={{
+      paddingLeft: {xs:'30px', md:'70px'}
+    }}>
       <Box
         sx={{
           display: "flex",
@@ -78,13 +98,14 @@ const AdminRealEstate = () => {
           width: "94%",
           margin: "10px 0",
           padding: "0 10px",
+          
         }}
       >
-        <h1 className="text-white text-2xl">Публикация недвижимости</h1>
+        <h1 className="text-white text-sm md:text-2xl">Публикация недвижимости</h1>
 
         <button
           onClick={() => navigate("/admin/modal")}
-          className="w-[215px] h-[57px] bg-[#C8180C] text-white rounded-[30px] flex items-center justify-center gap-3"
+          className="text-[10px] h-[25px] md:text-[17px] w-[150px] md:w-[215px] md:h-[57px] bg-[#C8180C] text-white rounded-[30px] flex items-center justify-center gap-3"
         >
           <AddIcon />
           Добавить
@@ -99,6 +120,7 @@ const AdminRealEstate = () => {
           color: "white",
           padding: 2,
           backgroundColor: "rgba(38, 38, 38, 1)",
+          fontSize: {xs:'10px', md: '20px'}
         }}
       >
         <p>Фотографии</p>
@@ -119,6 +141,7 @@ const AdminRealEstate = () => {
         {count > 0 ? ItemRender() : <NotFoundProduct title="Пока нет недвижимости" />}
       </Box>
     </Box>
+    </>
   );
 };
 

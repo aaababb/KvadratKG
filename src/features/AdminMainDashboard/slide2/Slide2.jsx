@@ -79,12 +79,12 @@ const Slide2 = () => {
     },
   ];
   return (
-    <div className={`h-auto lg:h-[520px] bg-[#222224] text-white w-[90%]`}>
+    <div className={`h-auto lg:h-[520px] bg-[#222224] text-white w-[100%]`}>
       {globalStyles}
       <Card className="!bg-[#222224] !shadow-none">
-        <div className="flex flex-col lg:flex-row px-4 lg:px-10 py-1">
+        <div className="text-[10px] md:text-[15px] w-[338px] md:w-[400px] mx-auto">
           <FilterDate
-            width={27}
+            // width={27}
             onClickNext={() => updateWeek(7)}
             onClickPrev={() => updateWeek(-7)}
             dateTitle={`${formatDate(monday)} - ${formatDate(sunday)}`}
