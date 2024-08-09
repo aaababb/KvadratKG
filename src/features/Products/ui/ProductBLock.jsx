@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 import CarouselPro from "./CarouselPro";
+import { replaceUrlPart } from "../../../utils";
 
 const ProductBLock = ({ image: imageUrl, price, title, id }) => {
   const navigate = useNavigate();
@@ -12,7 +13,7 @@ const ProductBLock = ({ image: imageUrl, price, title, id }) => {
   return (
     <div className="mw-[30cwq]  rounded-lg overflow-hidden bg-[#eee]">
       <div className="w-[100%]">
-        <CarouselPro images={Array(4).fill(imageUrl)} />
+        <CarouselPro images={Array(4).fill(replaceUrlPart(imageUrl))} />
       </div>
       <div className="p-2 flex flex-col gap-7">
         <p className="font-bold text-lg">{title}</p>

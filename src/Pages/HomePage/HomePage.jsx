@@ -5,12 +5,15 @@ import Uslugi from "../../features/Uslugi/Uslugi";
 import Accordion from "../../features/Accordion/ui/Accordion";
 import Swipers from "../../features/Swipers/ui/Swipers";
 import { useSelector } from "react-redux";
-import { Homepages } from "./Homepages";
+import { Homepages } from "./Homepages
+
 import BannerSkeleton from "../../shared/helpers/BannerSkeleton";
+
 const HomePage = () => {
   const {isLoading} = useSelector((state) => state.heading)
   return (
-    <div>
+    <div
+      <Homepages 
       {status == isLoading ? <BannerSkeleton/> : <Homepages />}
       <Element name="uslugi">
         <Uslugi />

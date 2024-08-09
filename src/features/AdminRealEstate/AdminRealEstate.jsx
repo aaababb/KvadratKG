@@ -9,14 +9,16 @@ import AddIcon from "@mui/icons-material/Add";
 import pen from "../../shared/assets/svg/pen.svg";
 import trash from "../../shared/assets/svg/trash.svg";
 import upload from "../../shared/assets/svg/upload.svg";
+import NotFoundProduct from "../../shared/helpers/NotFoundProduct";
+import { replaceUrlPart } from "../../utils";
 import AdminProSkeleton from "../../shared/helpers/AdminProSkeleton";
 
 const AdminRealEstate = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { items,status} = useSelector((state) => state.houses);
-  console.log(items);
+  const { items, count,status } = useSelector((state) => state.houses);
+
 
   const skeletonsList = [...new Array(4)].map((_, i) => (
     <div
@@ -46,16 +48,11 @@ const AdminRealEstate = () => {
               key={obj.id}
             >
               <div className="w-[150px] h-[90px] overflow-hidden">
-                <img
-                  className="w-full h-full object-cover"
-                  src={obj.image ? obj.image : upload}
-                  alt="Photos"
-                />
+                <img className="w-full h-full object-cover" src={obj.image ? replaceUrlPart(obj.image) : upload} alt="Photos" />
               </div>
-              <p className="w-[190px]">
-                {obj.title || "3 - комнатная квартира на улице Киевская 30"}
-              </p>
+              <p className="w-[190px]">{obj.title || "3 - комнатная квартира на улице Киевская 30"}</p>
               <p className="w-[220px]">
+
                 {`Площадь: ${obj.square_footage || "м2.77.3"}
                 }`}
               </p>
@@ -141,7 +138,7 @@ const AdminRealEstate = () => {
           marginTop: "10px",
         }}
       >
-        {status == Status.LOADING ? skeletonsList : ItemRender()}
+        {count > 0 ? ItemRender() : <NotFoundProduct title="Пока нет недвижимости" />}
       </Box>
     </Box>
     </>
