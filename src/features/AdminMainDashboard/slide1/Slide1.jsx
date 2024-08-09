@@ -10,35 +10,16 @@ const Slide1 = () => {
   const [title, setTitle] = useState("");
   const isLoading = useSelector(selectIsLoading);
 
-  const { token } = useSelector((state) => state.admin);
   const inputFileRef = React.useRef(null);
 
   const handleSubmit = async () => {
-    if (title.trim() === "") {
-      alert("Title is required");
-      return;
-    }
-
-    const formData = new FormData();
-    formData.append("title", title);
-    if (image) {
-      formData.append("image", image);
-    }
-
-    const resultAction = await dispatch(postHeadings(formData));
-    if (postHeadings.fulfilled.match(resultAction)) {
-      console.log("POST request successful:", resultAction.payload);
-      setTitle("");
-      setImage(null);
-      alert("Загрузка прошла успешно");
-    } else {
-      console.log("POST request failed:", resultAction.payload);
-    }
+    dispatch(postHeadings({ title, image }));
   };
 
   const handleImageChange = (e) => {
     setImage(e.target.files[0]);
   };
+
   const formats = ["IMG", "JPG", "PNG"];
 
   return (
@@ -46,6 +27,7 @@ const Slide1 = () => {
       <div className="flex flex-col lg:flex-row justify-between">
         <div className="flex flex-col gap-[15px] w-full lg:w-auto">
           <div className="flex flex-col gap-[11px]">
+
             <h2 className="text-[18px] md:text-[28px] font-semibold">
               Дабавить обзор активности
             </h2>
@@ -62,22 +44,13 @@ const Slide1 = () => {
                 <label htmlFor="image-upload" className="cursor-pointer">
                   Загрузите изображение
                 </label>
-                <input
-                  id="image-upload"
-                  type="file"
-                  className="hidden"
-                  onChange={handleImageChange}
-                  ref={inputFileRef}
-                />
+                <input id="image-upload" type="file" className="hidden" onChange={handleImageChange} ref={inputFileRef} />
               </button>
             </div>
             <p className="text-[15px] font-semibold">Допустимые форматы:</p>
             <div className="flex gap-3">
               {formats.map((obj, i) => (
-                <span
-                  key={i}
-                  className="bg-slate-500 px-3 lg:px-5 lg:py-1 rounded-xl"
-                >
+                <span key={i} className="bg-slate-500 px-3 lg:px-5 lg:py-1 rounded-xl">
                   {obj}
                 </span>
               ))}
@@ -103,11 +76,7 @@ const Slide1 = () => {
             onClick={() => inputFileRef.current.click()}
           />
         ) : (
-          <img
-            src={upload}
-            alt="Upload"
-            onClick={() => inputFileRef.current.click()}
-          />
+          <img src={upload} alt="Upload" onClick={() => inputFileRef.current.click()} />
         )}
       </div>
     </div>
@@ -115,4 +84,3 @@ const Slide1 = () => {
 };
 
 export default Slide1;
- 

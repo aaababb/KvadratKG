@@ -117,12 +117,8 @@ const PenModal = () => {
   
       <div className="bg-[#131313] text-[#B3B3B3] rounded-md p-1 md:py-4 mt-5 md:mt-16 flex items-center gap-5">
         <label className="ml-2 cursor-pointer w-full flex items-center">
-          <img
-            src={selectedImage || upload}
-            alt="img"
-            className="w-[15px] h-[15px] md:w-[30px] md:h-[30px] mr-2"
-          />
-          <p className="text-[10px] md:text-md">Добавить фото</p>
+          <img src={selectedImage || house.image || upload} alt="img" className="w-[20px] h-[20px] mr-2" />
+          <p className="text-xs">Добавить фото</p>
           <input type="file" className="hidden" onChange={handleImageChange} />
         </label>
       </div>

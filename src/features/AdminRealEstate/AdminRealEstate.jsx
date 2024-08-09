@@ -9,14 +9,16 @@ import AddIcon from "@mui/icons-material/Add";
 import pen from "../../shared/assets/svg/pen.svg";
 import trash from "../../shared/assets/svg/trash.svg";
 import upload from "../../shared/assets/svg/upload.svg";
+import NotFoundProduct from "../../shared/helpers/NotFoundProduct";
+import { replaceUrlPart } from "../../utils";
 import AdminProSkeleton from "../../shared/helpers/AdminProSkeleton";
 
 const AdminRealEstate = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { items,status} = useSelector((state) => state.houses);
-  console.log(items);
+  const { items, count,status } = useSelector((state) => state.houses);
+
 
   const skeletonsList = [...new Array(4)].map((_, i) => (
     <div
@@ -49,12 +51,12 @@ const AdminRealEstate = () => {
               <div className="w-[100px] h-[50px] md:w-[150px] md:h-[90px] flex items-center justify-start overflow-hidden">
                 <img
                   className="w-full h-full object-cover"
-                  src={obj.image ? obj.image : upload}
+                  src={obj.image ? replaceUrlPart(obj.image) : upload}
                   alt="Photos"
                 />
               </div>
               <p className="w-[110px] h-[50px] md:w-[210px] md:h-[90px] text-[8px] md:text-[10px] flex items-center justify-center">
-                {obj.title || "3 - комнатная квартира на улице Киевская 30"}
+                {obj.title || "title is not definded"}
               </p>
               <p className="w-[100px] h-[50px] text-[8px] md:text-[10px] md:w-[200px] md:h-[90px] flex items-center justify-start">
                 {`Площадь: ${obj.square_footage || "м2.77.3"}
@@ -142,7 +144,7 @@ const AdminRealEstate = () => {
           marginTop: "10px",
         }}
       >
-        {status == Status.LOADING ? skeletonsList : ItemRender()}
+        {count > 0 ? ItemRender() : <NotFoundProduct title="Пока нет недвижимости" />}
       </Box>
     </Box>
     </>

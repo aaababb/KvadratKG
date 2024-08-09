@@ -2,6 +2,7 @@ import axios from "axios";
 
 const BASE_URL = "http://167.172.74.113/";
 
+
 const formDataHeaders = {
   "Content-Type": "multipart/form-data",
 };

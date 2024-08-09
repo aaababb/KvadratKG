@@ -2,13 +2,13 @@ import { createSlice } from "@reduxjs/toolkit";
 import { getHeadings } from "./action";
 
 const initialState = {
-  headings: {},
+  headings: [],
   isLoading: false,
   error: null,
 };
 
 const headingSlice = createSlice({
-  name: 'headings',
+  name: "headings",
   initialState,
   extraReducers: (builder) => {
     builder
@@ -16,13 +16,13 @@ const headingSlice = createSlice({
         state.isLoading = true;
         state.error = null;
       })
-      .addCase(getHeadings.fulfilled, (state, action) => {
+      .addCase(getHeadings.fulfilled, (state, { payload }) => {
         state.isLoading = false;
-        state.headings = action.payload;
+        state.headings = payload.results;
       })
       .addCase(getHeadings.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.payload; 
+        state.error = action.payload;
       });
   },
 });
